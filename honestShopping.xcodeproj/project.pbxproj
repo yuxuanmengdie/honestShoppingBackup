@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F61F52C11AB71FF300603FBF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F52C01AB71FF300603FBF /* main.m */; };
+		F61F52C41AB71FF300603FBF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F52C31AB71FF300603FBF /* AppDelegate.m */; };
+		F61F52C71AB71FF300603FBF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F52C61AB71FF300603FBF /* FirstViewController.m */; };
+		F61F52CA1AB71FF300603FBF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F52C91AB71FF300603FBF /* SecondViewController.m */; };
+		F61F52CD1AB71FF400603FBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61F52CB1AB71FF400603FBF /* Main.storyboard */; };
+		F61F52CF1AB71FF400603FBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61F52CE1AB71FF400603FBF /* Images.xcassets */; };
+		F61F52D21AB71FF400603FBF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F61F52D01AB71FF400603FBF /* LaunchScreen.xib */; };
+		F61F52DE1AB71FF400603FBF /* honestShoppingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F52DD1AB71FF400603FBF /* honestShoppingTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F61F52D81AB71FF400603FBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F61F52B31AB71FF300603FBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F61F52BA1AB71FF300603FBF;
+			remoteInfo = honestShopping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F61F52BB1AB71FF300603FBF /* honestShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = honestShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F61F52BF1AB71FF300603FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F61F52C01AB71FF300603FBF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F61F52C21AB71FF300603FBF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F61F52C31AB71FF300603FBF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F61F52C51AB71FF300603FBF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		F61F52C61AB71FF300603FBF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		F61F52C81AB71FF300603FBF /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		F61F52C91AB71FF300603FBF /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		F61F52CC1AB71FF400603FBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F61F52CE1AB71FF400603FBF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F61F52D11AB71FF400603FBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F61F52D71AB71FF400603FBF /* honestShoppingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = honestShoppingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F61F52DC1AB71FF400603FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F61F52DD1AB71FF400603FBF /* honestShoppingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = honestShoppingTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F61F52B81AB71FF300603FBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F61F52D41AB71FF400603FBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F61F52B21AB71FF300603FBF = {
+			isa = PBXGroup;
+			children = (
+				F61F52BD1AB71FF300603FBF /* honestShopping */,
+				F61F52DA1AB71FF400603FBF /* honestShoppingTests */,
+				F61F52BC1AB71FF300603FBF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F61F52BC1AB71FF300603FBF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F61F52BB1AB71FF300603FBF /* honestShopping.app */,
+				F61F52D71AB71FF400603FBF /* honestShoppingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F61F52BD1AB71FF300603FBF /* honestShopping */ = {
+			isa = PBXGroup;
+			children = (
+				F61F52C21AB71FF300603FBF /* AppDelegate.h */,
+				F61F52C31AB71FF300603FBF /* AppDelegate.m */,
+				F61F52C51AB71FF300603FBF /* FirstViewController.h */,
+				F61F52C61AB71FF300603FBF /* FirstViewController.m */,
+				F61F52C81AB71FF300603FBF /* SecondViewController.h */,
+				F61F52C91AB71FF300603FBF /* SecondViewController.m */,
+				F61F52CB1AB71FF400603FBF /* Main.storyboard */,
+				F61F52CE1AB71FF400603FBF /* Images.xcassets */,
+				F61F52D01AB71FF400603FBF /* LaunchScreen.xib */,
+				F61F52BE1AB71FF300603FBF /* Supporting Files */,
+			);
+			path = honestShopping;
+			sourceTree = "<group>";
+		};
+		F61F52BE1AB71FF300603FBF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F61F52BF1AB71FF300603FBF /* Info.plist */,
+				F61F52C01AB71FF300603FBF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F61F52DA1AB71FF400603FBF /* honestShoppingTests */ = {
+			isa = PBXGroup;
+			children = (
+				F61F52DD1AB71FF400603FBF /* honestShoppingTests.m */,
+				F61F52DB1AB71FF400603FBF /* Supporting Files */,
+			);
+			path = honestShoppingTests;
+			sourceTree = "<group>";
+		};
+		F61F52DB1AB71FF400603FBF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F61F52DC1AB71FF400603FBF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F61F52BA1AB71FF300603FBF /* honestShopping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F61F52E11AB71FF400603FBF /* Build configuration list for PBXNativeTarget "honestShopping" */;
+			buildPhases = (
+				F61F52B71AB71FF300603FBF /* Sources */,
+				F61F52B81AB71FF300603FBF /* Frameworks */,
+				F61F52B91AB71FF300603FBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = honestShopping;
+			productName = honestShopping;
+			productReference = F61F52BB1AB71FF300603FBF /* honestShopping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F61F52D61AB71FF400603FBF /* honestShoppingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F61F52E41AB71FF400603FBF /* Build configuration list for PBXNativeTarget "honestShoppingTests" */;
+			buildPhases = (
+				F61F52D31AB71FF400603FBF /* Sources */,
+				F61F52D41AB71FF400603FBF /* Frameworks */,
+				F61F52D51AB71FF400603FBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F61F52D91AB71FF400603FBF /* PBXTargetDependency */,
+			);
+			name = honestShoppingTests;
+			productName = honestShoppingTests;
+			productReference = F61F52D71AB71FF400603FBF /* honestShoppingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F61F52B31AB71FF300603FBF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "张国俗";
+				TargetAttributes = {
+					F61F52BA1AB71FF300603FBF = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					F61F52D61AB71FF400603FBF = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = F61F52BA1AB71FF300603FBF;
+					};
+				};
+			};
+			buildConfigurationList = F61F52B61AB71FF300603FBF /* Build configuration list for PBXProject "honestShopping" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F61F52B21AB71FF300603FBF;
+			productRefGroup = F61F52BC1AB71FF300603FBF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F61F52BA1AB71FF300603FBF /* honestShopping */,
+				F61F52D61AB71FF400603FBF /* honestShoppingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F61F52B91AB71FF300603FBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F61F52CD1AB71FF400603FBF /* Main.storyboard in Resources */,
+				F61F52D21AB71FF400603FBF /* LaunchScreen.xib in Resources */,
+				F61F52CF1AB71FF400603FBF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F61F52D51AB71FF400603FBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F61F52B71AB71FF300603FBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F61F52CA1AB71FF300603FBF /* SecondViewController.m in Sources */,
+				F61F52C41AB71FF300603FBF /* AppDelegate.m in Sources */,
+				F61F52C71AB71FF300603FBF /* FirstViewController.m in Sources */,
+				F61F52C11AB71FF300603FBF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F61F52D31AB71FF400603FBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F61F52DE1AB71FF400603FBF /* honestShoppingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F61F52D91AB71FF400603FBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F61F52BA1AB71FF300603FBF /* honestShopping */;
+			targetProxy = F61F52D81AB71FF400603FBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F61F52CB1AB71FF400603FBF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F61F52CC1AB71FF400603FBF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F61F52D01AB71FF400603FBF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F61F52D11AB71FF400603FBF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F61F52DF1AB71FF400603FBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F61F52E01AB71FF400603FBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F61F52E21AB71FF400603FBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = honestShopping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F61F52E31AB71FF400603FBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = honestShopping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F61F52E51AB71FF400603FBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = honestShoppingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/honestShopping.app/honestShopping";
+			};
+			name = Debug;
+		};
+		F61F52E61AB71FF400603FBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = honestShoppingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/honestShopping.app/honestShopping";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F61F52B61AB71FF300603FBF /* Build configuration list for PBXProject "honestShopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F61F52DF1AB71FF400603FBF /* Debug */,
+				F61F52E01AB71FF400603FBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F61F52E11AB71FF400603FBF /* Build configuration list for PBXNativeTarget "honestShopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F61F52E21AB71FF400603FBF /* Debug */,
+				F61F52E31AB71FF400603FBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F61F52E41AB71FF400603FBF /* Build configuration list for PBXNativeTarget "honestShoppingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F61F52E51AB71FF400603FBF /* Debug */,
+				F61F52E61AB71FF400603FBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F61F52B31AB71FF300603FBF /* Project object */;
+}
