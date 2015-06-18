@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CommodityCellIndentifier" id="gTV-IL-0wX" customClass="HSCommodityCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="215" height="158"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="215" height="158"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-Op-TUp" customClass="LPLabel">
+                        <rect key="frame" x="49" y="134" width="158" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bh-6K-LfS">
+                        <rect key="frame" x="8" y="134" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-ZG-leg">
+                        <rect key="frame" x="8" y="114" width="199" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="rHo-4L-Sdt">
+                        <rect key="frame" x="0.0" y="0.0" width="215" height="106"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="mxv-Op-TUp" firstAttribute="leading" secondItem="9Bh-6K-LfS" secondAttribute="trailing" constant="8" id="1Xr-nt-5Sv"/>
+                <constraint firstAttribute="bottom" secondItem="9Bh-6K-LfS" secondAttribute="bottom" constant="8" id="FCN-oA-mNh"/>
+                <constraint firstItem="K0b-ZG-leg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="H22-T2-R2E"/>
+                <constraint firstAttribute="trailing" secondItem="rHo-4L-Sdt" secondAttribute="trailing" id="Hys-rG-gR6"/>
+                <constraint firstItem="9Bh-6K-LfS" firstAttribute="centerY" secondItem="mxv-Op-TUp" secondAttribute="centerY" id="LqB-qQ-tum"/>
+                <constraint firstItem="rHo-4L-Sdt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="POl-io-iWw"/>
+                <constraint firstItem="K0b-ZG-leg" firstAttribute="top" secondItem="rHo-4L-Sdt" secondAttribute="bottom" constant="8" id="gDn-lD-wjv"/>
+                <constraint firstItem="rHo-4L-Sdt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ged-zW-tBI"/>
+                <constraint firstItem="9Bh-6K-LfS" firstAttribute="leading" secondItem="K0b-ZG-leg" secondAttribute="leading" id="jqW-Fj-KF2"/>
+                <constraint firstItem="mxv-Op-TUp" firstAttribute="trailing" secondItem="K0b-ZG-leg" secondAttribute="trailing" id="nlt-Hs-gWt"/>
+                <constraint firstItem="9Bh-6K-LfS" firstAttribute="top" secondItem="K0b-ZG-leg" secondAttribute="bottom" constant="4" id="pMR-aP-COD"/>
+                <constraint firstAttribute="trailing" secondItem="K0b-ZG-leg" secondAttribute="trailing" constant="8" id="ywr-zg-zGR"/>
+            </constraints>
+            <size key="customSize" width="215" height="158"/>
+            <connections>
+                <outlet property="imgView" destination="rHo-4L-Sdt" id="X7p-yp-4kg"/>
+                <outlet property="oldPricelabel" destination="mxv-Op-TUp" id="59V-Fy-eNV"/>
+                <outlet property="priceLabel" destination="9Bh-6K-LfS" id="hl2-0y-EWY"/>
+                <outlet property="titlelabel" destination="K0b-ZG-leg" id="dat-WR-URY"/>
+            </connections>
+            <point key="canvasLocation" x="222.5" y="208"/>
+        </collectionViewCell>
+    </objects>
+</document>

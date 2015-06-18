@@ -73,6 +73,8 @@ static NSString *const kPostJsonSize = @"size";
 
 static NSString *const kPostJsonCode = @"code";
 
+static NSString *const kPostJsonError = @"error";
+
 static NSString *const kPostJsonKeyWord = @"keyWord";
 
 static NSString *const kPostJsonType = @"type";

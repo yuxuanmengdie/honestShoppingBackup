@@ -133,4 +133,10 @@ typedef NS_ENUM(NSUInteger, HSLoginType) {
 
 /// 判断支付宝支付结果
 + (BOOL)aliPaySuccess:(NSDictionary *)dic;
+
+#pragma mark -
+#pragma mark 判断返回是否出现错误码
++ (BOOL)isErrorCode:(id)json error:(NSError *)err;
+/// 返回错误码对应的文字说明
++ (NSString *)errorMsgWithJson:(id)json error:(NSError *)err;
 @end

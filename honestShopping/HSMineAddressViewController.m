@@ -90,6 +90,15 @@ UITableViewDelegate>
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
         _addressDataArray = nil; /// 重置地址信息
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSArray class]]) {
             NSArray *jsonArr = (NSArray *)json;
             NSMutableArray *tmpArr = [[NSMutableArray alloc] initWithCapacity:jsonArr.count];
@@ -206,7 +215,7 @@ UITableViewDelegate>
         if (self.selectBlock) {
             self.selectBlock(model);
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        [self backAction:nil];
     }
     
    

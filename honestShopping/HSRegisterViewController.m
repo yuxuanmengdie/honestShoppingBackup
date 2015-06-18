@@ -176,7 +176,7 @@ static const int kMaxLoadingTimeout = 60;
             BOOL isSuccess = [tmpDic[@"status"] boolValue];
             if (isSuccess) {
                 [self showHudInWindowWithText:@"注册成功"];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self backAction:nil];
                 if (self.registerSuccessBlock) {
                     self.registerSuccessBlock(phone,passWord);
                 }
@@ -226,7 +226,7 @@ static const int kMaxLoadingTimeout = 60;
             BOOL isSuccess = [tmpDic[@"status"] boolValue];
             if (isSuccess) {
                 [self showHudInWindowWithText:@"设置成功"];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self backAction:nil];
                 if (self.registerSuccessBlock) {
                     self.registerSuccessBlock(phone,passWord);
                 }

@@ -205,6 +205,15 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *jsonDic = (NSDictionary *)json;
             
@@ -249,6 +258,14 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }        
         if (jsonError == nil && [json isKindOfClass:[NSArray class]]) {
             NSArray *jsonArr = (NSArray *)json;
             NSMutableArray *tmpArr = [[NSMutableArray alloc] initWithCapacity:jsonArr.count];
@@ -307,6 +324,16 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
+        
         if (jsonError == nil && [json isKindOfClass:[NSArray class]]) {
             NSArray *tmpArr = (NSArray *)json;
             [tmpArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
@@ -400,6 +427,15 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+        
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *jsonDic = (NSDictionary *)json;
             NSNumber *price = jsonDic[kPostJsonFreeprice];
@@ -489,6 +525,15 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmpDic = (NSDictionary *)json;
             NSString *orderNo = tmpDic[kPostJsonOrderNo];

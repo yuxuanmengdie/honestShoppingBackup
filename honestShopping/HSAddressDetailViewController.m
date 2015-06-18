@@ -145,6 +145,15 @@ UITableViewDataSource>
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+        
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmp = (NSDictionary *)json;
             
@@ -188,6 +197,15 @@ UITableViewDataSource>
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmp = (NSDictionary *)json;
             
@@ -239,7 +257,7 @@ UITableViewDataSource>
 //    cell.separatorInset = UIEdgeInsetsZero;
     cell.leftTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     if (indexPath.section == 1) {
-        cell.leftTitleWidthConstraint.constant = 300;
+        cell.leftTitleWidthConstraint.constant = 200;
         cell.leftTitleLabel.text = @"删除收货地址";
         cell.leftTitleLabel.textColor = [UIColor redColor];
         cell.contentLabel.text = @"";

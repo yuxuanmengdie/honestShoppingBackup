@@ -649,4 +649,78 @@ static const double kTimedLoginInterval = 60*60;
     return isSuc;
 }
 
+#pragma mark -
+#pragma mark 判断返回是否出现错误码
+// {"status":false,"code":10001,"error":"sessionCode expired"}
++ (BOOL)isErrorCode:(id)json error:(NSError *)err
+{
+    BOOL isCode = NO;
+    
+    if (err == nil  && [json isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *jsonDic = (NSDictionary *)json;
+        NSString *code = jsonDic[kPostJsonCode];
+       // NSString *error = jsonDic[kPostJsonError];
+        if (code.length > 0) {
+            isCode = YES;
+        }
+    }
+    
+    return isCode;
+}
+
+/// 返回错误码对应的文字描述
+///错误码说明：10001：sessionCode失效。10010：缺少参数。10020：订单已关闭。10021：库存不足。10022：最大购买限制.10011:手机号已注册。10012：密码错误。10013：新密码不能旧密码相同。10014：获取sessioncode失败.10030:已领取优惠劵
++ (NSString *)errorMsgWithJson:(id)json error:(NSError *)err
+{
+    NSString *result = @"";
+    
+    if ([HSPublic isErrorCode:json error:err]) { // 有错误码
+         NSDictionary *jsonDic = (NSDictionary *)json;
+         NSString *code = jsonDic[kPostJsonCode];
+        
+        if ([code isEqualToString:@"10001"]) {
+            result = @"登录失效，请退出请重新登录";
+        }
+        else if ([code isEqualToString:@"10010"])
+        {
+             result = @"参数有误";
+        }
+        else if ([code isEqualToString:@"10020"])
+        {
+             result = @"订单已关闭";
+        }
+        else if ([code isEqualToString:@"10021"])
+        {
+             result = @"商品库存不足";
+        }
+        else if ([code isEqualToString:@"10022"])
+        {
+             result = @"超出最大购买限制";
+        }
+        else if ([code isEqualToString:@"10011"])
+        {
+            result = @"手机号码已注册";
+        }
+        else if ([code isEqualToString:@"10012"])
+        {
+            result = @"密码错误";
+        }
+        else if ([code isEqualToString:@"10013"])
+        {
+            result = @"新密码不能与旧密码相同";
+        }
+        else if ([code isEqualToString:@"10014"])
+        {
+            result = @"获取sessioncode失败";
+        }
+        else if ([code isEqualToString:@"10030"])
+        {
+            result = @"已领取优惠劵";
+        }
+
+    }
+    
+    return result;
+}
+
 @end

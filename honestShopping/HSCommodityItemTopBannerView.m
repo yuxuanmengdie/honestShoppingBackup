@@ -69,8 +69,6 @@
                 swself.heightChangeBlcok();
             }
         };
-        
-    
     }
     
     return self;

@@ -104,7 +104,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
                                          appKey:kUMengAppKey
                                       shareText:shareText
                                      shareImage:shareImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToTencent,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,nil]//nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone,nil]//nil
                                        delegate:self];
 
 }
@@ -137,8 +137,8 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             return ;
         }
 
-        NSDictionary *dic = @{[HSPublic controlNullString:_detailPicModel.id]:[NSNumber numberWithInt:num]};
-        NSArray *arr = @[_detailPicModel];
+        NSDictionary *dic = @{[HSPublic controlNullString:swself->_detailPicModel.id]:[NSNumber numberWithInt:num]};
+        NSArray *arr = @[swself->_detailPicModel];
         
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         HSSubmitOrderViewController *submitVC = [storyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSSubmitOrderViewController class])];
@@ -265,6 +265,15 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+        
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmpDic = (NSDictionary *)json;
             BOOL isSuccess = [tmpDic[kPostJsonStatus] boolValue];
@@ -273,14 +282,10 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
                 [self showHudWithText:@"关注成功"];
                 [HSDBManager saveFavoriteWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id];
             }
-            else if (tmpDic.allKeys.count == 1)
+            else
             {
                  [self showHudWithText:@"已关注"];
                 
-            }
-            else
-            {
-                 [self showHudWithText:@"关注失败"];
             }
 
         }

@@ -249,6 +249,15 @@ static const float kFFScrollViewHeight = 200;
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *jsonDic = (NSDictionary *)json;
             BOOL isSign = [jsonDic[kPostJsonStatus] boolValue];

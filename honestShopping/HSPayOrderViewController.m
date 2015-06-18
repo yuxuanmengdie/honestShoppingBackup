@@ -161,6 +161,15 @@ static const int kUpdateOrderMaxCount = 5;
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmpDic = (NSDictionary *)json;
             HSOrderModel *orderModel = [[HSOrderModel alloc] initWithDictionary:tmpDic error:nil];
@@ -352,7 +361,7 @@ static const int kUpdateOrderMaxCount = 5;
         //[self alert:@"提示信息" msg:debug];
         [self alert:@"" msg:@"签名失败，请重试"];
         
-        NSLog(@"%@\n\n",debug);
+        //NSLog(@"%@\n\n",debug);
     }else{
         NSLog(@"%@\n\n",[req getDebugifo]);
         //[self alert:@"确认" msg:@"下单成功，点击OK后调起支付！"];
@@ -495,6 +504,16 @@ static const int kUpdateOrderMaxCount = 5;
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+
+        
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmpDic = (NSDictionary *)json;
             NSNumber *status = tmpDic[kPostJsonStatus];
