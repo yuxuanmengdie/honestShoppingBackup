@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HSMineTopCollectionReusableView" id="U6b-Vx-4bR" customClass="HSMineTopCollectionReusableView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PEn-tJ-EwN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaC-BT-OQ3">
+                    <rect key="frame" x="142" y="96" width="36" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-oY-WKa">
+                    <rect key="frame" x="138" y="121" width="44" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="cCE-c7-61u"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分：2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBA-pf-8W9">
+                    <rect key="frame" x="135" y="195" width="50" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_header" translatesAutoresizingMaskIntoConstraints="NO" id="wZ9-bf-XYE">
+                    <rect key="frame" x="120" y="8" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Etz-rU-aLD"/>
+                        <constraint firstAttribute="height" constant="80" id="etm-jR-37z"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="wZ9-bf-XYE" secondAttribute="centerX" id="0E3-Ib-UZX"/>
+                <constraint firstItem="wZ9-bf-XYE" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="A7H-o3-iFJ"/>
+                <constraint firstItem="HKK-oY-WKa" firstAttribute="top" secondItem="OaC-BT-OQ3" secondAttribute="bottom" constant="8" id="BWm-Rh-VTd"/>
+                <constraint firstItem="OaC-BT-OQ3" firstAttribute="top" secondItem="wZ9-bf-XYE" secondAttribute="bottom" constant="8" id="Faa-Lj-Btt"/>
+                <constraint firstAttribute="centerX" secondItem="zBA-pf-8W9" secondAttribute="centerX" id="ORF-Qv-0zg"/>
+                <constraint firstAttribute="centerX" secondItem="OaC-BT-OQ3" secondAttribute="centerX" id="Qkf-0O-btI"/>
+                <constraint firstAttribute="trailing" secondItem="PEn-tJ-EwN" secondAttribute="trailing" id="UNu-8a-z3i"/>
+                <constraint firstItem="zBA-pf-8W9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="da0-fs-CGu"/>
+                <constraint firstAttribute="centerX" secondItem="HKK-oY-WKa" secondAttribute="centerX" id="fb4-n2-cyg"/>
+                <constraint firstAttribute="bottom" secondItem="PEn-tJ-EwN" secondAttribute="bottom" id="mI6-6q-eCc"/>
+                <constraint firstItem="PEn-tJ-EwN" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="nc9-nA-unI"/>
+                <constraint firstItem="OaC-BT-OQ3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="px1-zu-f9B"/>
+                <constraint firstItem="PEn-tJ-EwN" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="tdK-0i-e0n"/>
+                <constraint firstItem="zBA-pf-8W9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HKK-oY-WKa" secondAttribute="bottom" constant="20" id="uLd-39-wCZ"/>
+                <constraint firstAttribute="bottom" secondItem="zBA-pf-8W9" secondAttribute="bottom" constant="28" id="wge-GP-Geh"/>
+            </constraints>
+            <connections>
+                <outlet property="bgImageView" destination="PEn-tJ-EwN" id="gUi-aF-uMf"/>
+                <outlet property="headerImageView" destination="wZ9-bf-XYE" id="hJO-Ua-ED0"/>
+                <outlet property="pointsLabel" destination="zBA-pf-8W9" id="vzG-Qg-EXa"/>
+                <outlet property="signButton" destination="HKK-oY-WKa" id="Bjn-KG-OHF"/>
+                <outlet property="userNameLabel" destination="OaC-BT-OQ3" id="H5u-2m-GTi"/>
+            </connections>
+            <point key="canvasLocation" x="189" y="201"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="icon_header" width="70" height="71"/>
+    </resources>
+</document>

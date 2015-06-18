@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="HSAddressTableViewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="HSAddressTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQq-pl-JWN">
+                        <rect key="frame" x="8" y="16" width="36" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" image="icon_selected" translatesAutoresizingMaskIntoConstraints="NO" id="FmP-12-kdG">
+                        <rect key="frame" x="292" y="25" width="20" height="20"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-8s-gSf">
+                        <rect key="frame" x="8" y="38" width="276" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhW-nW-VBO">
+                        <rect key="frame" x="248" y="16" width="36" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Lz2-8s-gSf" firstAttribute="top" secondItem="vQq-pl-JWN" secondAttribute="bottom" constant="5" id="7gF-iH-KDR"/>
+                    <constraint firstItem="vQq-pl-JWN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Bvj-w8-N2m"/>
+                    <constraint firstAttribute="bottom" secondItem="Lz2-8s-gSf" secondAttribute="bottom" constant="16" id="EMp-YB-1Hq"/>
+                    <constraint firstItem="FmP-12-kdG" firstAttribute="leading" secondItem="NhW-nW-VBO" secondAttribute="trailing" constant="8" id="InS-KE-LFS"/>
+                    <constraint firstAttribute="centerY" secondItem="FmP-12-kdG" secondAttribute="centerY" id="UiZ-gq-XRt"/>
+                    <constraint firstItem="NhW-nW-VBO" firstAttribute="top" secondItem="vQq-pl-JWN" secondAttribute="top" id="Vbx-DB-0RG"/>
+                    <constraint firstItem="FmP-12-kdG" firstAttribute="leading" secondItem="Lz2-8s-gSf" secondAttribute="trailing" constant="8" id="W19-YA-C1O"/>
+                    <constraint firstItem="vQq-pl-JWN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ffY-zS-2BL"/>
+                    <constraint firstItem="NhW-nW-VBO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vQq-pl-JWN" secondAttribute="trailing" constant="8" id="hBh-8A-zwQ"/>
+                    <constraint firstItem="vQq-pl-JWN" firstAttribute="leading" secondItem="Lz2-8s-gSf" secondAttribute="leading" id="sbg-ln-vf1"/>
+                    <constraint firstAttribute="trailing" secondItem="FmP-12-kdG" secondAttribute="trailing" constant="8" id="xd8-Cu-ZNZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="defaultImageView" destination="FmP-12-kdG" id="UeR-jQ-COW"/>
+                <outlet property="detailLabel" destination="Lz2-8s-gSf" id="CgC-zr-zbf"/>
+                <outlet property="nickNameLabel" destination="vQq-pl-JWN" id="QaW-D0-Cae"/>
+                <outlet property="phoneLabel" destination="NhW-nW-VBO" id="YEh-97-tdW"/>
+            </connections>
+            <point key="canvasLocation" x="198" y="167"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_selected" width="20" height="20"/>
+    </resources>
+</document>

@@ -1,0 +1,46 @@
+//
+//  PrefixHeader.pch
+//  honestShopping
+//
+//  Created by 张国俗 on 15-3-17.
+//  Copyright (c) 2015年 张国俗. All rights reserved.
+//
+
+#ifndef honestShopping_PrefixHeader_pch
+#define honestShopping_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AFNetworking.h"
+#import "HSPublic.h"
+#import "define.h"
+#import "header.h"
+#import "HSBaseViewController.h"
+
+/// 服务器地址
+#define kURLHeader @"http://ecommerce.news.cn"// 正式服务器
+
+//#define kURLHeader@"http://221.226.28.42/wsc" // 前期测试服务器
+
+/// 商品详细介绍的图片
+#define kCommodityImgURLHeader @"http://ecommerce.news.cn" // @"http://203.192.7.23"
+
+
+/// 保存的版本
+#define kAPPCurrentVersion @"currentVersion"
+
+#define kAPPTintColor [UIColor colorWithRed:39/255.0 green:147/255.0 blue:68/255.0 alpha:1.0]
+
+#define kTabBarViewTag 3478
+
+#define kTabBarHeight 49
+
+#endif
+
+#endif

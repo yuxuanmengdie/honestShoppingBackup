@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSSettleView">
+            <connections>
+                <outlet property="preLabel" destination="ao0-fr-8vY" id="wpR-EA-QCU"/>
+                <outlet property="settltButton" destination="X4L-jZ-F6d" id="HSQ-Uq-dBy"/>
+                <outlet property="textLabel" destination="61I-3I-qn8" id="ngP-Og-k69"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61I-3I-qn8">
+                    <rect key="frame" x="78" y="16" width="36" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4L-jZ-F6d">
+                    <rect key="frame" x="294" y="11" width="76" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="16" minY="5" maxX="16" maxY="5"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="settleAction:" destination="-1" eventType="touchUpInside" id="wCH-r4-tU0"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tJ-zJ-8be">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="UWT-cP-urv"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付金额：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-fr-8vY">
+                    <rect key="frame" x="8" y="16" width="70" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ao0-fr-8vY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="2Pp-Zj-nsH"/>
+                <constraint firstItem="X4L-jZ-F6d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="61I-3I-qn8" secondAttribute="trailing" constant="8" id="FCQ-di-Rwr"/>
+                <constraint firstItem="61I-3I-qn8" firstAttribute="leading" secondItem="ao0-fr-8vY" secondAttribute="trailing" id="TBC-46-fRF"/>
+                <constraint firstAttribute="trailing" secondItem="X4L-jZ-F6d" secondAttribute="trailing" constant="8" id="a0Z-C7-3n2"/>
+                <constraint firstAttribute="centerY" secondItem="61I-3I-qn8" secondAttribute="centerY" id="dSh-K7-ZIV"/>
+                <constraint firstAttribute="centerY" secondItem="ao0-fr-8vY" secondAttribute="centerY" id="hs9-AD-pdG"/>
+                <constraint firstAttribute="centerY" secondItem="X4L-jZ-F6d" secondAttribute="centerY" id="nEW-5N-1Mi"/>
+                <constraint firstItem="3tJ-zJ-8be" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="noG-Oa-WtQ"/>
+                <constraint firstAttribute="trailing" secondItem="3tJ-zJ-8be" secondAttribute="trailing" id="qxP-hC-xi7"/>
+                <constraint firstItem="3tJ-zJ-8be" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="toX-q2-W3M"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="156" y="-137"/>
+        </view>
+    </objects>
+</document>
