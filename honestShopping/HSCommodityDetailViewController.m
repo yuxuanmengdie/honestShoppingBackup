@@ -104,12 +104,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
                                          appKey:kUMengAppKey
                                       shareText:shareText
                                      shareImage:shareImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone,nil]//nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil]//nil UMShareToSina
                                        delegate:self];
 
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark 分享deleagte
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response

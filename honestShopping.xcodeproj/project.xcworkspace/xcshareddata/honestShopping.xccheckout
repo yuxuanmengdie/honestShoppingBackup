@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F6E3B7C4-5EF9-4FD8-8F5D-BCF3A6FC72E5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>honestShopping</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>33A58214152578BF3F7B28D9F277DE1C539AE90E</key>
+		<string>https://github.com/yuxuanmengdie/honestShoppingBackup.git</string>
+		<key>B690809AD3AF38DCFC5083EF7CB8844ACACDE51E</key>
+		<string>https://github.com/yuxuanmengdie/honestShopping.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>honestShopping.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>33A58214152578BF3F7B28D9F277DE1C539AE90E</key>
+		<string>../..</string>
+		<key>B690809AD3AF38DCFC5083EF7CB8844ACACDE51E</key>
+		<string>../..honestShopping</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yuxuanmengdie/honestShoppingBackup.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>33A58214152578BF3F7B28D9F277DE1C539AE90E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>33A58214152578BF3F7B28D9F277DE1C539AE90E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>honestShopping</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B690809AD3AF38DCFC5083EF7CB8844ACACDE51E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>honestShoppinghonestShopping</string>
+		</dict>
+	</array>
+</dict>
+</plist>

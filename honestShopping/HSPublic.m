@@ -715,7 +715,7 @@ static const double kTimedLoginInterval = 60*60;
         }
         else if ([code isEqualToString:@"10030"])
         {
-            result = @"已领取优惠劵";
+            result = @"已领取优惠劵,不能重复领取";
         }
 
     }
