@@ -503,7 +503,7 @@ static const double kTimedLoginInterval = 60*60;
 
 + (void)timedLoginIn
 {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kTimedLoginInterval target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    //NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kTimedLoginInterval target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
 + (void)timerAction

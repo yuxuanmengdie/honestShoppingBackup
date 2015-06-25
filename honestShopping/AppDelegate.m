@@ -28,7 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [HSPublic addSkipBackupAttributeDoc];
-    [HSPublic timedLoginIn];
+    //[HSPublic timedLoginIn];
     [UMSocialData setAppKey:kUMengAppKey];
     
     //设置微信AppId，设置分享url，默认使用友盟的网址

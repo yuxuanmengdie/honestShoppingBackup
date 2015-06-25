@@ -60,7 +60,8 @@ static const float kFFScrollViewHeight = 200;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4"];
+//    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4"];
+    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section4",@"icon_home_section4"];
     
     [_homeCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSHomeCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([HSHomeCollectionViewCell class])];
             //注册headerView Nib的view需要继承UICollectionReusableView
@@ -335,7 +336,7 @@ static const float kFFScrollViewHeight = 200;
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 5;
+    return _sectionImageArray.count + 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -344,6 +345,10 @@ static const float kFFScrollViewHeight = 200;
     
     if (section == 0) {
         num = _couponDataArray.count;
+    }
+    else if (section == 1 || section ==  3)
+    {
+        num = 5;
     }
     
     return num;
@@ -375,7 +380,13 @@ static const float kFFScrollViewHeight = 200;
     }
     else
     {
-        HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
+        int sum = 0;
+        for (int j=1; j<indexPath.section; j++) {
+            sum += [collectionView numberOfItemsInSection:j];
+        }
+        
+        //HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
+         HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
         imgUrl = [NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,bannerModel.content];
     }
     
@@ -422,7 +433,7 @@ static const float kFFScrollViewHeight = 200;
             CGSize first = CGSizeMake(totalWitdh*0.4, totalWitdh*0.5);
             CGSize second = CGSizeMake(totalWitdh*0.6, (totalWitdh*0.5-5)/2.0);
             CGSize total = CGSizeMake( CGRectGetWidth(collectionView.frame)-layout.sectionInset.left-layout.sectionInset.right, (CGRectGetWidth(collectionView.frame)-layout.sectionInset.left-layout.sectionInset.right)*0.4);
-            _sectionSizeArr = @[[NSValue valueWithCGSize:first],[NSValue valueWithCGSize:second],[NSValue valueWithCGSize:second],[NSValue valueWithCGSize:total]];
+            _sectionSizeArr = @[[NSValue valueWithCGSize:first],[NSValue valueWithCGSize:second],[NSValue valueWithCGSize:second],[NSValue valueWithCGSize:total],[NSValue valueWithCGSize:total],[NSValue valueWithCGSize:total]];
         }
         CGSize retSize = [_sectionSizeArr[indexPath.row] CGSizeValue];
         return retSize;
@@ -520,7 +531,14 @@ static const float kFFScrollViewHeight = 200;
     }
    else
    {
-       HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
+       int sum = 0;
+       for (int j=1; j<indexPath.section; j++) {
+           sum += [collectionView numberOfItemsInSection:j];
+       }
+
+       
+       //HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
+        HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
        /// 点击后委托父控制器push
        HSCommodtyItemModel *itemModel = [[HSCommodtyItemModel alloc] init];
        itemModel.id = bannerModel.desc;

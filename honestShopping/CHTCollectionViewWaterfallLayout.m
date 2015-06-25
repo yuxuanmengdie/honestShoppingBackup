@@ -343,13 +343,14 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
       }
 
         /* */ //zhang
+        //float hei = itemHeight;
         if (!isEqual && idx > 0) {
 //            NSIndexPath *last = [NSIndexPath indexPathForItem:idx-1 inSection:section];
 //            CGSize lastSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:last];
 //            if (idx%self.columnCount != 0) {
 //                 itemXOffset += lastSize.width + self.minimumColumnSpacing;
 //            }
-           
+            
             NSInteger leftIdx = idx >= self.columnCount ? idx-(self.columnCount-columnIndex) : idx;
             
             if (columnIndex == 0 ) {
@@ -360,6 +361,12 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
                 UICollectionViewLayoutAttributes *attr = [self.itemAttrs[section] objectAtIndex:leftIdx-1];
                 CGRect leftFrame = attr.frame;
                 itemXOffset = leftFrame.origin.x + leftFrame.size.width + self.minimumColumnSpacing;
+                
+                if (idx > 3) {
+                    itemXOffset = sectionInset.left;
+                    UICollectionViewLayoutAttributes *attr = [self.itemAttrs[section] objectAtIndex:idx-1];
+                    yOffset = CGRectGetMaxY(attr.frame);
+                }
             }
         }
         
@@ -370,6 +377,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
         if (!isEqual) {
             xOffset = itemXOffset;
             itemHeight = itemSize.height;
+            //itemHeight = hei + itemSize.height;
             itemWidth = itemSize.width;
         }
          

@@ -28,6 +28,8 @@ EAIntroDelegate>
     int _bannerType;
     
     NSTimer *_timer;
+    /// 单个图片最大尝试次数的数组
+    NSMutableDictionary *_urlTryDic;
 }
 
 
@@ -42,11 +44,15 @@ static NSString *const kIntroViewToMainBar = @"IntroViewToMainTabBar";
 /// 启动图片最大持续时间 如果时间到 且 图片没有下载完成，则直接跳过引导图和欢迎图。
 static const float kMaxLoadingTime = 5.0;
 
+/// 单个最大下载尝试次数
+static const int kMaxDownTryNum = 20;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _bannerType = 0;
     
+    _urlTryDic = [[NSMutableDictionary alloc] init];
     [self initPlaceView];
 //    [self showIntroWithSeparatePagesInitAndPageCallback];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -380,6 +386,7 @@ static const float kMaxLoadingTime = 5.0;
     
     [bannerArr enumerateObjectsUsingBlock:^(HSBannerModel *obj, NSUInteger idx, BOOL *stop) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,[HSPublic controlNullString:obj.content]]];
+       // NSURL *url = [NSURL URLWithString:@"www."];
         BOOL isCache = [[SDWebImageManager sharedManager] cachedImageExistsForURL:url];
         if (!isCache) {
             [self downloadImageWihtURL:url arr:bannerArr];
@@ -391,10 +398,29 @@ static const float kMaxLoadingTime = 5.0;
 
 - (void)downloadImageWihtURL:(NSURL *)url arr:(NSArray *)arr
 {
+    NSNumber *num = _urlTryDic[url];
+    int tNum = num == nil ? 0 : [num intValue];
+    
+    if (tNum > kMaxDownTryNum) {
+        [self presentToMainTabbar];
+        return;
+    }
+    if (num == nil) {
+        [_urlTryDic setObject:@1 forKey:url];
+    }
+    else
+    {
+        int tryNum = [num intValue];
+        [_urlTryDic setObject:[NSNumber numberWithInt:++tryNum] forKey:url];
+    }
+    
+
+    
     [[SDWebImageManager sharedManager] downloadImageWithURL:url options:SDWebImageHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
         
         if (error != nil) { /// 下载失败
+            
             [self downloadImageWihtURL:url arr:arr];
         }
         
@@ -440,6 +466,7 @@ static const float kMaxLoadingTime = 5.0;
 - (void)presentToMainTabbar
 {
     if (self.presentedViewController != nil) { /// 已经presented
+        NSLog(@"%s 已经presentedViewController",__func__);
         return;
     }
     

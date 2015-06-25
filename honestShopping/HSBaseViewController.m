@@ -253,7 +253,9 @@ static const int kPlaceViewTag = 5003;
     NSInteger count = [self.navigationController.viewControllers count];
     if (count >= 2)
     {
+        //self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backAction:)];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backAction:)];
+
         [self hiddenTabBar:YES];
     }
 
