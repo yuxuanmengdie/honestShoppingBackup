@@ -61,7 +61,7 @@ static const float kFFScrollViewHeight = 200;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4"];
-    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section4",@"icon_home_section4"];
+    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section5",@"icon_home_section6"];
     
     [_homeCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSHomeCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([HSHomeCollectionViewCell class])];
             //注册headerView Nib的view需要继承UICollectionReusableView
@@ -349,6 +349,7 @@ static const float kFFScrollViewHeight = 200;
     else if (section == 1 || section ==  3)
     {
         num = 5;
+        //num = 4;
     }
     
     return num;

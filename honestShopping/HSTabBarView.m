@@ -69,7 +69,7 @@ static const int kButtonOriTag = 500;
         btn.tag = kButtonOriTag + j;
         [btn setTitle:titleArr[j] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:kAPPTintColor forState:UIControlStateSelected];
+        [btn setTitleColor:kAPPLightGreenColor forState:UIControlStateSelected];
         UIImage *normalImage = [UIImage imageNamed:normalIcon[j]];
         [btn setImage:normalImage forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:selectedIcon[j]] forState:UIControlStateSelected];
@@ -85,7 +85,7 @@ static const int kButtonOriTag = 500;
             btn.backgroundColor = [UIColor clearColor];
             
             HSTabBarMidButton *midBtn = (HSTabBarMidButton *)btn;
-            midBtn.bgColor = kAPPTintColor;
+            midBtn.bgColor = kAPPLightGreenColor;
             midBtn.sepColor = [UIColor lightGrayColor];
             
         }

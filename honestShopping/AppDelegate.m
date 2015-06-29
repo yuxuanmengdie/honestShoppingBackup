@@ -97,14 +97,14 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                        stringByReplacingOccurrencesOfString: @">" withString: @""]
-                       stringByReplacingOccurrencesOfString: @" " withString: @""];
-    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                  stringByReplacingOccurrencesOfString: @">" withString: @""]
-                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"kdeviceToken"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+//                        stringByReplacingOccurrencesOfString: @">" withString: @""]
+//                       stringByReplacingOccurrencesOfString: @" " withString: @""];
+//    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]
+//                  stringByReplacingOccurrencesOfString: @">" withString: @""]
+//                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
+//    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"kdeviceToken"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [UMessage registerDeviceToken:deviceToken];
 }

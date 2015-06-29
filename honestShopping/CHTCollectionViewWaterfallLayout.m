@@ -365,7 +365,7 @@ static CGFloat CHTFloorCGFloat(CGFloat value) {
                 if (idx > 3) {
                     itemXOffset = sectionInset.left;
                     UICollectionViewLayoutAttributes *attr = [self.itemAttrs[section] objectAtIndex:idx-1];
-                    yOffset = CGRectGetMaxY(attr.frame);
+                    yOffset = CGRectGetMaxY(attr.frame) + self.minimumInteritemSpacing;
                 }
             }
         }

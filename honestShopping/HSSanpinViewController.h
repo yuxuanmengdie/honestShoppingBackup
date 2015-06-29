@@ -13,6 +13,8 @@ typedef void(^HSSanpinCollectionCellSelectedBlock)(HSCommodtyItemModel *itemMode
 
 @interface HSSanpinViewController : HSBaseViewController
 
+
+@property (assign, nonatomic) int sanpinCategoryType;
 /// 点击单个cell的block
 @property (nonatomic, copy) HSSanpinCollectionCellSelectedBlock cellSelectedBlock;
 

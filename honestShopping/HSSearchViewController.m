@@ -108,7 +108,7 @@ static const int kSizeNum = 10;
     searchBar.placeholder = @"输入关键字";
     _searchBar = searchBar;
     self.navigationItem.titleView = searchBar;
-    searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"kdeviceToken"];
+    //searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"kdeviceToken"];
 }
 
 #pragma mark -

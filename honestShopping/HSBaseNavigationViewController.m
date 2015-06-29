@@ -58,11 +58,12 @@
     navBar.tintColor = [UIColor whiteColor];
     [navBar setBarTintColor:kAPPTintColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    navBar.translucent = NO;
     
     
     // 3.标题
 #ifdef __IPHONE_7_0
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName : [UIFont boldSystemFontOfSize:18]}];
 #else
     [navBar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
 #endif

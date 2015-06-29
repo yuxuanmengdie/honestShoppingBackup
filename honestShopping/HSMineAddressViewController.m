@@ -44,8 +44,7 @@ UITableViewDelegate>
     _addressTableView.tableFooterView = [[UIView alloc] init];
     _addressTableView.dataSource = self;
     _addressTableView.delegate = self;
-
-    
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated

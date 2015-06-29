@@ -203,6 +203,12 @@ static NSString *const kPostJsonNum = @"num";
 /// 获取欢迎图（advert目录）
 #define kGetWelcomeURL  [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Item&a=getWelcome"]
 
+/// 评论
+///商品评论(图片通过post传过来字段是"imgs[]")
+#define kAddCommentURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=addComment"]
+///获取评论列表
+#define kGetCommentByItemIdURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=getCommentByItemId"]
+
 
 #pragma mark -
 #pragma mark 图片前缀

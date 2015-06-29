@@ -28,6 +28,10 @@
 		F63042B41B1557BF007DEB94 /* HSAddressDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B21B1557BF007DEB94 /* HSAddressDetailTableViewCell.m */; };
 		F63042B81B15677E007DEB94 /* HSEditAddressContainerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B71B15677E007DEB94 /* HSEditAddressContainerTableViewController.m */; };
 		F63042BB1B159B01007DEB94 /* HSAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042BA1B159B01007DEB94 /* HSAddressModel.m */; };
+		F636DBC51B3D2BC9001A47B2 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */; };
+		F636DBC91B3D2C87001A47B2 /* HSShiquViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBC81B3D2C87001A47B2 /* HSShiquViewController.m */; };
+		F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBCB1B3D2D77001A47B2 /* HSSegmentView.m */; };
+		F636DBCE1B3D2FAC001A47B2 /* HSSegmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F636DBCD1B3D2FAC001A47B2 /* HSSegmentView.xib */; };
 		F63914B31B31629200328BCE /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F63914B11B31629200328BCE /* libUMessage_Sdk_1.1.0.a */; };
 		F63915EF1AFC56F300E10C9B /* HSSanPinFitterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F63915EE1AFC56F300E10C9B /* HSSanPinFitterButton.m */; };
 		F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63915F11AFC611A00E10C9B /* HSSanPinfitterView.m */; };
@@ -328,6 +332,13 @@
 		F63042B71B15677E007DEB94 /* HSEditAddressContainerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEditAddressContainerTableViewController.m; sourceTree = "<group>"; };
 		F63042B91B159B01007DEB94 /* HSAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressModel.h; sourceTree = "<group>"; };
 		F63042BA1B159B01007DEB94 /* HSAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressModel.m; sourceTree = "<group>"; };
+		F636DBC31B3D2BC9001A47B2 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
+		F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
+		F636DBC71B3D2C87001A47B2 /* HSShiquViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSShiquViewController.h; sourceTree = "<group>"; };
+		F636DBC81B3D2C87001A47B2 /* HSShiquViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSShiquViewController.m; sourceTree = "<group>"; };
+		F636DBCA1B3D2D77001A47B2 /* HSSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSegmentView.h; sourceTree = "<group>"; };
+		F636DBCB1B3D2D77001A47B2 /* HSSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSegmentView.m; sourceTree = "<group>"; };
+		F636DBCD1B3D2FAC001A47B2 /* HSSegmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSSegmentView.xib; sourceTree = "<group>"; };
 		F63914B11B31629200328BCE /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		F63914B21B31629200328BCE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		F63915ED1AFC56F300E10C9B /* HSSanPinFitterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSanPinFitterButton.h; sourceTree = "<group>"; };
@@ -1018,6 +1029,24 @@
 			name = dbmanager;
 			sourceTree = "<group>";
 		};
+		F636DBC21B3D2BC9001A47B2 /* HCSStarRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				F636DBC31B3D2BC9001A47B2 /* HCSStarRatingView.h */,
+				F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */,
+			);
+			path = HCSStarRatingView;
+			sourceTree = "<group>";
+		};
+		F636DBC61B3D2C50001A47B2 /* shiqu */ = {
+			isa = PBXGroup;
+			children = (
+				F636DBC71B3D2C87001A47B2 /* HSShiquViewController.h */,
+				F636DBC81B3D2C87001A47B2 /* HSShiquViewController.m */,
+			);
+			name = shiqu;
+			sourceTree = "<group>";
+		};
 		F63914B01B31629100328BCE /* UMessage_Sdk_1.1.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,6 +1194,7 @@
 				F6C593BF1AB8230F006D612E /* OrderForm */,
 				F6C593BE1AB822FE006D612E /* CustomerService */,
 				F64D2DBE1B1F4ADF00F2BA52 /* more */,
+				F636DBC61B3D2C50001A47B2 /* shiqu */,
 			);
 			name = mainTabbarViewControllers;
 			sourceTree = "<group>";
@@ -1172,6 +1202,7 @@
 		F67235AA1AB737D300828EEE /* subModule */ = {
 			isa = PBXGroup;
 			children = (
+				F636DBC21B3D2BC9001A47B2 /* HCSStarRatingView */,
 				F68406451B20311E004FC6D9 /* aliPay */,
 				F6EBFA721B1ED7B800651BE3 /* umeng */,
 				F6A901191B16F1500077C166 /* area.plist */,
@@ -1751,6 +1782,9 @@
 				F617CEE21B208DD50038AE98 /* HSSettleView.h */,
 				F617CEE31B208DD50038AE98 /* HSSettleView.m */,
 				F617CEE51B208DE60038AE98 /* HSSettleView.xib */,
+				F636DBCA1B3D2D77001A47B2 /* HSSegmentView.h */,
+				F636DBCB1B3D2D77001A47B2 /* HSSegmentView.m */,
+				F636DBCD1B3D2FAC001A47B2 /* HSSegmentView.xib */,
 			);
 			name = customView;
 			sourceTree = "<group>";
@@ -2254,6 +2288,7 @@
 				F6FF47C01B329A9E00272889 /* HSSettleView.xib in Resources */,
 				F6FF47C11B329A9E00272889 /* HSContentCollectionViewCell.xib in Resources */,
 				F6FF47C21B329A9E00272889 /* HSCommodityCategaryCollectionViewCell.xib in Resources */,
+				F636DBCE1B3D2FAC001A47B2 /* HSSegmentView.xib in Resources */,
 				F6FF47C31B329A9E00272889 /* HSCommodityDetailTableViewCell.xib in Resources */,
 				F6FF47C41B329A9E00272889 /* HSBannerHeaderCollectionReusableView.xib in Resources */,
 				F6FF47C51B329A9E00272889 /* HSCommodityCollectionViewCell.xib in Resources */,
@@ -2364,6 +2399,7 @@
 				F65898FB1AF899B6003944AD /* HSMineTableViewCell.m in Sources */,
 				F6C593C31AB82472006D612E /* HSCommodityCategaryCollectionViewCell.m in Sources */,
 				F67236571AB7380F00828EEE /* IQBarButtonItem.m in Sources */,
+				F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */,
 				F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				F672366A1AB7380F00828EEE /* SDWebImageDecoder.m in Sources */,
 				F67236491AB7380F00828EEE /* MMProgressHUDViewController.m in Sources */,
@@ -2410,7 +2446,9 @@
 				F6B1EE9D1ACA34ED0081694C /* MJRefreshLegendHeader.m in Sources */,
 				F63A9A721AF2117A004E14D0 /* HSUserInfoModel.m in Sources */,
 				F67236911AB7416900828EEE /* HSPublic.m in Sources */,
+				F636DBC51B3D2BC9001A47B2 /* HCSStarRatingView.m in Sources */,
 				F6B17FF81AC3DE230086AFA0 /* HSIntroViewController.m in Sources */,
+				F636DBC91B3D2C87001A47B2 /* HSShiquViewController.m in Sources */,
 				F6FAF04E1ABF2C7400D2D234 /* HSCommodityCollectionViewCell.m in Sources */,
 				F60169711B1B4D3600FC4156 /* HSCouponModel.m in Sources */,
 				F6D7596F1AF9FAF9007D9ED2 /* FMDatabaseQueue.m in Sources */,

@@ -97,7 +97,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [UMSocialWechatHandler setWXAppId:@"wxf674afd7fa6b3db1" appSecret:@"768ef498760a90567afeac93211abfa9" url:[self p_shareURLWithModel:_detailPicModel]];
     [UMSocialQQHandler setQQWithAppId:@"1104470651" appKey:@"1VATaXjYJuiJ0itg" url:[self p_shareURLWithModel:_detailPicModel]];
     NSString *shareText = [NSString stringWithFormat:@"%@\n%@", _detailPicModel.title,_detailPicModel.intro];//@"友盟社会化组件可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。 http://www.umeng.com/social";             //分享内嵌文字
-    UIImage *shareImage = [UIImage imageNamed:@"icon_app60"];          //分享内嵌图片
+    UIImage *shareImage = [UIImage imageNamed:@"icon_app_60"];          //分享内嵌图片
     
     //调用快速分享接口
     [UMSocialSnsService presentSnsIconSheetView:self
@@ -338,8 +338,13 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         float hei = _placeheadView == nil ? headView.bannerHeight : _placeheadView.bannerHeight;
         [headView.bannerView iniSubviewsWithFrame:CGRectMake(0, 0,CGRectGetWidth(tableView.frame), hei)];
         headView.bannerView.pageControl.currentPageIndicatorTintColor = kAPPTintColor;
-        headView.infoView.titleLabel.text = [NSString stringWithFormat:@"%@ %@",_detailPicModel.title,_detailPicModel.standard];
-        headView.infoView.priceLabel.text = [NSString stringWithFormat:@"%@元",_detailPicModel.price];
+//        headView.infoView.titleLabel.text = [NSString stringWithFormat:@"%@ %@",_detailPicModel.title,_detailPicModel.standard];
+//        headView.infoView.priceLabel.text = [NSString stringWithFormat:@"%@元",_detailPicModel.price];
+        [headView.infoView setupWithItemModel:_detailPicModel];
+        if (_sanpinType > 0) {
+            [headView sanpinImageTag:_sanpinType];
+        }
+        
         [headView.infoView collcetStatus:_isCollected];
         __weak typeof(self) wself = self;
         headView.infoView.colletActionBlock = ^(UIButton *btn){
@@ -422,11 +427,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
         }
         
-        _placeheadView.infoView.titleLabel.text = [NSString stringWithFormat:@"%@ %@",_detailPicModel.title,_detailPicModel.standard];
-        _placeheadView.infoView.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.frame) - 16;
-        _placeheadView.infoView.priceLabel.text = [NSString stringWithFormat:@"%@元",_detailPicModel.price];
+        _placeheadView.infoView.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.frame) - 16*2;
+        if (_sanpinType > 0) {
+            _placeheadView.infoView.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.frame) - 16*2 - 60 - 3;
+        }
+        [_placeheadView.infoView setupWithItemModel:_detailPicModel];
         
-       
         [_placeheadView updateConstraintsIfNeeded];
         [_placeheadView layoutIfNeeded];
         

@@ -120,6 +120,7 @@ static const int kContentViewTag = 1000;
     [self.view layoutIfNeeded];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    self.navigationController.navigationBar.translucent = YES;
     
 }
 
@@ -133,6 +134,7 @@ static const int kContentViewTag = 1000;
 {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.barTintColor = kAPPTintColor;
+    self.navigationController.navigationBar.translucent = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
@@ -150,7 +152,12 @@ static const int kContentViewTag = 1000;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-imgView.image.size.width-60, 30)]; //
     searchBar.showsCancelButton = NO;
     searchBar.delegate = self;
-    searchBar.tintColor = kAPPTintColor;
+//    searchBar.barTintColor = kAPPTintColor;
+//    searchBar.backgroundColor = kAPPTintColor;
+//     UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+//    searchField.layer.masksToBounds = YES;
+//    searchField.layer.borderColor = kAPPTintColor.CGColor;
+//    searchField.layer.borderWidth = 1.0;
     searchBar.placeholder = @"输入心仪的商品";
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     self.navigationItem.rightBarButtonItem = barItem;
@@ -289,9 +296,12 @@ static const int kContentViewTag = 1000;
             ///push 到商品详情
             __weak typeof(self) wself = self;
             _sanpinViewController.cellSelectedBlock = ^(HSCommodtyItemModel *itemModel){
+                
+                __strong typeof(wself) swself = wself;
                 UIStoryboard *storyBorad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 HSCommodityDetailViewController *detailVC = [storyBorad instantiateViewControllerWithIdentifier:NSStringFromClass([HSCommodityDetailViewController class])];
                 //detailVC.hidesBottomBarWhenPushed = YES;
+                detailVC.sanpinType = swself->_sanpinViewController.sanpinCategoryType;
                 detailVC.itemModel = itemModel;
                 [wself.navigationController pushViewController:detailVC animated:YES];
             };

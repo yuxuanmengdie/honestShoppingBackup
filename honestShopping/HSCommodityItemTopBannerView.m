@@ -11,6 +11,8 @@
 @interface HSCommodityItemTopBannerView ()
 {
     NSLayoutConstraint *_bannerHeightConstraint;
+    
+    UIImageView *_sanpinTagImageView;
 }
 
 @end
@@ -46,6 +48,10 @@
         [_infoView setNeedsLayout];
         [self addSubview:_infoView];
         
+        _sanpinTagImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _sanpinTagImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:_sanpinTagImageView];
+        
         NSString *vfl1 = @"H:|[_bannerView]|";
         NSString *vfl2 = @"H:|[_infoView]|";
         NSString *vfl3 = @"V:|[_bannerView][_infoView]|";
@@ -59,6 +65,10 @@
         [self addConstraints:arr2];
         [self addConstraints:arr3];
         [self addConstraint:_bannerHeightConstraint];
+        
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_sanpinTagImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_bannerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-10]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_sanpinTagImageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-8]];
         
         __weak typeof(self) wself = self;
         _bannerView.heightBlock = ^(float height){
@@ -85,6 +95,49 @@
     _bannerHeightConstraint.constant = bannerHeight;
     [self updateConstraintsIfNeeded];
     [self layoutIfNeeded];
+}
+
+- (void)sanpinImageTag:(HSSanpinCategoryType)sanpinType
+{
+    NSString *imgName = nil;
+    switch (sanpinType) {
+        case kNotSanpinType:
+        {
+            
+        }
+            break;
+        case kYoujiSanpinType:
+        {
+            imgName = @"icon_sanpin1_60";
+        }
+            break;
+        case kLvseSanpinType:
+        {
+            imgName = @"icon_sanpin2_60";
+        }
+            break;
+        case kWugonghaiSanpinType:
+        {
+            imgName = @"icon_sanpin3_60";
+        }
+            break;
+        case kDiliSanpinType:
+        {
+            imgName = @"icon_sanpin4_60";
+        }
+            break;
+
+        default:
+            break;
+    }
+    
+    if (imgName.length > 0) {
+        UIImage *img = [UIImage imageNamed:imgName];
+        _sanpinTagImageView.image = img;
+        _infoView.titleTrailingConstraint.constant = 16 + 3 + img.size.width;
+        [_infoView updateConstraintsIfNeeded];
+        [_infoView layoutIfNeeded];
+    }
 }
 
 - (void)layoutSubviews {

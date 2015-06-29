@@ -24,9 +24,9 @@
 #import "HSBaseViewController.h"
 
 /// 服务器地址
-//#define kURLHeader @"http://ecommerce.news.cn"// 正式服务器
+#define kURLHeader @"http://ecommerce.news.cn"// 正式服务器
 
-#define kURLHeader @"http://221.226.28.42/wsc" // 前期测试服务器
+//#define kURLHeader @"http://221.226.28.42/wsc" // 前期测试服务器
 
 /// 商品详细介绍的图片
 #define kCommodityImgURLHeader @"http://ecommerce.news.cn" // @"http://203.192.7.23"
@@ -35,7 +35,10 @@
 /// 保存的版本
 #define kAPPCurrentVersion @"currentVersion"
 
+//#define kAPPTintColor [UIColor colorWithRed:128/255.0 green:203/255.0 blue:25/255.0 alpha:1.0]
 #define kAPPTintColor [UIColor colorWithRed:39/255.0 green:147/255.0 blue:68/255.0 alpha:1.0]
+
+#define kAPPLightGreenColor [UIColor colorWithRed:128/255.0 green:203/255.0 blue:25/255.0 alpha:1.0]
 
 #define kTabBarViewTag 3478
 

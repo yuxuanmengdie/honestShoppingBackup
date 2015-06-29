@@ -69,6 +69,7 @@ static const int kSanpinCollectionViewTagOri = 800;
     
     [_sanpinCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kCommodityCellIndentifier];
     
+    _sanpinCollectionView.showsVerticalScrollIndicator = YES;
     _sanpinCollectionView.delegate = self;
     _sanpinCollectionView.dataSource = self;
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
@@ -291,6 +292,22 @@ static const int kSanpinCollectionViewTagOri = 800;
     int tag = (int)collectionView.tag - kSanpinCollectionViewTagOri + 1; //sanpinType 从1开始
     NSArray *typeArr = _sanpinDataDic[[self p_keyFromType:tag]];
     HSCommodtyItemModel *itemModel = typeArr[indexPath.row];
+    
+    if (collectionView == _sanpinCollectionView) {
+        _sanpinCategoryType = 1;
+    }
+    else if (collectionView == _sanpinCollectionView2)
+    {
+        _sanpinCategoryType = 2;
+    }
+    else if (collectionView == _sanpinCollectionView3)
+    {
+        _sanpinCategoryType = 3;
+    }
+    else if (collectionView == _sanpinCollectionView4)
+    {
+        _sanpinCategoryType = 4;
+    }
     
     if (self.cellSelectedBlock) {
         self.cellSelectedBlock(itemModel);

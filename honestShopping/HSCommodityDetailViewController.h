@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "HSCommodtyItemModel.h"
+#import "HSItemBuyInfoView.h"
 
 @interface HSCommodityDetailViewController : HSBaseViewController
 
+@property (nonatomic, strong) HSCommodtyItemModel *itemModel;
 
-@property (nonatomic, strong)  HSCommodtyItemModel *itemModel;
+@property (nonatomic, assign) HSSanpinCategoryType sanpinType;
 
 @end

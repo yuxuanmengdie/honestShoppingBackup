@@ -10,6 +10,7 @@
 #import "FFScrollView.h"
 #import "HSItemBuyInfoView.h"
 
+
 typedef void(^HSCommodityItemTopBannerViewHeightChangeBlcok)(void);
 /// 商品详情的顶部视图
 @interface HSCommodityItemTopBannerView : UIView
@@ -21,5 +22,8 @@ typedef void(^HSCommodityItemTopBannerViewHeightChangeBlcok)(void);
 @property (nonatomic, assign) float bannerHeight;
 
 @property (nonatomic, copy) HSCommodityItemTopBannerViewHeightChangeBlcok heightChangeBlcok;
+
+/// 三品一标的图片标志
+- (void)sanpinImageTag:(HSSanpinCategoryType)sanpinType;
 
 @end
