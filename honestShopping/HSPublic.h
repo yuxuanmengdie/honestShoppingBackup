@@ -89,10 +89,10 @@ typedef NS_ENUM(NSUInteger, HSLoginType) {
 /// 保存第三方头像地址
 + (void)savelastOtherHeaderImgURL:(NSString *)imgURL;
 
-/// 保存上次的用户名称
+/// 保存上次的用户名称 phone字段代替username
 + (void)saveLastUserName:(NSString *)userName;
 
-/// 取出上次登录的用户名
+/// 取出上次登录的用户名  phone字段代替username
 + (NSString *)lastUserName;
 
 /// 保存上次的密码

@@ -379,7 +379,7 @@ static const int kTakePhoneAlertTag = 701;
             }
             else
             {
-                 [view welcomeText:_userInfoModel.username isLogin:YES];
+                 [view welcomeText:[HSPublic controlNullString:_userInfoModel.phone] isLogin:YES];
             }
             [view signStatus:_userInfoModel.sign];
         }

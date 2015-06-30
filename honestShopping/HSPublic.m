@@ -393,7 +393,7 @@ static NSString *const kUserNameKey = @"lastUserNameKey";
 
 static NSString *const kPasswordKey = @"lastPasswordKey";
 
-/// 保存上次的用户名称
+/// 保存上次的用户名称 phone字段代替username
 + (void)saveLastUserName:(NSString *)userName
 {
     NSString *result = [self controlNullString:userName];
@@ -402,7 +402,7 @@ static NSString *const kPasswordKey = @"lastPasswordKey";
     [userDefaults synchronize];
 }
 
-/// 取出上次登录的用户名
+/// 取出上次登录的用户名 phone字段代替username
 + (NSString *)lastUserName
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -499,7 +499,7 @@ static NSString *const kPasswordKey = @"lastPasswordKey";
 
 }
 
-static const double kTimedLoginInterval = 60*60;
+//static const double kTimedLoginInterval = 60*60;
 
 + (void)timedLoginIn
 {

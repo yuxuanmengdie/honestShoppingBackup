@@ -64,7 +64,7 @@ static const int kUpdateOrderMaxCount = 5;
     _orderUpdateCount = 0;
     _payType = 0;
     
-//    [self setNavBarRightBarWithTitle:@"1分钱测试" action:@selector(payTest)];
+    [self setNavBarRightBarWithTitle:@"1分钱测试" action:@selector(payTest)];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSSubmitOrderAddressTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSSubmitOrderAddressTableViewCell class])];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSSubmitOrderCommdityTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSSubmitOrderCommdityTableViewCell class])];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSPayTypeTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSPayTypeTableViewCell class])];
