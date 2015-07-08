@@ -15,6 +15,8 @@
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialAccountManager.h"
 #import "UMSocial.h"
+#import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
 
 @interface HSLoginInViewController ()<UITextFieldDelegate>
 {
@@ -36,6 +38,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *findPWButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *commitButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *qqLoginBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *weixinLoginBtn;
 
 @end
 
@@ -78,7 +84,18 @@ static NSString *const kRemeberPWNormalImageName = @"icon_remeberPW_unsel";
     {
         _remeberPWButton.selected = [HSPublic isRemeberPassword];
     }
-
+    
+    if (![WXApi isWXAppInstalled]) {
+        //判断是否有微信
+        NSLog(@"没有微信");
+        _weixinLoginBtn.hidden = YES;
+    }
+    
+    if (![QQApiInterface isQQInstalled]) {
+        //判断是否有qq
+         NSLog(@"没有qq");
+        _qqLoginBtn.hidden = YES;
+    }
 
 }
 

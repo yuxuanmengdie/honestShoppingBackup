@@ -23,6 +23,7 @@
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
+#import "WXApi.h"
 
 @interface HSCommodityDetailViewController ()<UITableViewDataSource,
 UITableViewDelegate,UMSocialUIDelegate>
@@ -233,8 +234,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             
             swself->_buyNumView.stepper.maximum = [swself->_detailPicModel.maxbuy intValue];
             
-            [self setNavBarRightBarWithTitle:@"分享" action:@selector(shareAction)];
-            
+            if (!(![WXApi isWXAppInstalled] && ![QQApiInterface isQQInstalled])) {
+                //判断是否有微信
+                NSLog(@"至少安装了一个");
+                [self setNavBarRightBarWithTitle:@"分享" action:@selector(shareAction)];
+            }
+        
         }
     }];
 }

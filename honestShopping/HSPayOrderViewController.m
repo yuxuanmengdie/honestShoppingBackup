@@ -64,7 +64,7 @@ static const int kUpdateOrderMaxCount = 5;
     _orderUpdateCount = 0;
     _payType = 0;
     
-    [self setNavBarRightBarWithTitle:@"1分钱测试" action:@selector(payTest)];
+//    [self setNavBarRightBarWithTitle:@"1分钱测试" action:@selector(payTest)];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSSubmitOrderAddressTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSSubmitOrderAddressTableViewCell class])];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSSubmitOrderCommdityTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSSubmitOrderCommdityTableViewCell class])];
     [_orderDetailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSPayTypeTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSPayTypeTableViewCell class])];
@@ -536,7 +536,6 @@ static const int kUpdateOrderMaxCount = 5;
 
 #pragma mark -
 #pragma mark tableview dataSource and delegate
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -679,6 +678,14 @@ static const int kUpdateOrderMaxCount = 5;
             {
                 HSPayTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSPayTypeTableViewCell class]) forIndexPath:indexPath];
                 cell.leftLabel.text = @"支付方式：";
+                
+                 cell.weixinPayButton.hidden = NO;
+                if (![WXApi isWXAppInstalled]) {
+                    //判断是否有微信
+                    NSLog(@"没有微信");
+                    cell.weixinPayButton.hidden = YES;
+                }
+                
                 if (_payType == 0) {
                     cell.aliPayButton.selected = YES;
                     cell.weixinPayButton.selected = NO;

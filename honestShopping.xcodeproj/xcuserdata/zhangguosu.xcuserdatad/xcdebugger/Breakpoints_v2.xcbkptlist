@@ -256,11 +256,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSLoginInViewController.m"
-            timestampString = "456395940.303082"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "-loginRequest:password:"
             landmarkType = "5">
          </BreakpointContent>
@@ -826,12 +826,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSLoginInViewController.m"
-            timestampString = "456395940.303082"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "-weixinLogin"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-weixinLoginAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -842,12 +842,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSLoginInViewController.m"
-            timestampString = "456395940.303082"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "-weixinLogin"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "-qqLoginAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -954,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSPayOrderViewController.m"
-            timestampString = "456310837.871161"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "783"
-            endingLineNumber = "783"
+            startingLineNumber = "791"
+            endingLineNumber = "791"
             landmarkName = "-alert:msg:"
             landmarkType = "5">
          </BreakpointContent>
@@ -986,11 +986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSPayOrderViewController.m"
-            timestampString = "456310837.871161"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
+            startingLineNumber = "816"
+            endingLineNumber = "816"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -1050,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSLoginInViewController.m"
-            timestampString = "456395940.303082"
+            timestampString = "458030353.100938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-sinaLogin"
             landmarkType = "5">
             <Locations>

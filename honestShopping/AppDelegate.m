@@ -31,6 +31,9 @@
     //[HSPublic timedLoginIn];
     [UMSocialData setAppKey:kUMengAppKey];
     
+    
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
+    
     //设置微信AppId，设置分享url，默认使用友盟的网址
     [UMSocialWechatHandler setWXAppId:@"wxf674afd7fa6b3db1" appSecret:@"768ef498760a90567afeac93211abfa9" url:kURLHeader];
     
