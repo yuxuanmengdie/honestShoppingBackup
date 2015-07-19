@@ -46,6 +46,8 @@ static const int kPlaceViewTag = 5003;
     _isRequestLoading = NO;
     self.imageSizeDic = [[NSMutableDictionary alloc] init];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {

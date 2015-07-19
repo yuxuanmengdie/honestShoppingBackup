@@ -15,6 +15,7 @@
 #import "HSBannerHeaderCollectionReusableView.h"
 #import "UIView+HSLayout.h"
 #import "HSHomeCollectionViewCell.h"
+#import "MJRefresh.h"
 
 #import "HSCommodtyItemModel.h"
 #import "HSBannerModel.h"
@@ -80,7 +81,12 @@ static const float kFFScrollViewHeight = 200;
     layout.columnCount = 2;
     _homeCollectionView.collectionViewLayout = layout;
     
-    [self getIndexItemRequest];
+    __weak typeof(self) wself = self;
+    [_homeCollectionView addLegendHeaderWithRefreshingBlock:^{
+         [wself getIndexItemRequest];
+    }];
+    [_homeCollectionView.header beginRefreshing];
+    //[self getIndexItemRequest];
 
 }
 
@@ -157,9 +163,11 @@ static const float kFFScrollViewHeight = 200;
     NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
     [self.httpRequestOperationManager POST:kGetIndexItemURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) { /// 失败
         [self hiddenMsg];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        NSLog(@"%s failed\n%@",__func__,operation.responseString);
         [self hiddenMsg];
+        [_homeCollectionView.header endRefreshing];
         if (operation.responseData == nil) {
             [self getIndexItemRequest];
             return ;

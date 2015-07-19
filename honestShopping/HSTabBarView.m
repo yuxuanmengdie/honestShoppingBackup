@@ -55,7 +55,7 @@ static const int kButtonOriTag = 500;
     
     NSArray *normalIcon = @[@"icon_tabbar1_unsel",@"icon_tabbar2_unsel",@"icon_tabbar3_unsel",@"icon_tabbar4_unsel",@"icon_tabbar5_unsel"];
     NSArray *selectedIcon = @[@"icon_tabbar1",@"icon_tabbar2",@"icon_tabbar3_unsel",@"icon_tabbar4",@"icon_tabbar5"];
-    NSArray *titleArr = @[@"首页",@"发现",@"",@"我的",@"更多"];
+    NSArray *titleArr = @[@"首页",@"发现",@"",@"我的",@"食趣"];
     
     for (int j=0; j<5; j++) {
         UIButton *btn;

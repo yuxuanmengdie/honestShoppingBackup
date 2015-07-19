@@ -58,7 +58,7 @@
     navBar.tintColor = [UIColor whiteColor];
     [navBar setBarTintColor:kAPPTintColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    navBar.translucent = NO;
+    //navBar.translucent = NO;  // 在iOS 7 上会崩溃！！！！！！！
     
     
     // 3.标题

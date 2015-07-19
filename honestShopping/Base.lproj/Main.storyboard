@@ -1579,7 +1579,7 @@
                         <segue destination="uzx-g7-Owc" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="H0e-Ii-fCV" kind="relationship" relationship="viewControllers" id="wYF-el-YKy"/>
                         <segue destination="CbP-Rl-mZN" kind="relationship" relationship="viewControllers" id="WhL-Lo-cs6"/>
-                        <segue destination="5cp-B9-05w" kind="relationship" relationship="viewControllers" id="F2t-yc-iF6"/>
+                        <segue destination="9H2-Gt-WmM" kind="relationship" relationship="viewControllers" id="sQ5-YB-YsE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1854,7 +1854,7 @@
         <!--Shiqu View Controller-->
         <scene sceneID="edk-es-oMZ">
             <objects>
-                <viewController id="oSO-u5-X2U" customClass="HSShiquViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HSShiquViewController" id="oSO-u5-X2U" customClass="HSShiquViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="coe-cd-qTG"/>
                         <viewControllerLayoutGuide type="bottom" id="Tzo-rt-fEh"/>
@@ -1862,27 +1862,7 @@
                     <view key="view" contentMode="scaleToFill" id="VyB-ce-c2O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wq6-Dy-umy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-je-vpN">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wq6-Dy-umy" secondAttribute="trailing" id="1vz-Ml-B0a"/>
-                            <constraint firstItem="wq6-Dy-umy" firstAttribute="top" secondItem="coe-cd-qTG" secondAttribute="bottom" id="51v-ub-iKf"/>
-                            <constraint firstItem="mUa-je-vpN" firstAttribute="top" secondItem="coe-cd-qTG" secondAttribute="bottom" id="ATT-xN-19D"/>
-                            <constraint firstItem="wq6-Dy-umy" firstAttribute="leading" secondItem="VyB-ce-c2O" secondAttribute="leading" id="EbD-ml-OiS"/>
-                            <constraint firstAttribute="trailing" secondItem="mUa-je-vpN" secondAttribute="trailing" id="Kcf-m4-dXL"/>
-                            <constraint firstAttribute="bottom" secondItem="mUa-je-vpN" secondAttribute="bottom" id="Xx4-Mg-NGZ"/>
-                            <constraint firstAttribute="bottom" secondItem="wq6-Dy-umy" secondAttribute="bottom" id="hF3-uP-QDP"/>
-                            <constraint firstItem="mUa-je-vpN" firstAttribute="leading" secondItem="VyB-ce-c2O" secondAttribute="leading" id="rzo-86-Id1"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kya-L1-tNb"/>
                 </viewController>
@@ -1890,10 +1870,11 @@
             </objects>
             <point key="canvasLocation" x="1872" y="5159"/>
         </scene>
-        <!--Base Navigation View Controller-->
+        <!--食趣-->
         <scene sceneID="UIh-MB-cQ7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9H2-Gt-WmM" customClass="HSBaseNavigationViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="食趣" id="b6c-zc-dWi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qA6-gY-k6k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

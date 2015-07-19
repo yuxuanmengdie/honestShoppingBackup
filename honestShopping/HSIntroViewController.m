@@ -67,13 +67,14 @@ static const int kMaxDownTryNum = 20;
     
     NSString *saveedVerson = [[NSUserDefaults standardUserDefaults] objectForKey:kAPPCurrentVersion];
     
-    if (saveedVerson == nil || ![verson isEqualToString:saveedVerson]) { // 加载引导图
-        [self getGuideRequest];
-    }
-    else // 不加载引导图，就加载欢迎图
-    {
-        [self getWelcomeRequest];
-    }
+     [self getGuideRequest];
+//    if (saveedVerson == nil || ![verson isEqualToString:saveedVerson]) { // 加载引导图
+//        [self getGuideRequest];
+//    }
+//    else // 不加载引导图，就加载欢迎图
+//    {
+//        [self getWelcomeRequest];
+//    }
     
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:kMaxLoadingTime target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
@@ -246,6 +247,7 @@ static const int kMaxDownTryNum = 20;
     if (_bannerType == 1) { /// 引导图
          NSString *verson = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         [[NSUserDefaults standardUserDefaults] setObject:verson forKey:kAPPCurrentVersion];
+        [[NSUserDefaults standardUserDefaults] synchronize]; // add
     }
     
     NSMutableArray *tmp = [[NSMutableArray alloc] initWithCapacity:bannerArr.count];

@@ -280,6 +280,8 @@ static NSString *const kOtherLoginUserName = @"OtherLoginUserName";
 
 static NSString *const kOtherLoginHeaderImgURL = @"OtherLoginHeaderImgURL";
 
+#pragma mark - 食趣的URL
+static NSString *const kShiquURL = @"http://ecommerce.news.cn/index.php?g=home&m=Cxggs&a=index&username=";
 
 #endif
 

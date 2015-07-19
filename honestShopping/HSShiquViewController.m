@@ -7,8 +7,11 @@
 //
 
 #import "HSShiquViewController.h"
+#import "MJRefresh.h"
 
-@interface HSShiquViewController ()
+@interface HSShiquViewController ()<UIWebViewDelegate>
+
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -17,6 +20,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"食趣";
+    [self initWebView];
+}
+
+- (void)initWebView
+{
+    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    _webView.translatesAutoresizingMaskIntoConstraints = NO;
+    _webView.delegate = self;
+    [self.view addSubview:_webView];
+    
+    id topGuide = self.topLayoutGuide;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_webView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide][_webView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView,topGuide)]];
+    
+    [_webView loadRequest:[self loadREquest]];
+    __weak typeof(self) wself = self;
+    // 添加下拉刷新控件
+    [self.webView.scrollView addLegendHeaderWithRefreshingBlock:^{
+        [wself.webView loadRequest:[wself loadREquest]];
+    }];
+    [self.webView.scrollView.header beginRefreshing];
+}
+
+- (NSURLRequest *)loadREquest
+{
+     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kShiquURL]];
+    return request;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +64,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)reloadRequestData
+{
+    [_webView loadRequest:[self loadREquest]];
+}
+
+#pragma mark - webview delegate
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    //[self showReqeustFailedMsg];
+    [_webView.scrollView.header endRefreshing];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    //[self hiddenMsg];
+    [_webView.scrollView.header endRefreshing];
+
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    //[self showNetLoadingView];
+}
 
 @end
