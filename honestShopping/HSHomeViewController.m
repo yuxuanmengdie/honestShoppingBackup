@@ -159,14 +159,14 @@ static const float kFFScrollViewHeight = 200;
 #pragma mark 获取首页商品
 - (void)getIndexItemRequest
 {
-    [self showNetLoadingView];
+//    [self showNetLoadingView];
     NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
     [self.httpRequestOperationManager POST:kGetIndexItemURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) { /// 失败
         [self hiddenMsg];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        NSLog(@"%s failed\n%@",__func__,operation.responseString);
-        [self hiddenMsg];
+ //       [self hiddenMsg];
         [_homeCollectionView.header endRefreshing];
         if (operation.responseData == nil) {
             [self getIndexItemRequest];
@@ -190,7 +190,6 @@ static const float kFFScrollViewHeight = 200;
             
             [self couponListRequest];
             [self getBannerImages];
-            
         }
         else
         {

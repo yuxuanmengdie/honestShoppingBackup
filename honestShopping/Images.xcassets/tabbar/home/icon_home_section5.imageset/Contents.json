@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icon_home_section5.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

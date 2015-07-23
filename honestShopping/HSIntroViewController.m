@@ -67,15 +67,13 @@ static const int kMaxDownTryNum = 20;
     
     NSString *saveedVerson = [[NSUserDefaults standardUserDefaults] objectForKey:kAPPCurrentVersion];
     
-     [self getGuideRequest];
-//    if (saveedVerson == nil || ![verson isEqualToString:saveedVerson]) { // 加载引导图
-//        [self getGuideRequest];
-//    }
-//    else // 不加载引导图，就加载欢迎图
-//    {
-//        [self getWelcomeRequest];
-//    }
-    
+    if (saveedVerson == nil || ![verson isEqualToString:saveedVerson]) { // 加载引导图
+        [self getGuideRequest];
+    }
+    else // 不加载引导图，就加载欢迎图
+    {
+        [self getWelcomeRequest];
+    }
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:kMaxLoadingTime target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
 }
@@ -265,14 +263,15 @@ static const int kMaxDownTryNum = 20;
     [_introView setDelegate:self];
     //    [_introView layoutIfNeeded];
     [_introView setSkipButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    _introView.skipButton.contentEdgeInsets = UIEdgeInsetsMake(5, 8, 5, 8);
-    [_introView.skipButton setTitle:@"体验新版" forState:UIControlStateNormal];
-    [_introView.skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_introView.skipButton setBackgroundImage:[HSPublic ImageWithColor:kAPPTintColor] forState:UIControlStateNormal];
-    _introView.skipButton.layer.masksToBounds = YES;
-    _introView.skipButton.layer.cornerRadius = 5.0;
+    [_introView.skipButton setImage:[UIImage imageNamed:@"icon_start_try"] forState:UIControlStateNormal];
+//    _introView.skipButton.contentEdgeInsets = UIEdgeInsetsMake(5, 8, 5, 8);
+//    [_introView.skipButton setTitle:@"体验新版" forState:UIControlStateNormal];
+//    [_introView.skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [_introView.skipButton setBackgroundImage:[HSPublic ImageWithColor:kAPPTintColor] forState:UIControlStateNormal];
+//    _introView.skipButton.layer.masksToBounds = YES;
+//    _introView.skipButton.layer.cornerRadius = 5.0;
     [_introView.skipButton sizeToFit];
-    _introView.skipButtonY = (CGRectGetHeight(self.view.bounds)-CGRectGetHeight(_introView.skipButton.frame)) / 2.0;
+    _introView.skipButtonY = (CGRectGetHeight(self.view.bounds)-CGRectGetHeight(_introView.skipButton.frame)) / 2.0 + 20;
     _introView.skipButtonAlignment = EAViewAlignmentCenter;
     _introView.showSkipButtonOnlyOnLastPage = YES;
     _introView.swipeToExit = NO;

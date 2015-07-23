@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UIWebView *webView;
 
+@property (nonatomic, strong) NSURL *lastURL;
+
 @end
 
 @implementation HSShiquViewController
@@ -35,7 +37,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_webView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide][_webView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView,topGuide)]];
     
-    [_webView loadRequest:[self loadREquest]];
+//    [_webView loadRequest:[self loadREquest]];
     __weak typeof(self) wself = self;
     // 添加下拉刷新控件
     [self.webView.scrollView addLegendHeaderWithRefreshingBlock:^{
@@ -46,7 +48,9 @@
 
 - (NSURLRequest *)loadREquest
 {
-     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kShiquURL]];
+    NSURL *url = _webView.request.URL != nil ? _webView.request.URL : [NSURL URLWithString:kShiquURL];
+    _lastURL = url;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     return request;
 }
 
@@ -75,6 +79,9 @@
 {
     //[self showReqeustFailedMsg];
     [_webView.scrollView.header endRefreshing];
+    if ([_lastURL isEqual:_webView.request.URL]) {
+       [self showHudWithText:@"刷新失败"];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -82,7 +89,10 @@
     NSLog(@"%s",__PRETTY_FUNCTION__);
     //[self hiddenMsg];
     [_webView.scrollView.header endRefreshing];
-
+    
+    if ([_lastURL isEqual:_webView.request.URL]) {
+        [self showHudWithText:@"刷新成功"];
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

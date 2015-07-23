@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "455185722.079166"
+            timestampString = "459349114.125909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "606"
-            endingLineNumber = "606"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
             landmarkName = "-collectionView:layout:referenceSizeForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -288,11 +288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "454769542.168861"
+            timestampString = "459175969.401667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-scrollViewDidClickedAtPage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -400,11 +400,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "455185722.079166"
+            timestampString = "459349114.125909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "621"
-            endingLineNumber = "621"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -431,26 +431,26 @@
                   symbolName = "__65-[HSMineAddressViewController addressRequestWithUid:sessionCode:]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSMineAddressViewController.m"
-                  timestampString = "458812192.511486"
+                  timestampString = "459177125.555818"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
                   endingLineNumber = "82"
-                  offsetFromSymbolStart = "117">
+                  offsetFromSymbolStart = "108">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__65-[HSMineAddressViewController addressRequestWithUid:sessionCode:]_block_invoke189"
+                  symbolName = "__65-[HSMineAddressViewController addressRequestWithUid:sessionCode:]_block_invoke191"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSMineAddressViewController.m"
-                  timestampString = "458812192.511835"
+                  timestampString = "459177125.556205"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
                   endingLineNumber = "82"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -509,12 +509,12 @@
                   symbolName = "-[HSEditAddressContainerTableViewController selectAddress]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSEditAddressContainerTableViewController.m"
-                  timestampString = "458812192.517342"
+                  timestampString = "459177125.559191"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "297">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -523,12 +523,12 @@
                   symbolName = "-[HSEditAddressContainerTableViewController selectAddress]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSEditAddressContainerTableViewController.m"
-                  timestampString = "458812192.517509"
+                  timestampString = "459177125.559433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "313">
+                  offsetFromSymbolStart = "336">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -780,11 +780,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSHomeViewController.m"
-            timestampString = "458819725.203594"
+            timestampString = "459349114.125909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-couponListRequest"
             landmarkType = "5">
             <Locations>
@@ -795,12 +795,12 @@
                   symbolName = "__41-[HSHomeViewController couponListRequest]_block_invoke_2"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSHomeViewController.m"
-                  timestampString = "458812192.541176"
+                  timestampString = "459177125.571412"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "1071">
+                  startingLineNumber = "238"
+                  endingLineNumber = "238"
+                  offsetFromSymbolStart = "1088">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -809,12 +809,12 @@
                   symbolName = "__41-[HSHomeViewController couponListRequest]_block_invoke_2"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSHomeViewController.m"
-                  timestampString = "458812192.54133"
+                  timestampString = "459177125.571649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "1095">
+                  startingLineNumber = "238"
+                  endingLineNumber = "238"
+                  offsetFromSymbolStart = "1108">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1065,12 +1065,12 @@
                   symbolName = "-[HSLoginInViewController sinaLogin]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSLoginInViewController.m"
-                  timestampString = "458812192.555938"
+                  timestampString = "459177125.580832"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "325"
                   endingLineNumber = "325"
-                  offsetFromSymbolStart = "63">
+                  offsetFromSymbolStart = "80">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1079,12 +1079,12 @@
                   symbolName = "__36-[HSLoginInViewController sinaLogin]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSLoginInViewController.m"
-                  timestampString = "458812192.556115"
+                  timestampString = "459177125.581008"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "325"
                   endingLineNumber = "325"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1127,12 +1127,12 @@
                   symbolName = "-[HSPayOrderViewController getOrderDetailRequest:orderID:sessionCode:]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSPayOrderViewController.m"
-                  timestampString = "458812192.557966"
+                  timestampString = "459177125.582233"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
                   endingLineNumber = "150"
-                  offsetFromSymbolStart = "445">
+                  offsetFromSymbolStart = "460">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1141,12 +1141,12 @@
                   symbolName = "__70-[HSPayOrderViewController getOrderDetailRequest:orderID:sessionCode:]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSPayOrderViewController.m"
-                  timestampString = "458812192.558118"
+                  timestampString = "459177125.582389"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
                   endingLineNumber = "150"
-                  offsetFromSymbolStart = "61">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1180,6 +1180,22 @@
             startingLineNumber = "549"
             endingLineNumber = "549"
             landmarkName = "-dealloc"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "honestShopping/HSShiquViewController.m"
+            timestampString = "459177407.379845"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-loadREquest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

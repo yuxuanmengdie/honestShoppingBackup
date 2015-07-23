@@ -125,6 +125,12 @@ static const int kAdsCellImageViewTag = 600;
     [_commdityCollectionView addLegendFooterWithRefreshingBlock:^{
         __strong typeof(wself) swself = wself;
         
+        if ([swself->_commdityCollectionView.header isRefreshing]) {
+            [self showHudWithText:@"刷新中..."];
+            [swself->_commdityCollectionView.footer endRefreshing];
+            return ;
+        }
+
         /// 防止请求完了 防止多次请求最后一次
         if ((swself->_itemsData.count > 0 && _itemsData.count%kSizeNum > 0) || (swself->_pageModel != nil && [swself->_pageModel.total intValue] <= swself->_itemsData.count)) {
             [swself->_commdityCollectionView.footer noticeNoMoreData];
@@ -132,7 +138,17 @@ static const int kAdsCellImageViewTag = 600;
         }
         
         
-        [wself dataRequestWithWithCid:[HSPublic controlNullString:_cateID] size:kSizeNum key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:_itemsData.count/kSizeNum + 1];
+        [wself dataRequestWithWithCid:[HSPublic controlNullString:swself->_cateID] size:kSizeNum key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:swself->_itemsData.count/kSizeNum + 1];
+    }];
+    
+    [_commdityCollectionView addLegendHeaderWithRefreshingBlock:^{
+        __strong typeof(wself) swself = wself;
+        if ([swself->_commdityCollectionView.footer isRefreshing]) {
+            [self showHudWithText:@"下拉加载中..."];
+            [swself->_commdityCollectionView.header endRefreshing];
+            return ;
+        }
+        [wself reloadDataWithWithCid:[HSPublic controlNullString:swself->_cateID] size:swself->_itemsData.count key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:1];
     }];
     _isAdsLoding = NO;
     
@@ -257,7 +273,6 @@ static const int kAdsCellImageViewTag = 600;
         NSLog(@"JSON: %@/n %@", responseObject,[HSPublic dictionaryToJson:parametersDic]);
        [_commdityCollectionView.footer endRefreshing];
         
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"response=%@",operation.responseString);
         
@@ -297,6 +312,45 @@ static const int kAdsCellImageViewTag = 600;
         
     }];
     
+}
+
+- (void)reloadDataWithWithCid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page
+{
+    NSDictionary *parametersDic = @{kPostJsonKey:key,
+                                    kPostJsonCid:[NSNumber numberWithLongLong:[cid longLongValue]],
+                                    kPostJsonSize:[NSNumber numberWithInteger:size],
+                                    kPostJsonPage:[NSNumber numberWithInteger:page]};
+    
+    [self.httpRequestOperationManager POST:kGetItemsByCateURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@/n %@", responseObject,[HSPublic dictionaryToJson:parametersDic]);
+        [_commdityCollectionView.header endRefreshing];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"response=%@",operation.responseString);
+        
+        [_commdityCollectionView.header endRefreshing];
+        NSString *str = (NSString *)operation.responseString;
+        
+        NSData *data =  [str dataUsingEncoding:NSUTF8StringEncoding];
+        if (data == nil) {
+            [self showHudWithText:@"刷新失败"];
+            return ;
+        }
+        NSError *jsonError = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+        NSLog(@"!!!!%@",json);
+        
+        if ([json isKindOfClass:[NSDictionary class]] && jsonError == nil) {
+            
+            NSDictionary *jsonDic = (NSDictionary *)json;
+            HSItemPageModel *pageModel = [[HSItemPageModel alloc] initWithDictionary:jsonDic error:nil];
+            _pageModel = pageModel;
+            _itemsData = pageModel.item_list;
+            [_commdityCollectionView reloadData];
+        }
+        
+    }];
+
 }
 
 #pragma mark-
