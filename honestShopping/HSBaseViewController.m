@@ -9,7 +9,6 @@
 #import "HSBaseViewController.h"
 #import "UIView+HSLayout.h"
 #import "HSRotateAnimationView.h"
-#import "SVProgressHUD.h"
 #import "MBProgressHUD.h"
 
 
@@ -406,7 +405,7 @@ static const int kPlaceViewTag = 5003;
 #pragma mark 点击重新加载
 - (void)reloadRequestData
 {
-    
+ //   [self hiddenMsg];
 }
 
 - (void)dealloc

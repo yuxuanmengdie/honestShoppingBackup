@@ -70,19 +70,7 @@
 		F672363F1AB7380F00828EEE /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235BA1AB7380F00828EEE /* AFURLRequestSerialization.m */; };
 		F67236401AB7380F00828EEE /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235BC1AB7380F00828EEE /* AFURLResponseSerialization.m */; };
 		F67236411AB7380F00828EEE /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235BE1AB7380F00828EEE /* AFURLSessionManager.m */; };
-		F67236421AB7380F00828EEE /* Dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235C11AB7380F00828EEE /* Dialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F67236431AB7380F00828EEE /* AMDHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235C41AB7380F00828EEE /* AMDHudView.m */; };
-		F67236441AB7380F00828EEE /* MMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235C61AB7380F00828EEE /* MMHud.m */; };
-		F67236451AB7380F00828EEE /* MMProgressHUD+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235C81AB7380F00828EEE /* MMProgressHUD+Animations.m */; };
-		F67236461AB7380F00828EEE /* MMProgressHUD+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235C91AB7380F00828EEE /* MMProgressHUD+Class.m */; };
-		F67236471AB7380F00828EEE /* MMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235CB1AB7380F00828EEE /* MMProgressHUD.m */; };
-		F67236481AB7380F00828EEE /* MMProgressHUDOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235CD1AB7380F00828EEE /* MMProgressHUDOverlayView.m */; };
-		F67236491AB7380F00828EEE /* MMProgressHUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235CF1AB7380F00828EEE /* MMProgressHUDViewController.m */; };
-		F672364A1AB7380F00828EEE /* MMProgressHUDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235D11AB7380F00828EEE /* MMProgressHUDWindow.m */; };
-		F672364B1AB7380F00828EEE /* MMRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235D31AB7380F00828EEE /* MMRadialProgressView.m */; };
-		F672364C1AB7380F00828EEE /* MMVectorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235D51AB7380F00828EEE /* MMVectorImage.m */; };
 		F672364D1AB7380F00828EEE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235D71AB7380F00828EEE /* MBProgressHUD.m */; };
-		F672364F1AB7380F00828EEE /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235DB1AB7380F00828EEE /* SVProgressHUD.m */; };
 		F67236501AB7380F00828EEE /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235DF1AB7380F00828EEE /* IQNSArray+Sort.m */; };
 		F67236511AB7380F00828EEE /* IQUIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235E11AB7380F00828EEE /* IQUIView+Hierarchy.m */; };
 		F67236521AB7380F00828EEE /* IQUIWindow+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = F67235E31AB7380F00828EEE /* IQUIWindow+Hierarchy.m */; };
@@ -257,7 +245,6 @@
 		F6FF47D81B329AED00272889 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F6DB0D351B1EED1300B8F788 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		F6FF47D91B329AED00272889 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F6EBFA5C1B1ECFEC00651BE3 /* UMSocialSDKResourcesNew.bundle */; };
 		F6FF47DA1B329AED00272889 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F6B1EE7D1ACA34ED0081694C /* MJRefresh.bundle */; };
-		F6FF47DB1B329AED00272889 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F67235D91AB7380F00828EEE /* SVProgressHUD.bundle */; };
 		F6FF47DC1B329AED00272889 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F67235FC1AB7380F00828EEE /* IQKeyboardManager.bundle */; };
 		F6FF47DD1B329B3700272889 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61F52CB1AB71FF400603FBF /* Main.storyboard */; };
 		F6FF47DE1B329B5100272889 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F64D2DC21B1F4E3E00F2BA52 /* Images.xcassets */; };
@@ -426,32 +413,8 @@
 		F67235BC1AB7380F00828EEE /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		F67235BD1AB7380F00828EEE /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		F67235BE1AB7380F00828EEE /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		F67235C01AB7380F00828EEE /* Dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dialog.h; sourceTree = "<group>"; };
-		F67235C11AB7380F00828EEE /* Dialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dialog.m; sourceTree = "<group>"; };
-		F67235C31AB7380F00828EEE /* AMDHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDHudView.h; sourceTree = "<group>"; };
-		F67235C41AB7380F00828EEE /* AMDHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDHudView.m; sourceTree = "<group>"; };
-		F67235C51AB7380F00828EEE /* MMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHud.h; sourceTree = "<group>"; };
-		F67235C61AB7380F00828EEE /* MMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHud.m; sourceTree = "<group>"; };
-		F67235C71AB7380F00828EEE /* MMProgressHUD+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMProgressHUD+Animations.h"; sourceTree = "<group>"; };
-		F67235C81AB7380F00828EEE /* MMProgressHUD+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Animations.m"; sourceTree = "<group>"; };
-		F67235C91AB7380F00828EEE /* MMProgressHUD+Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMProgressHUD+Class.m"; sourceTree = "<group>"; };
-		F67235CA1AB7380F00828EEE /* MMProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUD.h; sourceTree = "<group>"; };
-		F67235CB1AB7380F00828EEE /* MMProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUD.m; sourceTree = "<group>"; };
-		F67235CC1AB7380F00828EEE /* MMProgressHUDOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDOverlayView.h; sourceTree = "<group>"; };
-		F67235CD1AB7380F00828EEE /* MMProgressHUDOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDOverlayView.m; sourceTree = "<group>"; };
-		F67235CE1AB7380F00828EEE /* MMProgressHUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDViewController.h; sourceTree = "<group>"; };
-		F67235CF1AB7380F00828EEE /* MMProgressHUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDViewController.m; sourceTree = "<group>"; };
-		F67235D01AB7380F00828EEE /* MMProgressHUDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProgressHUDWindow.h; sourceTree = "<group>"; };
-		F67235D11AB7380F00828EEE /* MMProgressHUDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProgressHUDWindow.m; sourceTree = "<group>"; };
-		F67235D21AB7380F00828EEE /* MMRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRadialProgressView.h; sourceTree = "<group>"; };
-		F67235D31AB7380F00828EEE /* MMRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRadialProgressView.m; sourceTree = "<group>"; };
-		F67235D41AB7380F00828EEE /* MMVectorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVectorImage.h; sourceTree = "<group>"; };
-		F67235D51AB7380F00828EEE /* MMVectorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVectorImage.m; sourceTree = "<group>"; };
 		F67235D61AB7380F00828EEE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F67235D71AB7380F00828EEE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		F67235D91AB7380F00828EEE /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		F67235DA1AB7380F00828EEE /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		F67235DB1AB7380F00828EEE /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		F67235DE1AB7380F00828EEE /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		F67235DF1AB7380F00828EEE /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		F67235E01AB7380F00828EEE /* IQUIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+Hierarchy.h"; sourceTree = "<group>"; };
@@ -1254,50 +1217,10 @@
 		F67235BF1AB7380F00828EEE /* HUD */ = {
 			isa = PBXGroup;
 			children = (
-				F67235C01AB7380F00828EEE /* Dialog.h */,
-				F67235C11AB7380F00828EEE /* Dialog.m */,
-				F67235C21AB7380F00828EEE /* HUD */,
 				F67235D61AB7380F00828EEE /* MBProgressHUD.h */,
 				F67235D71AB7380F00828EEE /* MBProgressHUD.m */,
-				F67235D81AB7380F00828EEE /* SVProgressHUD */,
 			);
 			path = HUD;
-			sourceTree = "<group>";
-		};
-		F67235C21AB7380F00828EEE /* HUD */ = {
-			isa = PBXGroup;
-			children = (
-				F67235C31AB7380F00828EEE /* AMDHudView.h */,
-				F67235C41AB7380F00828EEE /* AMDHudView.m */,
-				F67235C51AB7380F00828EEE /* MMHud.h */,
-				F67235C61AB7380F00828EEE /* MMHud.m */,
-				F67235C71AB7380F00828EEE /* MMProgressHUD+Animations.h */,
-				F67235C81AB7380F00828EEE /* MMProgressHUD+Animations.m */,
-				F67235C91AB7380F00828EEE /* MMProgressHUD+Class.m */,
-				F67235CA1AB7380F00828EEE /* MMProgressHUD.h */,
-				F67235CB1AB7380F00828EEE /* MMProgressHUD.m */,
-				F67235CC1AB7380F00828EEE /* MMProgressHUDOverlayView.h */,
-				F67235CD1AB7380F00828EEE /* MMProgressHUDOverlayView.m */,
-				F67235CE1AB7380F00828EEE /* MMProgressHUDViewController.h */,
-				F67235CF1AB7380F00828EEE /* MMProgressHUDViewController.m */,
-				F67235D01AB7380F00828EEE /* MMProgressHUDWindow.h */,
-				F67235D11AB7380F00828EEE /* MMProgressHUDWindow.m */,
-				F67235D21AB7380F00828EEE /* MMRadialProgressView.h */,
-				F67235D31AB7380F00828EEE /* MMRadialProgressView.m */,
-				F67235D41AB7380F00828EEE /* MMVectorImage.h */,
-				F67235D51AB7380F00828EEE /* MMVectorImage.m */,
-			);
-			path = HUD;
-			sourceTree = "<group>";
-		};
-		F67235D81AB7380F00828EEE /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				F67235D91AB7380F00828EEE /* SVProgressHUD.bundle */,
-				F67235DA1AB7380F00828EEE /* SVProgressHUD.h */,
-				F67235DB1AB7380F00828EEE /* SVProgressHUD.m */,
-			);
-			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		F67235DC1AB7380F00828EEE /* IQKeyBoardManager */ = {
@@ -2274,7 +2197,6 @@
 				F6FF47D81B329AED00272889 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				F6FF47D91B329AED00272889 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				F6FF47DA1B329AED00272889 /* MJRefresh.bundle in Resources */,
-				F6FF47DB1B329AED00272889 /* SVProgressHUD.bundle in Resources */,
 				F6FF47DC1B329AED00272889 /* IQKeyboardManager.bundle in Resources */,
 				F6FF47B71B329A9E00272889 /* UMSCommentDetailController.xib in Resources */,
 				F6FF47B81B329A9E00272889 /* UMSCommentInputController.xib in Resources */,
@@ -2320,7 +2242,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F67236751AB7380F00828EEE /* UIView+WebCacheOperation.m in Sources */,
-				F67236461AB7380F00828EEE /* MMProgressHUD+Class.m in Sources */,
 				F68406D51B203C70004FC6D9 /* openssl_wrapper.m in Sources */,
 				F6B1EE991ACA34ED0081694C /* MJRefreshGifFooter.m in Sources */,
 				F626782B1AC525BF00DC316D /* HSCategariesModel.m in Sources */,
@@ -2356,7 +2277,6 @@
 				F601696D1B1B20FF00FC4156 /* HSHomeCollectionViewCell.m in Sources */,
 				F6B1EE961ACA34ED0081694C /* MJRefreshComponent.m in Sources */,
 				F6476AD41B12DB1800E081F1 /* HSMineCollectionViewCell.m in Sources */,
-				F67236431AB7380F00828EEE /* AMDHudView.m in Sources */,
 				F67236521AB7380F00828EEE /* IQUIWindow+Hierarchy.m in Sources */,
 				F6A753471B16075B002D065B /* ActionSheetStringPicker.m in Sources */,
 				F672366C1AB7380F00828EEE /* SDWebImageDownloaderOperation.m in Sources */,
@@ -2368,7 +2288,6 @@
 				F672363B1AB7380F00828EEE /* AFHTTPSessionManager.m in Sources */,
 				F672363F1AB7380F00828EEE /* AFURLRequestSerialization.m in Sources */,
 				F68406D11B203C70004FC6D9 /* DataSigner.m in Sources */,
-				F67236441AB7380F00828EEE /* MMHud.m in Sources */,
 				F67236541AB7380F00828EEE /* IQKeyboardReturnKeyHandler.m in Sources */,
 				F61F52CA1AB71FF300603FBF /* SecondViewController.m in Sources */,
 				F6F557801B14850E006C9CAD /* HSMineFavoriteViewController.m in Sources */,
@@ -2402,18 +2321,14 @@
 				F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */,
 				F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				F672366A1AB7380F00828EEE /* SDWebImageDecoder.m in Sources */,
-				F67236491AB7380F00828EEE /* MMProgressHUDViewController.m in Sources */,
 				F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */,
 				F672359D1AB725BB00828EEE /* HSShoppingCartViewController.m in Sources */,
 				F67236691AB7380F00828EEE /* SDWebImageCompat.m in Sources */,
 				F6AE82EC1B298628008DCC28 /* ApiXml.mm in Sources */,
 				F67191EE1B1CB1E000A2F413 /* HSOrderModel.m in Sources */,
-				F67236421AB7380F00828EEE /* Dialog.m in Sources */,
 				F67236401AB7380F00828EEE /* AFURLResponseSerialization.m in Sources */,
 				F672368B1AB738C300828EEE /* FFScrollView.m in Sources */,
-				F67236471AB7380F00828EEE /* MMProgressHUD.m in Sources */,
 				F61B5E331B1C3A48005CC691 /* HSSubmitOrderViewController.m in Sources */,
-				F672364B1AB7380F00828EEE /* MMRadialProgressView.m in Sources */,
 				F63A9A751AF22862004E14D0 /* HSRegisterViewController.m in Sources */,
 				F67235A31AB7265C00828EEE /* HSMainPageViewController.m in Sources */,
 				F6A753421B16075B002D065B /* AbstractActionSheetPicker.m in Sources */,
@@ -2459,7 +2374,6 @@
 				F6BD671C1B26834900A3C18E /* HSCouponSelectedView.m in Sources */,
 				F68406441B202F7C004FC6D9 /* HSPayOrderViewController.m in Sources */,
 				F67236511AB7380F00828EEE /* IQUIView+Hierarchy.m in Sources */,
-				F67236451AB7380F00828EEE /* MMProgressHUD+Animations.m in Sources */,
 				F61F52C11AB71FF300603FBF /* main.m in Sources */,
 				F672365F1AB7380F00828EEE /* JSONModelError.m in Sources */,
 				F68406D31B203C70004FC6D9 /* MD5DataSigner.m in Sources */,
@@ -2471,12 +2385,10 @@
 				F657F1A71AEA3DEE008B0E92 /* HSItemBuyInfoView.m in Sources */,
 				F62678311AC54C3500DC316D /* HSCommodtyItemModel.m in Sources */,
 				F68406D41B203C70004FC6D9 /* NSDataEx.m in Sources */,
-				F67236481AB7380F00828EEE /* MMProgressHUDOverlayView.m in Sources */,
 				F6C88D111AF39E7D00070E4F /* HSRegisterContainterTableViewController.m in Sources */,
 				F67236701AB7380F00828EEE /* UIImage+GIF.m in Sources */,
 				F67236641AB7380F00828EEE /* JSONKeyMapper.m in Sources */,
 				F684064C1B203175004FC6D9 /* Order.m in Sources */,
-				F672364A1AB7380F00828EEE /* MMProgressHUDWindow.m in Sources */,
 				F67236561AB7380F00828EEE /* IQTextView.m in Sources */,
 				F672365C1AB7380F00828EEE /* JSONModel.m in Sources */,
 				F6B17FF01AC3DD0D0086AFA0 /* EAIntroPage.m in Sources */,
@@ -2487,7 +2399,6 @@
 				F6AE82EE1B298628008DCC28 /* WXUtil.mm in Sources */,
 				F6D7596E1AF9FAF9007D9ED2 /* FMDatabasePool.m in Sources */,
 				F6835F561AEB6B660014B9D1 /* HSCommodityItemTopBannerView.m in Sources */,
-				F672364F1AB7380F00828EEE /* SVProgressHUD.m in Sources */,
 				F6A753451B16075B002D065B /* ActionSheetDistancePicker.m in Sources */,
 				F65898ED1AF75E69003944AD /* HSDiscoverViewController.m in Sources */,
 				F6B1EE9B1ACA34ED0081694C /* MJRefreshHeader.m in Sources */,
@@ -2496,7 +2407,6 @@
 				F68406D71B203C70004FC6D9 /* RSADataVerifier.m in Sources */,
 				F6F557891B148EF9006C9CAD /* HSMineAddressViewController.m in Sources */,
 				F6B1EEA01ACA34ED0081694C /* UIView+MJExtension.m in Sources */,
-				F672364C1AB7380F00828EEE /* MMVectorImage.m in Sources */,
 				F672366E1AB7380F00828EEE /* SDWebImagePrefetcher.m in Sources */,
 				F6D7596C1AF9FAF9007D9ED2 /* FMDatabase.m in Sources */,
 				F6AE82ED1B298628008DCC28 /* payRequsestHandler.mm in Sources */,
@@ -2644,7 +2554,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/honestShopping/TencentOpenAPI",
@@ -2694,7 +2605,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/honestShopping/TencentOpenAPI",

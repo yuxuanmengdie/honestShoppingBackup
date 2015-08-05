@@ -15,6 +15,7 @@
 #import "UIView+HSLayout.h"
 #import "UIImageView+WebCache.h"
 #import "CHTCollectionViewWaterfallLayout.h"
+#import "MJRefresh.h"
 
 #import "HSUserInfoModel.h"
 
@@ -63,8 +64,15 @@ static const int kFirstSectionNum = 3;
     layout.columnCount = 2;
     _discoverCollectionView.collectionViewLayout = layout;
 
-    [self discoverRequest];
+
     _isVIP = NO;
+    
+    __weak typeof(self) wself = self;
+    [_discoverCollectionView addLegendHeaderWithRefreshingBlock:^{
+        [wself discoverRequest];
+    }];
+    [_discoverCollectionView.header beginRefreshing];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,14 +110,14 @@ static const int kFirstSectionNum = 3;
 #pragma mark 获取discover 数据
 - (void)discoverRequest
 {
-    [self showNetLoadingView];
     NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]
                                    };
     __weak typeof(self) wself = self;
     [self.httpRequestOperationManager POST:kGetDiscoverURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        [wself showReqeustFailedMsg];
+        [_discoverCollectionView.header endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [_discoverCollectionView.header endRefreshing];
         __strong typeof(wself) swself = wself;
         if (swself == nil) {
             return ;
@@ -121,11 +129,9 @@ static const int kFirstSectionNum = 3;
         
         NSData *data =  [result dataUsingEncoding:NSUTF8StringEncoding];
         if (data == nil) {
-            [swself showReqeustFailedMsg];
             [swself showHudWithText:@"加载失败"];
             return ;
         }
-        [self hiddenMsg];
        
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
@@ -150,7 +156,8 @@ static const int kFirstSectionNum = 3;
 
 - (void)reloadRequestData
 {
-    [self discoverRequest];
+    [super reloadRequestData];
+    [_discoverCollectionView.header beginRefreshing];
 }
 
 #pragma mark - 

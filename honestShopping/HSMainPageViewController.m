@@ -429,6 +429,7 @@ static const int kContentViewTag = 1000;
 #pragma mark
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
     [self getCommofityCategaries:nil];
 }
 

@@ -109,6 +109,7 @@ UITableViewDelegate>
 
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
     [self favoriteRequestWithUid:[HSPublic controlNullString:_userInfoModel.id] sessionCode:[HSPublic controlNullString:_userInfoModel.sessionCode]];
 
 }

@@ -77,7 +77,6 @@
 #pragma mark - webview delegate
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    //[self showReqeustFailedMsg];
     [_webView.scrollView.header endRefreshing];
     if ([_lastURL isEqual:_webView.request.URL]) {
        [self showHudWithText:@"刷新失败"];
@@ -87,12 +86,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"%s",__PRETTY_FUNCTION__);
-    //[self hiddenMsg];
     [_webView.scrollView.header endRefreshing];
     
-    if ([_lastURL isEqual:_webView.request.URL]) {
-        [self showHudWithText:@"刷新成功"];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView

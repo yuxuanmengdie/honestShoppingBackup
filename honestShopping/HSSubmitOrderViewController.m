@@ -399,6 +399,7 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
 #pragma mark 重新请求
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
      [self getDefaultAddressWithUid:[HSPublic controlNullString:_userInfoModel.id] sessionCode:[HSPublic controlNullString:_userInfoModel.sessionCode]];
 }
 

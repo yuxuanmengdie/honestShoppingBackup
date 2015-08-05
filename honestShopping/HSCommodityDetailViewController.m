@@ -307,6 +307,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 #pragma mark  重新加载
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
     [self requestDetailByItemID:[HSPublic controlNullString:_itemModel.id]];
 }
 

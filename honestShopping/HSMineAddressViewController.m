@@ -122,6 +122,7 @@ UITableViewDelegate>
 
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
     [self addressRequestWithUid:[HSPublic controlNullString:_userInfoModel.id] sessionCode:[HSPublic controlNullString:_userInfoModel.sessionCode]];
 }
 

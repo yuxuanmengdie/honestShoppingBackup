@@ -57,8 +57,6 @@ static const int kMaxDownTryNum = 20;
 //    [self showIntroWithSeparatePagesInitAndPageCallback];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
-    
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 //    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
@@ -265,7 +263,7 @@ static const int kMaxDownTryNum = 20;
     [_introView setSkipButton:[UIButton buttonWithType:UIButtonTypeCustom]];
     [_introView.skipButton setImage:[UIImage imageNamed:@"icon_start_try"] forState:UIControlStateNormal];
 //    _introView.skipButton.contentEdgeInsets = UIEdgeInsetsMake(5, 8, 5, 8);
-//    [_introView.skipButton setTitle:@"体验新版" forState:UIControlStateNormal];
+    [_introView.skipButton setTitle:@"" forState:UIControlStateNormal];
 //    [_introView.skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //    [_introView.skipButton setBackgroundImage:[HSPublic ImageWithColor:kAPPTintColor] forState:UIControlStateNormal];
 //    _introView.skipButton.layer.masksToBounds = YES;

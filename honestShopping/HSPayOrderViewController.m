@@ -193,6 +193,7 @@ static const int kUpdateOrderMaxCount = 5;
 #pragma mark 重新请求
 - (void)reloadRequestData
 {
+    [super reloadRequestData];
     [self getOrderDetailRequest:[HSPublic controlNullString:_userInfoModel.id] orderID:[HSPublic controlNullString:_orderID] sessionCode:[HSPublic controlNullString:_userInfoModel.sessionCode]];
 
 }

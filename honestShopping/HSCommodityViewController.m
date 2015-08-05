@@ -60,7 +60,6 @@ FFScrollViewDelegate>
 
 @implementation HSCommodityViewController
 
-
 static NSString *const kCommodityCellIndentifier = @"CommodityCellIndentifier";
 
 static NSString *const kHeaderIdentifier = @"bannerHeaderIdentifier";
@@ -72,7 +71,6 @@ static const float kFFScrollViewHeight = 200;
 static const NSUInteger kSizeNum = 10;
 
 static const int kAdsCellImageViewTag = 600;
-
 
 - (id)init
 {
@@ -130,15 +128,9 @@ static const int kAdsCellImageViewTag = 600;
             [swself->_commdityCollectionView.footer endRefreshing];
             return ;
         }
-
-        /// 防止请求完了 防止多次请求最后一次
-        if ((swself->_itemsData.count > 0 && _itemsData.count%kSizeNum > 0) || (swself->_pageModel != nil && [swself->_pageModel.total intValue] <= swself->_itemsData.count)) {
-            [swself->_commdityCollectionView.footer noticeNoMoreData];
-            return ;
-        }
+        NSUInteger page = swself->_itemsData.count/kSizeNum + 1;
         
-        
-        [wself dataRequestWithWithCid:[HSPublic controlNullString:swself->_cateID] size:kSizeNum key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:swself->_itemsData.count/kSizeNum + 1];
+        [wself dataRequestWithWithCid:[HSPublic controlNullString:swself->_cateID] size:kSizeNum key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:page];
     }];
     
     [_commdityCollectionView addLegendHeaderWithRefreshingBlock:^{
@@ -274,7 +266,6 @@ static const int kAdsCellImageViewTag = 600;
        [_commdityCollectionView.footer endRefreshing];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"response=%@",operation.responseString);
         
         [_commdityCollectionView.footer endRefreshing];
         NSString *str = (NSString *)operation.responseString;
@@ -285,7 +276,7 @@ static const int kAdsCellImageViewTag = 600;
         }
         NSError *jsonError = nil;
         id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
-        NSLog(@"!!!!%@",json);
+//        NSLog(@"!!!!%@",json);
         
         if ([json isKindOfClass:[NSDictionary class]] && jsonError == nil) {
             
@@ -301,14 +292,35 @@ static const int kAdsCellImageViewTag = 600;
             {
                 [tmpArray addObjectsFromArray:_itemsData];
                 if ([pageModel.item_list count] > 0) {
-                    [tmpArray addObjectsFromArray:pageModel.item_list];
-                     _itemsData = (NSArray <HSCommodtyItemModel>*)tmpArray;
+                    
+                    //没有整除 而且更新后的数量大于现在的，整合数据
+                    BOOL itemMore = (_itemsData.count%kSizeNum != 0 && _pageModel.total.intValue > _itemsData.count);
+                    int count = _itemsData.count%kSizeNum;
+                    NSMutableArray *tm = [NSMutableArray arrayWithArray:pageModel.item_list];
+                    NSArray *conTm = [NSArray arrayWithArray:pageModel.item_list];
+                    
+                    if (pageModel.item_list.count > count && itemMore) {
+                        conTm = [tm subarrayWithRange:NSMakeRange(count, pageModel.item_list.count - count)];
+                    }
+                    
+                    [tmpArray addObjectsFromArray:conTm];
+                    _itemsData = (NSArray <HSCommodtyItemModel>*)tmpArray;
+                    
                 }
                 
             }
            
             [_commdityCollectionView reloadData];
+            /// 防止请求完了 防止多次请求最后一次 后台数据增加后重置
+            if (_pageModel != nil && [pageModel.total intValue] <= _itemsData.count) {
+                [_commdityCollectionView.footer noticeNoMoreData];
             }
+            else
+            {
+                [_commdityCollectionView.footer resetNoMoreData];
+            }
+
+        }
         
     }];
     
@@ -347,6 +359,16 @@ static const int kAdsCellImageViewTag = 600;
             _pageModel = pageModel;
             _itemsData = pageModel.item_list;
             [_commdityCollectionView reloadData];
+            
+            /// 防止请求完了 防止多次请求最后一次 后台数据增加后重置
+            if (_pageModel != nil && [pageModel.total intValue] <= _itemsData.count) {
+                [_commdityCollectionView.footer noticeNoMoreData];
+            }
+            else
+            {
+                [_commdityCollectionView.footer resetNoMoreData];
+            }
+
         }
         
     }];
