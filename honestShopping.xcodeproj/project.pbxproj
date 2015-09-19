@@ -28,7 +28,6 @@
 		F63042B41B1557BF007DEB94 /* HSAddressDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B21B1557BF007DEB94 /* HSAddressDetailTableViewCell.m */; };
 		F63042B81B15677E007DEB94 /* HSEditAddressContainerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B71B15677E007DEB94 /* HSEditAddressContainerTableViewController.m */; };
 		F63042BB1B159B01007DEB94 /* HSAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042BA1B159B01007DEB94 /* HSAddressModel.m */; };
-		F636DBC51B3D2BC9001A47B2 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */; };
 		F636DBC91B3D2C87001A47B2 /* HSShiquViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBC81B3D2C87001A47B2 /* HSShiquViewController.m */; };
 		F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F636DBCB1B3D2D77001A47B2 /* HSSegmentView.m */; };
 		F636DBCE1B3D2FAC001A47B2 /* HSSegmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F636DBCD1B3D2FAC001A47B2 /* HSSegmentView.xib */; };
@@ -37,6 +36,7 @@
 		F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63915F11AFC611A00E10C9B /* HSSanPinfitterView.m */; };
 		F63A9A721AF2117A004E14D0 /* HSUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F63A9A711AF2117A004E14D0 /* HSUserInfoModel.m */; };
 		F63A9A751AF22862004E14D0 /* HSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63A9A741AF22862004E14D0 /* HSRegisterViewController.m */; };
+		F645EA451BAAB63500E56389 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F645EA441BAAB63500E56389 /* HCSStarRatingView.m */; };
 		F6476AD41B12DB1800E081F1 /* HSMineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6476AD21B12DB1800E081F1 /* HSMineCollectionViewCell.m */; };
 		F6476AD91B12DF7E00E081F1 /* HSMineTopCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6476AD71B12DF7E00E081F1 /* HSMineTopCollectionReusableView.m */; };
 		F6476ADE1B130D4200E081F1 /* HSMineOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6476ADD1B130D4200E081F1 /* HSMineOrderViewController.m */; };
@@ -130,6 +130,10 @@
 		F68B6ECF1ABFE10700F328EA /* HSSanpinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68B6ECE1ABFE10700F328EA /* HSSanpinViewController.m */; };
 		F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F68B6ED21ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m */; };
 		F68BD79C1AC924980075DD82 /* PKYStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = F68BD79B1AC924980075DD82 /* PKYStepper.m */; };
+		F69F9DA81BAB1761000EF600 /* HSCommentItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F9DA61BAB1761000EF600 /* HSCommentItemTableViewCell.m */; };
+		F69F9DA91BAB1761000EF600 /* HSCommentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69F9DA71BAB1761000EF600 /* HSCommentItemTableViewCell.xib */; };
+		F69F9DAD1BABB349000EF600 /* HSCommentFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F9DAB1BABB349000EF600 /* HSCommentFilterTableViewCell.m */; };
+		F69F9DAE1BABB349000EF600 /* HSCommentFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69F9DAC1BABB349000EF600 /* HSCommentFilterTableViewCell.xib */; };
 		F6A753421B16075B002D065B /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A753311B16075B002D065B /* AbstractActionSheetPicker.m */; };
 		F6A753431B16075B002D065B /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A753331B16075B002D065B /* ActionSheetCustomPicker.m */; };
 		F6A753441B16075B002D065B /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A753361B16075B002D065B /* ActionSheetDatePicker.m */; };
@@ -139,6 +143,13 @@
 		F6A753481B16075B002D065B /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A7533F1B16075B002D065B /* DistancePickerView.m */; };
 		F6A753491B16075B002D065B /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A753411B16075B002D065B /* SWActionSheet.m */; };
 		F6A7534C1B162FD9002D065B /* HSAddressPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A7534B1B162FD9002D065B /* HSAddressPickerDelegate.m */; };
+		F6A9A2D61BAC57550004D172 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9A2D51BAC57550004D172 /* HMSegmentedControl.m */; };
+		F6ADE7831BA92C2900DB0797 /* HSCommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADE7821BA92C2900DB0797 /* HSCommentListViewController.m */; };
+		F6ADE7861BA9931B00DB0797 /* HSCommentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADE7851BA9931B00DB0797 /* HSCommentListModel.m */; };
+		F6ADE78A1BA9ABC400DB0797 /* HSCommentItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADE7891BA9ABC400DB0797 /* HSCommentItemModel.m */; };
+		F6ADE78D1BA9B08E00DB0797 /* HSCommentInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADE78C1BA9B08E00DB0797 /* HSCommentInfoModel.m */; };
+		F6ADE7911BA9C11C00DB0797 /* HSCommentInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ADE7901BA9C11C00DB0797 /* HSCommentInfoView.m */; };
+		F6ADE7931BA9C89500DB0797 /* HSCommentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6ADE7921BA9C89500DB0797 /* HSCommentInfoView.xib */; };
 		F6AE63AB1B0A3661000C04F7 /* FBLikeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AE63AA1B0A3661000C04F7 /* FBLikeLayout.m */; };
 		F6AE82EC1B298628008DCC28 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6AE82E71B298628008DCC28 /* ApiXml.mm */; };
 		F6AE82ED1B298628008DCC28 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6AE82E91B298628008DCC28 /* payRequsestHandler.mm */; };
@@ -319,8 +330,6 @@
 		F63042B71B15677E007DEB94 /* HSEditAddressContainerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEditAddressContainerTableViewController.m; sourceTree = "<group>"; };
 		F63042B91B159B01007DEB94 /* HSAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressModel.h; sourceTree = "<group>"; };
 		F63042BA1B159B01007DEB94 /* HSAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressModel.m; sourceTree = "<group>"; };
-		F636DBC31B3D2BC9001A47B2 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
-		F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
 		F636DBC71B3D2C87001A47B2 /* HSShiquViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSShiquViewController.h; sourceTree = "<group>"; };
 		F636DBC81B3D2C87001A47B2 /* HSShiquViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSShiquViewController.m; sourceTree = "<group>"; };
 		F636DBCA1B3D2D77001A47B2 /* HSSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSegmentView.h; sourceTree = "<group>"; };
@@ -336,6 +345,8 @@
 		F63A9A711AF2117A004E14D0 /* HSUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserInfoModel.m; sourceTree = "<group>"; };
 		F63A9A731AF22862004E14D0 /* HSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRegisterViewController.h; sourceTree = "<group>"; };
 		F63A9A741AF22862004E14D0 /* HSRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRegisterViewController.m; sourceTree = "<group>"; };
+		F645EA431BAAB63500E56389 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
+		F645EA441BAAB63500E56389 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
 		F6476AD11B12DB1800E081F1 /* HSMineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMineCollectionViewCell.h; sourceTree = "<group>"; };
 		F6476AD21B12DB1800E081F1 /* HSMineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMineCollectionViewCell.m; sourceTree = "<group>"; };
 		F6476AD31B12DB1800E081F1 /* HSMineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSMineCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -614,6 +625,12 @@
 		F68B6ED21ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		F68BD79A1AC924980075DD82 /* PKYStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKYStepper.h; sourceTree = "<group>"; };
 		F68BD79B1AC924980075DD82 /* PKYStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKYStepper.m; sourceTree = "<group>"; };
+		F69F9DA51BAB1761000EF600 /* HSCommentItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentItemTableViewCell.h; sourceTree = "<group>"; };
+		F69F9DA61BAB1761000EF600 /* HSCommentItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentItemTableViewCell.m; sourceTree = "<group>"; };
+		F69F9DA71BAB1761000EF600 /* HSCommentItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCommentItemTableViewCell.xib; sourceTree = "<group>"; };
+		F69F9DAA1BABB349000EF600 /* HSCommentFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentFilterTableViewCell.h; sourceTree = "<group>"; };
+		F69F9DAB1BABB349000EF600 /* HSCommentFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentFilterTableViewCell.m; sourceTree = "<group>"; };
+		F69F9DAC1BABB349000EF600 /* HSCommentFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCommentFilterTableViewCell.xib; sourceTree = "<group>"; };
 		F6A753301B16075B002D065B /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		F6A753311B16075B002D065B /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		F6A753321B16075B002D065B /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -636,6 +653,19 @@
 		F6A7534B1B162FD9002D065B /* HSAddressPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressPickerDelegate.m; sourceTree = "<group>"; };
 		F6A901171B16C1080077C166 /* chinaArea.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chinaArea.plist; sourceTree = "<group>"; };
 		F6A901191B16F1500077C166 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		F6A9A2D41BAC57550004D172 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		F6A9A2D51BAC57550004D172 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		F6ADE7811BA92C2900DB0797 /* HSCommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentListViewController.h; sourceTree = "<group>"; };
+		F6ADE7821BA92C2900DB0797 /* HSCommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentListViewController.m; sourceTree = "<group>"; };
+		F6ADE7841BA9931B00DB0797 /* HSCommentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentListModel.h; sourceTree = "<group>"; };
+		F6ADE7851BA9931B00DB0797 /* HSCommentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentListModel.m; sourceTree = "<group>"; };
+		F6ADE7881BA9ABC400DB0797 /* HSCommentItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentItemModel.h; sourceTree = "<group>"; };
+		F6ADE7891BA9ABC400DB0797 /* HSCommentItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentItemModel.m; sourceTree = "<group>"; };
+		F6ADE78B1BA9B08E00DB0797 /* HSCommentInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentInfoModel.h; sourceTree = "<group>"; };
+		F6ADE78C1BA9B08E00DB0797 /* HSCommentInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentInfoModel.m; sourceTree = "<group>"; };
+		F6ADE78F1BA9C11C00DB0797 /* HSCommentInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentInfoView.h; sourceTree = "<group>"; };
+		F6ADE7901BA9C11C00DB0797 /* HSCommentInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentInfoView.m; sourceTree = "<group>"; };
+		F6ADE7921BA9C89500DB0797 /* HSCommentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCommentInfoView.xib; sourceTree = "<group>"; };
 		F6AE63A91B0A3661000C04F7 /* FBLikeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLikeLayout.h; sourceTree = "<group>"; };
 		F6AE63AA1B0A3661000C04F7 /* FBLikeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLikeLayout.m; sourceTree = "<group>"; };
 		F6AE82E61B298628008DCC28 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
@@ -979,6 +1009,7 @@
 				F60169701B1B4D3600FC4156 /* HSCouponModel.m */,
 				F67191EC1B1CB1E000A2F413 /* HSOrderModel.h */,
 				F67191ED1B1CB1E000A2F413 /* HSOrderModel.m */,
+				F6ADE7871BA9AB8900DB0797 /* comment */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -995,8 +1026,8 @@
 		F636DBC21B3D2BC9001A47B2 /* HCSStarRatingView */ = {
 			isa = PBXGroup;
 			children = (
-				F636DBC31B3D2BC9001A47B2 /* HCSStarRatingView.h */,
-				F636DBC41B3D2BC9001A47B2 /* HCSStarRatingView.m */,
+				F645EA431BAAB63500E56389 /* HCSStarRatingView.h */,
+				F645EA441BAAB63500E56389 /* HCSStarRatingView.m */,
 			);
 			path = HCSStarRatingView;
 			sourceTree = "<group>";
@@ -1165,6 +1196,7 @@
 		F67235AA1AB737D300828EEE /* subModule */ = {
 			isa = PBXGroup;
 			children = (
+				F6A9A2D31BAC57550004D172 /* HMSegmentedControl */,
 				F636DBC21B3D2BC9001A47B2 /* HCSStarRatingView */,
 				F68406451B20311E004FC6D9 /* aliPay */,
 				F6EBFA721B1ED7B800651BE3 /* umeng */,
@@ -1601,6 +1633,54 @@
 				F6A753411B16075B002D065B /* SWActionSheet.m */,
 			);
 			path = Pickers;
+			sourceTree = "<group>";
+		};
+		F6A9A2D31BAC57550004D172 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				F6A9A2D41BAC57550004D172 /* HMSegmentedControl.h */,
+				F6A9A2D51BAC57550004D172 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		F6ADE7801BA92B9000DB0797 /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				F6ADE7811BA92C2900DB0797 /* HSCommentListViewController.h */,
+				F6ADE7821BA92C2900DB0797 /* HSCommentListViewController.m */,
+				F6ADE78E1BA9C0F000DB0797 /* view */,
+			);
+			name = comment;
+			sourceTree = "<group>";
+		};
+		F6ADE7871BA9AB8900DB0797 /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				F6ADE7841BA9931B00DB0797 /* HSCommentListModel.h */,
+				F6ADE7851BA9931B00DB0797 /* HSCommentListModel.m */,
+				F6ADE7881BA9ABC400DB0797 /* HSCommentItemModel.h */,
+				F6ADE7891BA9ABC400DB0797 /* HSCommentItemModel.m */,
+				F6ADE78B1BA9B08E00DB0797 /* HSCommentInfoModel.h */,
+				F6ADE78C1BA9B08E00DB0797 /* HSCommentInfoModel.m */,
+			);
+			name = comment;
+			sourceTree = "<group>";
+		};
+		F6ADE78E1BA9C0F000DB0797 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F6ADE78F1BA9C11C00DB0797 /* HSCommentInfoView.h */,
+				F6ADE7901BA9C11C00DB0797 /* HSCommentInfoView.m */,
+				F6ADE7921BA9C89500DB0797 /* HSCommentInfoView.xib */,
+				F69F9DA51BAB1761000EF600 /* HSCommentItemTableViewCell.h */,
+				F69F9DA61BAB1761000EF600 /* HSCommentItemTableViewCell.m */,
+				F69F9DA71BAB1761000EF600 /* HSCommentItemTableViewCell.xib */,
+				F69F9DAA1BABB349000EF600 /* HSCommentFilterTableViewCell.h */,
+				F69F9DAB1BABB349000EF600 /* HSCommentFilterTableViewCell.m */,
+				F69F9DAC1BABB349000EF600 /* HSCommentFilterTableViewCell.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		F6AE63A81B0A3656000C04F7 /* FBLikeLayout */ = {
@@ -2086,6 +2166,7 @@
 		F6F911E51ACA9A7100379BDB /* commoditydetail */ = {
 			isa = PBXGroup;
 			children = (
+				F6ADE7801BA92B9000DB0797 /* comment */,
 				F6F911E61ACA9B3900379BDB /* HSCommodityDetailViewController.h */,
 				F6F911E71ACA9B3900379BDB /* HSCommodityDetailViewController.m */,
 				F6835F4F1AEB3F550014B9D1 /* HSCommodityDetailTableViewCell.h */,
@@ -2205,6 +2286,7 @@
 				F6FF47BB1B329A9E00272889 /* UMShareEditViewControlleriPad.xib in Resources */,
 				F6FF47BC1B329A9E00272889 /* UMSLoginViewController.xib in Resources */,
 				F6FF47BD1B329A9E00272889 /* UMSnsAccountViewController.xib in Resources */,
+				F69F9DA91BAB1761000EF600 /* HSCommentItemTableViewCell.xib in Resources */,
 				F6FF47BE1B329A9E00272889 /* UMSShareListController.xib in Resources */,
 				F6FF47BF1B329A9E00272889 /* HSItemBuyInfoView.xib in Resources */,
 				F6FF47C01B329A9E00272889 /* HSSettleView.xib in Resources */,
@@ -2217,6 +2299,7 @@
 				F6FF47C61B329A9E00272889 /* HSHomeCollectionViewCell.xib in Resources */,
 				F6FF47C71B329A9E00272889 /* HSMineTopTableViewCell.xib in Resources */,
 				F6FF47C81B329A9E00272889 /* HSMineTableViewCell.xib in Resources */,
+				F69F9DAE1BABB349000EF600 /* HSCommentFilterTableViewCell.xib in Resources */,
 				F6FF47C91B329A9E00272889 /* HSMineCollectionViewCell.xib in Resources */,
 				F6FF47CA1B329A9E00272889 /* HSMineTopCollectionReusableView.xib in Resources */,
 				F6FF47CB1B329A9E00272889 /* HSOrderTableViewCell.xib in Resources */,
@@ -2227,6 +2310,7 @@
 				F6FF47D01B329A9E00272889 /* HSCatrTableViewCell.xib in Resources */,
 				F6FF47D11B329A9E00272889 /* HSSubmitOrderAddressTableViewCell.xib in Resources */,
 				F6FF47D21B329A9E00272889 /* HSSubmitOrderCommdityTableViewCell.xib in Resources */,
+				F6ADE7931BA9C89500DB0797 /* HSCommentInfoView.xib in Resources */,
 				F6FF47D31B329A9E00272889 /* HSPayTypeTableViewCell.xib in Resources */,
 				F6FF47D41B329A9E00272889 /* HSOrderStatusTableViewCell.xib in Resources */,
 				F6FF47D51B329A9E00272889 /* LaunchScreen.xib in Resources */,
@@ -2244,6 +2328,7 @@
 				F67236751AB7380F00828EEE /* UIView+WebCacheOperation.m in Sources */,
 				F68406D51B203C70004FC6D9 /* openssl_wrapper.m in Sources */,
 				F6B1EE991ACA34ED0081694C /* MJRefreshGifFooter.m in Sources */,
+				F6ADE7911BA9C11C00DB0797 /* HSCommentInfoView.m in Sources */,
 				F626782B1AC525BF00DC316D /* HSCategariesModel.m in Sources */,
 				F672363D1AB7380F00828EEE /* AFSecurityPolicy.m in Sources */,
 				F6A7534C1B162FD9002D065B /* HSAddressPickerDelegate.m in Sources */,
@@ -2308,6 +2393,7 @@
 				F6B1EE9F1ACA34ED0081694C /* UIScrollView+MJRefresh.m in Sources */,
 				F6B1EE9A1ACA34ED0081694C /* MJRefreshGifHeader.m in Sources */,
 				F617CEEF1B20AA860038AE98 /* HSOrderStatusTableViewCell.m in Sources */,
+				F6A9A2D61BAC57550004D172 /* HMSegmentedControl.m in Sources */,
 				F6558D811B033D1C00F37687 /* HSTabBarView.m in Sources */,
 				F672365D1AB7380F00828EEE /* JSONModelArray.m in Sources */,
 				F617CEEA1B209E9C0038AE98 /* HSPayTypeTableViewCell.m in Sources */,
@@ -2319,12 +2405,14 @@
 				F6C593C31AB82472006D612E /* HSCommodityCategaryCollectionViewCell.m in Sources */,
 				F67236571AB7380F00828EEE /* IQBarButtonItem.m in Sources */,
 				F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */,
+				F6ADE7861BA9931B00DB0797 /* HSCommentListModel.m in Sources */,
 				F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				F672366A1AB7380F00828EEE /* SDWebImageDecoder.m in Sources */,
 				F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */,
 				F672359D1AB725BB00828EEE /* HSShoppingCartViewController.m in Sources */,
 				F67236691AB7380F00828EEE /* SDWebImageCompat.m in Sources */,
 				F6AE82EC1B298628008DCC28 /* ApiXml.mm in Sources */,
+				F645EA451BAAB63500E56389 /* HCSStarRatingView.m in Sources */,
 				F67191EE1B1CB1E000A2F413 /* HSOrderModel.m in Sources */,
 				F67236401AB7380F00828EEE /* AFURLResponseSerialization.m in Sources */,
 				F672368B1AB738C300828EEE /* FFScrollView.m in Sources */,
@@ -2337,6 +2425,7 @@
 				F6AE63AB1B0A3661000C04F7 /* FBLikeLayout.m in Sources */,
 				F63042B41B1557BF007DEB94 /* HSAddressDetailTableViewCell.m in Sources */,
 				F657F1A31AEA1FD4008B0E92 /* HSCommodityItemDetailPicModel.m in Sources */,
+				F69F9DA81BAB1761000EF600 /* HSCommentItemTableViewCell.m in Sources */,
 				F63042BB1B159B01007DEB94 /* HSAddressModel.m in Sources */,
 				F64D2DC11B1F4B5600F2BA52 /* HSMoreViewController.m in Sources */,
 				F63042B81B15677E007DEB94 /* HSEditAddressContainerTableViewController.m in Sources */,
@@ -2344,6 +2433,7 @@
 				F6EF2F661ACBB6EE003674AE /* HSContentCollectionViewCell.m in Sources */,
 				F62678341AC556E700DC316D /* HSItemPageModel.m in Sources */,
 				F65899001AF8BBCC003944AD /* HSCatrTableViewCell.m in Sources */,
+				F6ADE78D1BA9B08E00DB0797 /* HSCommentInfoModel.m in Sources */,
 				F65FA4CE1B1C3CD300537B52 /* HSSubmitOrderAddressTableViewCell.m in Sources */,
 				F6F5577B1B14607A006C9CAD /* HSCouponTableViewCell.m in Sources */,
 				F6476AD91B12DF7E00E081F1 /* HSMineTopCollectionReusableView.m in Sources */,
@@ -2358,10 +2448,10 @@
 				F672366F1AB7380F00828EEE /* UIButton+WebCache.m in Sources */,
 				F672365A1AB7380F00828EEE /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				F67236501AB7380F00828EEE /* IQNSArray+Sort.m in Sources */,
+				F69F9DAD1BABB349000EF600 /* HSCommentFilterTableViewCell.m in Sources */,
 				F6B1EE9D1ACA34ED0081694C /* MJRefreshLegendHeader.m in Sources */,
 				F63A9A721AF2117A004E14D0 /* HSUserInfoModel.m in Sources */,
 				F67236911AB7416900828EEE /* HSPublic.m in Sources */,
-				F636DBC51B3D2BC9001A47B2 /* HCSStarRatingView.m in Sources */,
 				F6B17FF81AC3DE230086AFA0 /* HSIntroViewController.m in Sources */,
 				F636DBC91B3D2C87001A47B2 /* HSShiquViewController.m in Sources */,
 				F6FAF04E1ABF2C7400D2D234 /* HSCommodityCollectionViewCell.m in Sources */,
@@ -2375,6 +2465,7 @@
 				F68406441B202F7C004FC6D9 /* HSPayOrderViewController.m in Sources */,
 				F67236511AB7380F00828EEE /* IQUIView+Hierarchy.m in Sources */,
 				F61F52C11AB71FF300603FBF /* main.m in Sources */,
+				F6ADE78A1BA9ABC400DB0797 /* HSCommentItemModel.m in Sources */,
 				F672365F1AB7380F00828EEE /* JSONModelError.m in Sources */,
 				F68406D31B203C70004FC6D9 /* MD5DataSigner.m in Sources */,
 				F67236651AB7380F00828EEE /* JSONValueTransformer.m in Sources */,
@@ -2382,6 +2473,7 @@
 				F65D47701B185FE500A7DA5A /* HSHomeViewController.m in Sources */,
 				F63042B01B15566A007DEB94 /* HSEditAddressViewController.m in Sources */,
 				F672366B1AB7380F00828EEE /* SDWebImageDownloader.m in Sources */,
+				F6ADE7831BA92C2900DB0797 /* HSCommentListViewController.m in Sources */,
 				F657F1A71AEA3DEE008B0E92 /* HSItemBuyInfoView.m in Sources */,
 				F62678311AC54C3500DC316D /* HSCommodtyItemModel.m in Sources */,
 				F68406D41B203C70004FC6D9 /* NSDataEx.m in Sources */,
@@ -2554,7 +2646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wenjun gong (XAUV97BKJU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2605,7 +2697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wenjun gong (XAUV97BKJU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

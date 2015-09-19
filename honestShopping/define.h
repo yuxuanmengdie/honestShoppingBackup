@@ -208,6 +208,14 @@ static NSString *const kPostJsonNum = @"num";
 #define kAddCommentURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=addComment"]
 ///获取评论列表
 #define kGetCommentByItemIdURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=getCommentByItemId"]
+/**
+ * 带有图片的评论列表
+ */
+#define kGetCommentHasImgByItemIdURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=getCommentHasImgByItemId"]
+/**
+ *  获取评论总信息
+ */
+#define kGetCommentInfoURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Order&a=getCommentInfo"]
 
 
 #pragma mark -

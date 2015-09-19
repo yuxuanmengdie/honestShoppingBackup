@@ -9,11 +9,13 @@
 #import "HSCommodityDetailViewController.h"
 #import "HSLoginInViewController.h"
 #import "HSSubmitOrderViewController.h"
+#import <HSCommentListViewController.h>
 
 #import "HSBuyNumView.h"
 #import "HSCommodityDetailTableViewCell.h"
 #import "HSCommodityItemTopBannerView.h"
 #import "UIView+HSLayout.h"
+#import "HMSegmentedControl.h"
 
 #import "HSCommodityItemDetailPicModel.h"
 #import "HSUserInfoModel.h"
@@ -37,9 +39,15 @@ UITableViewDelegate,UMSocialUIDelegate>
     BOOL _isCollected;
     
     HSCommodityItemTopBannerView *_placeheadView;
+    
+    HMSegmentedControl *_segmentControl;
+    
+    UIScrollView *_contentScrollView;
+    
+    HSCommentListViewController *_commentVC;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *detailTableView;
+@property (strong, nonatomic) UITableView *detailTableView;
 
 @property (weak, nonatomic) IBOutlet HSBuyNumView *buyNumView;
 
@@ -52,11 +60,6 @@ static const int kTopExistCellNum = 1;
 
 static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
-//- (void)awakeFromNib
-//{
-//    self.hidesBottomBarWhenPushed = YES;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -66,7 +69,9 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
    
 //    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(shareAction)];
 //    self.navigationItem.rightBarButtonItem = shareItem;
-    
+    [self segmentControlInit];
+    [self contentInit];
+
     [self requestDetailByItemID:[HSPublic controlNullString:_itemModel.id]];
     [self buyViewBlock];
     _isCollected = [HSDBManager selectedItemWithTableName:[HSDBManager tableNameWithUid] keyID:_itemModel.id] == nil ? NO : YES;
@@ -76,9 +81,77 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     _detailTableView.separatorStyle = UITableViewCellSelectionStyleNone;
 //    _detailTableView.dataSource = self;
 //    _detailTableView.delegate = self;
+    
+}
 
+- (void)segmentControlInit
+{
+    HMSegmentedControl *segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"详情", @"评价"]];
+    _segmentControl = segmentedControl3;
     
+    __weak typeof(self) wself = self;
+    [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
+        NSLog(@"Selected index %ld (via block)", (long)index);
+        __strong typeof(wself) swself = wself;
+        
+        if (index == 0) {
+            [swself->_contentScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            
+        }
+        else
+        {
+            [swself->_contentScrollView setContentOffset:CGPointMake(CGRectGetWidth(swself->_contentScrollView.frame), 0) animated:YES];
+        }
+    }];
+    segmentedControl3.selectionIndicatorHeight = 1.5f;
+    segmentedControl3.backgroundColor = [UIColor whiteColor];
+    segmentedControl3.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:16]};
+    segmentedControl3.selectionIndicatorColor = kAPPLightGreenColor;
+    segmentedControl3.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    segmentedControl3.selectedSegmentIndex = 0;
+    segmentedControl3.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl3.shouldAnimateUserSelection = NO;
+    [self.view addSubview:segmentedControl3];
+    _segmentControl.translatesAutoresizingMaskIntoConstraints = NO;
     
+    id top = self.topLayoutGuide;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_segmentControl]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][_segmentControl(40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl,top)]];
+    
+}
+
+- (void)contentInit
+{
+    _contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    _contentScrollView.backgroundColor = [UIColor redColor];
+    _contentScrollView.alwaysBounceHorizontal = YES;
+    _contentScrollView.showsHorizontalScrollIndicator = NO;
+    _contentScrollView.scrollEnabled = NO;
+    [self.view addSubview:_contentScrollView];
+    _contentScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    _detailTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _detailTableView.backgroundColor = [UIColor whiteColor];
+    [_contentScrollView addSubview:_detailTableView];
+    _detailTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    _commentVC = [stroyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSCommentListViewController class])];
+    _commentVC.itemID = _itemModel.id;
+    [self addChildViewController:_commentVC];
+    [_commentVC didMoveToParentViewController:self];
+    [_contentScrollView addSubview:_commentVC.view];
+    _commentVC.view.translatesAutoresizingMaskIntoConstraints = NO;
+    
+     UIView *tmpView = _commentVC.view;
+    [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_detailTableView(==tmpView)][tmpView]|" options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+    
+     [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_detailTableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentScrollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_contentScrollView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_segmentControl][_contentScrollView][_buyNumView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_contentScrollView,_segmentControl,_buyNumView)]];
+    [_contentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
 }
 
 #pragma mark -
@@ -95,9 +168,10 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 //                                       delegate:self];
     
     
-    [UMSocialWechatHandler setWXAppId:@"wxf674afd7fa6b3db1" appSecret:@"768ef498760a90567afeac93211abfa9" url:[self p_shareURLWithModel:_detailPicModel]];
-    [UMSocialQQHandler setQQWithAppId:@"1104470651" appKey:@"1VATaXjYJuiJ0itg" url:[self p_shareURLWithModel:_detailPicModel]];
-    NSString *shareText = [NSString stringWithFormat:@"%@\n%@", _detailPicModel.title,_detailPicModel.intro];//@"友盟社会化组件可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。 http://www.umeng.com/social";             //分享内嵌文字
+    NSString *shareURLStr = @"http://ecommerce.news.cn/index.php?g=api&m=Test&a=download";
+    [UMSocialWechatHandler setWXAppId:@"wxf674afd7fa6b3db1" appSecret:@"768ef498760a90567afeac93211abfa9" url:shareURLStr];
+    [UMSocialQQHandler setQQWithAppId:@"1104470651" appKey:@"1VATaXjYJuiJ0itg" url:shareURLStr];
+    NSString *shareText = @"“放心吃”是由新华社江苏分社、新华网移动互联网产品研发基地打造的优质农副产品掌上电商平台。【安心选，放心吃】";//[NSString stringWithFormat:@"%@\n%@", _detailPicModel.title,_detailPicModel.intro];//@"友盟社会化组件可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。 http://www.umeng.com/social";             //分享内嵌文字
     UIImage *shareImage = [UIImage imageNamed:@"icon_app_60"];          //分享内嵌图片
     
     //调用快速分享接口
@@ -170,16 +244,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark -
 #pragma mark 获取详细信息
@@ -302,7 +366,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
 }
 
-
 #pragma mark -
 #pragma mark  重新加载
 - (void)reloadRequestData
@@ -323,12 +386,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     if (0 == indexPath.row) {// 顶部轮播图所在的tableviewcell
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTopCellIndentifier forIndexPath:indexPath];
-        //cell.contentView.backgroundColor = [UIColor redColor];
-//        for (UIView *subView in cell.contentView.subviews) {
-//            [subView removeFromSuperview];
-//        }
         HSCommodityItemTopBannerView *headView = (HSCommodityItemTopBannerView *)[cell.contentView viewWithTag:501];
-        
         
         if (headView == nil) {
             headView = [[HSCommodityItemTopBannerView alloc] initWithFrame:cell.frame];
@@ -336,7 +394,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             [cell.contentView addSubview:headView];
             cell.contentView.bounds = tableView.bounds;
             headView.tag = 501;
-             //headView.frame = cell.contentView.frame;
             [self headViewAutoLayoutInCell:cell headView:headView];
             headView.bannerView.sourceArr = [self controlBannerArr:_detailPicModel.banner];
   
@@ -344,8 +401,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         float hei = _placeheadView == nil ? headView.bannerHeight : _placeheadView.bannerHeight;
         [headView.bannerView iniSubviewsWithFrame:CGRectMake(0, 0,CGRectGetWidth(tableView.frame), hei)];
         headView.bannerView.pageControl.currentPageIndicatorTintColor = kAPPTintColor;
-//        headView.infoView.titleLabel.text = [NSString stringWithFormat:@"%@ %@",_detailPicModel.title,_detailPicModel.standard];
-//        headView.infoView.priceLabel.text = [NSString stringWithFormat:@"%@元",_detailPicModel.price];
         [headView.infoView setupWithItemModel:_detailPicModel];
         if (_sanpinType > 0) {
             [headView sanpinImageTag:_sanpinType];
@@ -463,13 +518,11 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         }
 
     }
-     NSLog(@"index.row = %ld height   %f",(long)indexPath.row,height);
+//     NSLog(@"index.row = %ld height   %f",(long)indexPath.row,height);
     
     return height;
      
 }
-
-
 
 #pragma mark -
 #pragma mark tableViewCell 添加的视图添加约束
@@ -504,7 +557,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     return retArr;
 }
 
-
 #pragma mark -
 #pragma mark tableView 处理介绍图片的url
 - (NSString *)p_introImgFullUrl:(NSString *)oriUrl
@@ -522,6 +574,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     {
         result = [NSString stringWithFormat:@"%@%@",kCommodityImgURLHeader,oriUrl];
     }
+    
     return result;
 }
 
@@ -532,6 +585,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     }
     
     NSString *result = [NSString stringWithFormat:@"indexsec%ldrow%ld",(long)index.section,(long)index.row];
+    
     return result;
 }
 
@@ -549,10 +603,8 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [super viewDidDisappear:animated];
 }
 
-
 - (void)dealloc
 {
-    
     [_detailTableView endUpdates];
     _detailTableView.dataSource = nil;
     _detailTableView.delegate = nil;
@@ -561,6 +613,5 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [[_operationManager operationQueue] cancelAllOperations];
 
     NSLog(@"%s",__func__);
-   
 }
 @end

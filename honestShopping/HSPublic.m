@@ -60,6 +60,37 @@
     return theImage;
 }
 
+// 画一个外圈黑线 中间有标记的圆 ，用于标记是否选择
++ (UIImage *)ImageWithFrame:(CGRect)aFrame OutArcColor:(UIColor *)aColor linewidth:(CGFloat)wid innerArcColor:(UIColor *)innerColor raduis:(float)raduis
+{
+    CGRect baseRect = {{0,0},aFrame.size};
+    
+    if (MIN(CGRectGetHeight(aFrame), CGRectGetWidth(aFrame)) <= 0.0) {
+        return nil;
+    }
+    
+    UIGraphicsBeginImageContext(aFrame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [aColor setStroke];
+    CGContextSetLineWidth(context, wid);
+    CGContextAddEllipseInRect(context, CGRectInset(baseRect, 1.0+wid/2.0, 1.0+wid/2.0));
+    CGContextStrokePath(context);
+    
+    if (raduis > 0.0) {
+        [innerColor setFill];
+        CGRect innerRect = {{(baseRect.size.width-raduis)/2.0,(baseRect.size.height-raduis)/2.0},{raduis,raduis}};
+        CGContextAddEllipseInRect(context, innerRect);
+        CGContextFillPath(context);
+
+    }
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
+
 
 //修改图片的尺寸
 + (UIImage*) drawInRectImage:(UIImage*)startImage size:(CGSize)imageSize

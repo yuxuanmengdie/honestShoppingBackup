@@ -576,10 +576,10 @@ static const int kContentViewTag = 1000;
     [self.httpRequestOperationManager POST:kGetItemsByCateURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@/n %@", responseObject,[HSPublic dictionaryToJson:parametersDic]);
         
-        NSString *str = (NSString *)responseObject;
-        NSData *data =  [str dataUsingEncoding:NSUTF8StringEncoding];
-        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"!!!!%@",json);
+//        NSString *str = (NSString *)responseObject;
+//        NSData *data =  [str dataUsingEncoding:NSUTF8StringEncoding];
+//        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//        NSLog(@"!!!!%@",json);
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

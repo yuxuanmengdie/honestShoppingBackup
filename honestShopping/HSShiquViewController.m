@@ -8,6 +8,7 @@
 
 #import "HSShiquViewController.h"
 #import "MJRefresh.h"
+#import "HSUserInfoModel.h"
 
 @interface HSShiquViewController ()<UIWebViewDelegate>
 
@@ -19,11 +20,23 @@
 
 @implementation HSShiquViewController
 
+static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g=home&m=Cxggs&a=pllist&wzid=144&username=";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"食趣";
     [self initWebView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (_lastURL != nil && [_lastURL.absoluteString containsString:kShiquURL]) { // 在食趣的主页时，每次出现刷新
+        NSLog(@"qq");
+        [self.webView.scrollView.header beginRefreshing];
+    }
 }
 
 - (void)initWebView
@@ -41,15 +54,15 @@
     __weak typeof(self) wself = self;
     // 添加下拉刷新控件
     [self.webView.scrollView addLegendHeaderWithRefreshingBlock:^{
-        [wself.webView loadRequest:[wself loadREquest]];
+        [wself.webView loadRequest:[wself loadRequest]];
     }];
     [self.webView.scrollView.header beginRefreshing];
 }
 
-- (NSURLRequest *)loadREquest
+- (NSURLRequest *)loadRequest
 {
-    NSURL *url = _webView.request.URL != nil ? _webView.request.URL : [NSURL URLWithString:kShiquURL];
-    _lastURL = url;
+    NSURL *url = (_webView.request.URL != nil && ![_webView.request.URL.absoluteString containsString:kShiquURL]) ? _webView.request.URL : [NSURL URLWithString:[self fullURL]];
+   // _lastURL = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     return request;
 }
@@ -71,7 +84,7 @@
 
 - (void)reloadRequestData
 {
-    [_webView loadRequest:[self loadREquest]];
+    [_webView loadRequest:[self loadRequest]];
 }
 
 #pragma mark - webview delegate
@@ -92,7 +105,65 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    //[self showNetLoadingView];
+    NSLog(@"url=%@",webView.request.URL.absoluteString);
 }
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"!!!%@",request.URL);
+    _lastURL = request.URL;
+    if ([request.URL.absoluteString hasPrefix:kShiquDiscussURL] && ![request.URL.absoluteString isEqualToString:[self fullURLWithOri:kShiquDiscussURL]]) {
+        
+        NSURL *url = [NSURL URLWithString:[self fullURLWithOri:kShiquDiscussURL]];
+//        request = [NSURLRequest requestWithURL:url];
+        [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+        return  NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark -
+- (NSString *)fullURL
+{
+    NSString *result = kShiquURL;
+    
+    if ([HSPublic isLoginInStatus]) {
+        
+        result = [NSString stringWithFormat:@"%@%@",kShiquURL,[HSPublic controlNullString:[self getLastetUserInfoModel].username]];
+    }
+    
+    return result;
+}
+
+- (NSString *)fullURLWithOri:(NSString *)ori
+{
+    if (ori.length == 0) {
+        return nil;
+    }
+    
+    NSString *result = ori;
+    
+    if ([HSPublic isLoginInStatus]) {
+        
+        result = [NSString stringWithFormat:@"%@%@",ori,[HSPublic controlNullString:[self getLastetUserInfoModel].username]];
+    }
+    
+    return result;
+
+}
+
+- (HSUserInfoModel *)getLastetUserInfoModel
+{
+    HSUserInfoModel *userInfo = nil;
+    
+    if ([HSPublic isLoginInStatus]) {
+        NSDictionary *dic = [HSPublic userInfoFromPlist];
+        userInfo = [[HSUserInfoModel alloc] initWithDictionary:dic error:nil];
+    }
+    
+    return userInfo;
+}
+
 
 @end

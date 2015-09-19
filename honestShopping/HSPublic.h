@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, HSLoginType) {
 
 + (UIImage *) ImageWithColor: (UIColor *) color frame:(CGRect)aFrame;
 
+// 画一个外圈黑线 中间有标记的圆 ，用于标记是否选择
++ (UIImage *)ImageWithFrame:(CGRect)aFrame OutArcColor:(UIColor *)aColor linewidth:(CGFloat)wid innerArcColor:(UIColor *)innerColor raduis:(float)raduis;
+
 ///修改图片尺寸
 + (UIImage*) drawInRectImage:(UIImage*)startImage size:(CGSize)imageSize;
 

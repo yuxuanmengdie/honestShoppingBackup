@@ -75,7 +75,7 @@ int rsa_verify_with_public_key_pem(char *message, int message_length
 
 NSString *base64StringFromData(NSData *signature)
 {
-    int signatureLength = [signature length];
+    int signatureLength = (int)[signature length];
     unsigned char *outputBuffer = (unsigned char *)malloc(2 * 4 * (signatureLength / 3 + 1));
     int outputLength = EVP_EncodeBlock(outputBuffer, [signature bytes], signatureLength);
     outputBuffer[outputLength] = '\0';
@@ -86,7 +86,7 @@ NSString *base64StringFromData(NSData *signature)
 
 NSData *dataFromBase64String(NSString *base64String)
 {
-    int stringLength = [base64String length];
+    int stringLength = (int)[base64String length];
     const unsigned char *strBuffer = (const unsigned char *)[base64String UTF8String];
     unsigned char *outputBuffer = (unsigned char *)malloc(2 * 3 * (stringLength / 4 + 1));
     int outputLength = EVP_DecodeBlock(outputBuffer, strBuffer, stringLength);

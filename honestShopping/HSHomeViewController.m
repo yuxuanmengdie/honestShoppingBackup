@@ -45,6 +45,9 @@ FFScrollViewDelegate>
     
     NSArray *_sectionImageArray;
     
+    // 记录每个section的数量
+    NSMutableDictionary *_numDic;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *homeCollectionView;
@@ -62,7 +65,7 @@ static const float kFFScrollViewHeight = 200;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4"];
-    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section5",@"icon_home_section6"];
+    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section5",@"icon_home_section6",@"icon_home_section7"];
     
     [_homeCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSHomeCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([HSHomeCollectionViewCell class])];
             //注册headerView Nib的view需要继承UICollectionReusableView
@@ -356,9 +359,17 @@ static const float kFFScrollViewHeight = 200;
     else if (section == 1 || section ==  3)
     {
         num = 5;
-        //num = 4;
     }
     
+    if (_numDic == nil) {
+        _numDic = [NSMutableDictionary dictionary];
+    }
+    [_numDic setObject:[NSNumber numberWithInteger:num] forKey:[NSString stringWithFormat:@"%ld",(long)section]];
+    
+    if (_itemsDataArray.count > 0 && [self p_totalNumBeforeSection:section] >= _itemsDataArray.count ) {
+        num = 0;
+        [_numDic setObject:[NSNumber numberWithInteger:num] forKey:[NSString stringWithFormat:@"%ld",(long)section]];
+    }
     return num;
 }
 
@@ -388,10 +399,10 @@ static const float kFFScrollViewHeight = 200;
     }
     else
     {
-        int sum = 0;
-        for (int j=1; j<indexPath.section; j++) {
-            sum += [collectionView numberOfItemsInSection:j];
-        }
+        NSInteger sum = [self p_totalNumBeforeSection:indexPath.section];
+//        for (int j=1; j<indexPath.section; j++) {
+//            sum += [collectionView numberOfItemsInSection:j];
+//        }
         
         //HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
          HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
@@ -587,6 +598,22 @@ static const float kFFScrollViewHeight = 200;
     
     NSString *result = [NSString stringWithFormat:@"indexsec%ldrow%ld",(long)index.section,(long)index.row];
     return result;
+}
+
+#pragma mark -
+#pragma mark 计算从 1到 section 之间 的item的总数
+- (NSInteger)p_totalNumBeforeSection:(NSUInteger)section
+{
+    __block NSInteger total = 0;
+    [_numDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
+        NSInteger idx = [key integerValue];
+        
+        if (idx > 0 && idx < section) {
+            total += obj.integerValue;
+        }
+    }];
+    
+    return total;
 }
 
 @end
