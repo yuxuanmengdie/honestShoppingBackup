@@ -17,6 +17,8 @@
 #import "PKYStepper.h"
 
 static const float kButtonWidth = 44.0f;
+// zhang
+//static const float kButtonWidth = 24.f;
 
 @implementation PKYStepper
 
@@ -111,6 +113,10 @@ static const float kButtonWidth = 44.0f;
     return size;
 }
 
+- (CGSize)intrinsicContentSize
+{
+    return CGSizeMake(24*3, 24);
+}
 
 #pragma mark view customization
 - (void)setBorderColor:(UIColor *)color

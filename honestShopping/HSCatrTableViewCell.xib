@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -16,21 +16,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sa0-iK-KQz">
-                        <rect key="frame" x="107" y="54" width="77" height="17"/>
+                        <rect key="frame" x="100" y="54" width="132" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="4jv-2N-Fb5" customClass="PKYStepper">
-                        <rect key="frame" x="192" y="49" width="120" height="22"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="120" id="dDV-6L-ntH"/>
-                            <constraint firstAttribute="height" constant="22" id="wwK-me-0m0"/>
-                        </constraints>
-                    </view>
                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQ8-kc-21A">
-                        <rect key="frame" x="0.0" y="21" width="36" height="38"/>
+                        <rect key="frame" x="0.0" y="21" width="29" height="38"/>
                         <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                         <state key="normal" image="icon_selected">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,17 +32,31 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="bank_icon_failed" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-g5-HhQ">
-                        <rect key="frame" x="36" y="8" width="63" height="63"/>
+                        <rect key="frame" x="29" y="8" width="63" height="63"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="D0y-g5-HhQ" secondAttribute="height" multiplier="1:1" id="oOn-nv-BVm"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9U2-xI-klD">
-                        <rect key="frame" x="107" y="8" width="36" height="17"/>
+                        <rect key="frame" x="100" y="8" width="36" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="4jv-2N-Fb5" customClass="PKYStepper">
+                        <rect key="frame" x="240" y="47" width="72" height="24"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="dDV-6L-ntH"/>
+                            <constraint firstAttribute="height" constant="22" id="wwK-me-0m0"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dDV-6L-ntH"/>
+                                <exclude reference="wwK-me-0m0"/>
+                            </mask>
+                        </variation>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Sa0-iK-KQz" secondAttribute="bottom" constant="8" id="2Aa-oA-XuT"/>
@@ -89,6 +95,6 @@
     </objects>
     <resources>
         <image name="bank_icon_failed" width="35" height="35"/>
-        <image name="icon_selected" width="20" height="20"/>
+        <image name="icon_selected" width="13" height="13"/>
     </resources>
 </document>

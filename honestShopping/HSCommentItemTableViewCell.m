@@ -15,8 +15,8 @@
 - (void)awakeFromNib {
     // Initialization code
     _starsView.tintColor = kAppYellowColor;
-    _userNameLabel.textColor = kAPPLightGreenColor;
-    _timeLabel.textColor = kAPPLightGreenColor;
+    _userNameLabel.textColor = [UIColor lightGrayColor];
+    _timeLabel.textColor = [UIColor lightGrayColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,7 +29,7 @@
 {
     _userNameLabel.text = [HSPublic controlNullString:itemModel.uname];
     _contentLabel.text = [HSPublic controlNullString:itemModel.info];
-    _timeLabel.text = [HSPublic controlNullString:itemModel.add_time];
+    _timeLabel.text = [HSPublic controlNullString:[HSPublic dateFormWithTimeDou:[itemModel.add_time doubleValue]]];
     _starsView.value = [itemModel.star floatValue];
 }
 

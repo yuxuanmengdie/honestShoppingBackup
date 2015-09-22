@@ -103,6 +103,10 @@ static NSString *const kPostJsonFreeprice = @"freeprice";
 
 static NSString *const kPostJsonNum = @"num";
 
+static NSString *const kPostJsonStar = @"star";
+
+static NSString *const kPostJsonComment = @"comment";
+
 #pragma mark -
 #pragma mark 请求url
 /// 注册

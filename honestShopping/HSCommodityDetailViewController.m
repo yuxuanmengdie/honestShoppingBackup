@@ -9,7 +9,8 @@
 #import "HSCommodityDetailViewController.h"
 #import "HSLoginInViewController.h"
 #import "HSSubmitOrderViewController.h"
-#import <HSCommentListViewController.h>
+#import "HSCommentListViewController.h"
+#import "HSShoppingCartViewController.h"
 
 #import "HSBuyNumView.h"
 #import "HSCommodityDetailTableViewCell.h"
@@ -35,8 +36,6 @@ UITableViewDelegate,UMSocialUIDelegate>
      NSMutableDictionary *_imageSizeDic;
     
     AFHTTPRequestOperationManager *_operationManager;
-    /// 是否已经关注
-    BOOL _isCollected;
     
     HSCommodityItemTopBannerView *_placeheadView;
     
@@ -51,6 +50,9 @@ UITableViewDelegate,UMSocialUIDelegate>
 
 @property (weak, nonatomic) IBOutlet HSBuyNumView *buyNumView;
 
+/// 是否已经添加到购物车
+@property (assign, nonatomic) BOOL isCollected;
+
 @end
 
 @implementation HSCommodityDetailViewController
@@ -60,6 +62,19 @@ static const int kTopExistCellNum = 1;
 
 static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
+- (void)dealloc
+{
+    [_detailTableView endUpdates];
+    _detailTableView.dataSource = nil;
+    _detailTableView.delegate = nil;
+    _detailTableView = nil;
+    _operationManager = nil;
+    [[_operationManager operationQueue] cancelAllOperations];
+    [self removeObserver:self forKeyPath:@"isCollected"];
+    
+    NSLog(@"%s",__func__);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -67,20 +82,32 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     _buyNumView.hidden = YES;
     self.title = @"商品详情";
    
-//    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(shareAction)];
-//    self.navigationItem.rightBarButtonItem = shareItem;
     [self segmentControlInit];
     [self contentInit];
 
+    // kvo 检测 isCollected
+    [self addObserver:self forKeyPath:@"isCollected" options:NSKeyValueObservingOptionNew context:nil];
     [self requestDetailByItemID:[HSPublic controlNullString:_itemModel.id]];
     [self buyViewBlock];
-    _isCollected = [HSDBManager selectedItemWithTableName:[HSDBManager tableNameWithUid] keyID:_itemModel.id] == nil ? NO : YES;
     
     [_detailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommodityDetailTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSCommodityDetailTableViewCell class])];
     [_detailTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTopCellIndentifier];
     _detailTableView.separatorStyle = UITableViewCellSelectionStyleNone;
-//    _detailTableView.dataSource = self;
-//    _detailTableView.delegate = self;
+    
+    [self.view bringSubviewToFront:_buyNumView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 是否添加到购物车
+    BOOL collect = [HSDBManager selectedItemWithTableName:[HSDBManager tableNameWithUid] keyID:_itemModel.id] == nil ? NO : YES;
+    self.isCollected = collect;
     
 }
 
@@ -154,6 +181,55 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
 }
 
+#pragma  mark - 构建navBar 的rightItems
+- (UIBarButtonItem *)favoraiteNavItem
+{
+    UIImage *img = [UIImage imageNamed:@"icon_favorite_unSel30"];
+    // 是否添加到 我的关注中
+    BOOL isCare = [HSDBManager selectFavoritetemWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id] == nil ? NO : YES;
+    if (isCare) {
+        img = [UIImage imageNamed:@"icon_favorite_Sel30"];
+    }
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:img forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(addToFavorite) forControlEvents:UIControlEventTouchUpInside];
+    [btn sizeToFit];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    
+    return item;
+}
+
+- (UIBarButtonItem *)shareNavItem
+{
+    UIBarButtonItem *item = nil;
+    
+    if (!(![WXApi isWXAppInstalled] && ![QQApiInterface isQQInstalled])) {
+        //判断是否有微信
+        NSLog(@"至少安装了一个");
+        UIImage *img = [UIImage imageNamed:@"icon_share"];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:img forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+        [btn sizeToFit];
+        item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+    
+    return item;
+
+}
+
+- (void)rightNavItems
+{
+    if ([self shareNavItem] != nil) {
+        self.navigationItem.rightBarButtonItems = @[[self shareNavItem],[self favoraiteNavItem]];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [self favoraiteNavItem];
+    }
+
+}
+
 #pragma mark -
 #pragma mark rightNavBar action 分享
 - (void)shareAction
@@ -182,6 +258,21 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,nil]//nil UMShareToSina
                                        delegate:self];
 
+}
+
+// 添加到 关注
+- (void)addToFavorite
+{
+    if (![HSPublic isLoginInStatus]) {
+        [self showHudWithText:@"请先登录"];
+        [self pushViewControllerWithIdentifer:NSStringFromClass([HSLoginInViewController class])];
+        return ;
+    }
+    
+    HSUserInfoModel *infoModel = [[HSUserInfoModel alloc] initWithDictionary:[HSPublic userInfoFromPlist] error:nil];
+    
+    [self collectItemRequestWithID:[HSPublic controlNullString:_detailPicModel.id] uid:[HSPublic controlNullString:infoModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+    
 }
 
 #pragma mark -
@@ -225,7 +316,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         
     };
     
-    _buyNumView.collectBlock = ^(UIButton *collctBtn){ /// 关注
+    _buyNumView.collectBlock = ^(UIButton *collctBtn){ /// 添加到购物车
         
         __strong typeof(wself) swself = wself;
         if (![HSPublic isLoginInStatus]) {
@@ -234,9 +325,24 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             return ;
         }
         
-        HSUserInfoModel *infoModel = [[HSUserInfoModel alloc] initWithDictionary:[HSPublic userInfoFromPlist] error:nil];
+        BOOL isSuc = [HSDBManager saveCartListWithTableName:[HSDBManager tableNameWithUid] keyID:swself->_detailPicModel.id data:[swself->_detailPicModel toDictionary]];
+        if (isSuc) {
+            [swself showHudWithText:@"添加购物车成功"];
+            swself.isCollected = isSuc;
+        }
+    };
+    
+    _buyNumView.cartBlock = ^{
         
-        [wself collectItemRequestWithID:[HSPublic controlNullString:swself->_detailPicModel.id] uid:[HSPublic controlNullString:infoModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+        __strong typeof(wself) swself = wself;
+        if (![HSPublic isLoginInStatus]) {
+            [wself showHudWithText:@"请先登录"];
+            [swself pushViewControllerWithIdentifer:NSStringFromClass([HSLoginInViewController class])];
+            return ;
+        }
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HSShoppingCartViewController *cartVC = [storyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSShoppingCartViewController class])];
+        [swself.navigationController pushViewController:cartVC animated:YES];
     };
 }
 
@@ -274,6 +380,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         if (data == nil) {
              [swself showReqeustFailedMsg];
             [swself showHudWithText:@"加载失败"];
+            swself.navigationItem.rightBarButtonItem = [swself shareNavItem];
             return ;
         }
 
@@ -298,18 +405,13 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             
             swself->_buyNumView.stepper.maximum = [swself->_detailPicModel.maxbuy intValue];
             
-            if (!(![WXApi isWXAppInstalled] && ![QQApiInterface isQQInstalled])) {
-                //判断是否有微信
-                NSLog(@"至少安装了一个");
-                [self setNavBarRightBarWithTitle:@"分享" action:@selector(shareAction)];
-            }
-        
+            [swself rightNavItems];
         }
     }];
 }
 
 #pragma mark -
-#pragma mark  底部添加关注
+#pragma mark  添加关注
 - (void)collectItemRequestWithID:(NSString *)itemID uid:(NSString *)uid sessionCode:(NSString *)sessionCode
 {
    
@@ -354,9 +456,11 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             else
             {
                  [self showHudWithText:@"已关注"];
+                [HSDBManager saveFavoriteWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id];
                 
             }
-
+            
+            [self rightNavItems];
         }
         else
         {
@@ -407,6 +511,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         }
         
         [headView.infoView collcetStatus:_isCollected];
+        headView.infoView.collectButton.hidden = YES;
         __weak typeof(self) wself = self;
         headView.infoView.colletActionBlock = ^(UIButton *btn){
             __strong typeof(wself) swself = wself;
@@ -589,29 +694,15 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     return result;
 }
 
-#pragma mark -
-#pragma mark 分享的地址 //http://ecommerce.news.cn/index.php?m=Item&a=index&cid=363&id=423
-- (NSString *)p_shareURLWithModel:(HSCommodityItemDetailPicModel *)model
+#pragma mark - kvo
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSString *result = [NSString stringWithFormat:@"%@/index.php?m=Item&a=index&cid=%@&id=%@",kURLHeader,model.cate_id,model.id];
-    
-    return result;
+    if ([keyPath isEqualToString:@"isCollected"]) {
+        
+       NSNumber *tmp = change[NSKeyValueChangeNewKey];
+        
+        [_buyNumView collectTitleWithStatus:[tmp boolValue]];
+    }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (void)dealloc
-{
-    [_detailTableView endUpdates];
-    _detailTableView.dataSource = nil;
-    _detailTableView.delegate = nil;
-    _detailTableView = nil;
-    _operationManager = nil;
-    [[_operationManager operationQueue] cancelAllOperations];
-
-    NSLog(@"%s",__func__);
-}
 @end

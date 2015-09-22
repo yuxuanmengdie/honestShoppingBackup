@@ -21,6 +21,7 @@
 
 - (void)awakeFromNib
 {
+    self.backgroundColor = [UIColor clearColor];
     _stepper.stepInterval = 1.0;
     _stepper.minimum = 1.0;
     _stepper.value = 1.0;
@@ -30,20 +31,11 @@
         
     }];
     
-//    [_stepper setIncrementCallback:^(PKYStepper *stepper, float newValue){
-//        if (newValue > weakStepper.maximum) {
-//            [HSPublic showHudInWindowWithText:@"亲，不能在多了"];
-//        }
-//    }];
-//    [_stepper setDecrementCallback:^(PKYStepper *stepper, float newValue){
-//        if (newValue < weakStepper.minimum) {
-//            [HSPublic showHudInWindowWithText:@"亲，不能在少了"];
-//        }
-//    }];
-    
+    [_stepper setButtonWidth:24.0f];
     [_stepper setBorderColor:kAPPTintColor];
     [_stepper setLabelTextColor:kAPPTintColor];
     [_stepper setButtonTextColor:kAPPTintColor forState:UIControlStateNormal];
+//    [_stepper setButtonFont:[UIFont systemFontOfSize:16]];
     [_stepper setup];
     
     [_buyBtn setTitle:@"立刻购买" forState:UIControlStateNormal];
@@ -51,10 +43,19 @@
     [_buyBtn setBackgroundImage:[HSPublic ImageWithColor:kAppYellowColor] forState:UIControlStateNormal];
     _buyBtn.layer.masksToBounds = YES;
     _buyBtn.layer.cornerRadius = 5.0;
+    _buyBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     
-    [_collectBtn setTitle:@"" forState:UIControlStateNormal];
-    [_collectBtn setImage:[UIImage imageNamed:@"icon_favorite_Sel30"] forState:UIControlStateSelected];
-    [_collectBtn setImage:[UIImage imageNamed:@"icon_favorite_unSel30"] forState:UIControlStateNormal];
+    [_collectBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [_collectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_collectBtn setBackgroundImage:[HSPublic ImageWithColor:kAPPLightGreenColor] forState:UIControlStateNormal];
+    _collectBtn.layer.masksToBounds = YES;
+    _collectBtn.layer.cornerRadius = 5.0;
+    _collectBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [_collectBtn setImage:[UIImage imageNamed:@"icon_favorite_Sel30"] forState:UIControlStateSelected];
+//    [_collectBtn setImage:[UIImage imageNamed:@"icon_favorite_unSel30"] forState:UIControlStateNormal];
+    
+    [_cartBtn setBackgroundImage:[HSPublic ImageWithColor:kAPPLightGreenColor] forState:UIControlStateNormal];
+    
 }
 
 
@@ -66,6 +67,7 @@
         
         [self addSubview:subView];
         subView.backgroundColor = [UIColor clearColor];
+        subView.clipsToBounds = NO;
         subView.translatesAutoresizingMaskIntoConstraints = NO;
         
         NSString *vfl1 = @"H:|[subView]|";
@@ -81,6 +83,19 @@
     return self;
 }
 
+- (void)collectTitleWithStatus:(BOOL)isCollect
+{
+    NSString *str = @"加入购物车";
+    _collectBtn.enabled = YES;
+    
+    if (isCollect) {
+        str = @"已在购物车";
+        _collectBtn.enabled = NO;
+    }
+    
+    [_collectBtn setTitle:str forState:UIControlStateNormal];
+}
+#pragma mark - target action
 - (IBAction)buyBtnAction:(id)sender {
     
     if (self.buyBlock) {
@@ -95,9 +110,24 @@
     }
 }
 
+- (IBAction)cartAction:(id)sender {
+    
+    if (self.cartBlock) {
+        self.cartBlock();
+    }
+}
 
 - (CGSize)intrinsicContentSize
 {
-    return CGSizeMake(0, 49);
+    return CGSizeMake(0, 44);
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self layoutIfNeeded];
+    _cartBtn.layer.masksToBounds = YES;
+    _cartBtn.layer.cornerRadius = MIN(CGRectGetWidth(_cartBtn.frame), CGRectGetHeight(_cartBtn.frame))/2.0;
 }
 @end

@@ -28,31 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationController.navigationBarHidden = YES;
-//    self.title = @"放心吃";
+
     self.tabBar.selectedImageTintColor =  kAPPTintColor;
     self.tabBar.translucent = NO;
-//    [self.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    
-//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightNavItemAction)];
-//    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    
-//    /// 获取版本号 判断是否需要引导页
-//    NSString *verson = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    
-//    NSString *saveedVerson = [[NSUserDefaults standardUserDefaults] objectForKey:kAPPCurrentVersion];
-//    
-//    if (saveedVerson == nil || ![verson isEqualToString:saveedVerson]) {
-//        [self showIntroView];
-//        
-//        [[NSUserDefaults standardUserDefaults] setObject:verson forKey:kAPPCurrentVersion];
-//    }
-    
     [self tabBarViewInit];
-    
-//    [self getGuideRequest];
-//    [self getWelcomeRequest];
     
 }
 
@@ -139,101 +118,6 @@
 {
     [super viewWillDisappear:animated];
     [self.tabBar setHidden:NO];
-}
-
-
-#pragma mark -
-#pragma mark 引导图
-- (void)getGuideRequest
-{
-    NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
-    // 142346261  123456
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:kGetGuideURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) { /// 失败
-        NSLog(@"success\n%@",operation.responseString);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%s failed\n%@",__func__,operation.responseString);
-        if (operation.responseData == nil) {
-            return ;
-        }
-        NSError *jsonError = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
-        if (jsonError == nil && [json isKindOfClass:[NSArray class]]) {
-            NSArray *jsonArr = (NSArray *)json;
-            [jsonArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-                HSBannerModel *bannerModel = [[HSBannerModel alloc] initWithDictionary:obj error:nil];
-                
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,[HSPublic controlNullString:bannerModel.content]]];
-                BOOL isCache = [[SDWebImageManager sharedManager] cachedImageExistsForURL:url];
-                if (!isCache) {
-                    [self downloadImageWihtURL:url];
-                }
-                
-            }];
-        }
-        else
-        {
-            
-        }
-
-        }];
-
-}
-
-#pragma mark -
-#pragma mark 欢迎图
-- (void)getWelcomeRequest
-{
-    
-    NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
-    // 142346261  123456
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:kGetWelcomeURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) { /// 失败
-        NSLog(@"success\n%@",operation.responseString);
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%s failed\n%@",__func__,operation.responseString);
-       
-        if (operation.responseData == nil) {
-                        return ;
-        }
-        NSError *jsonError = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
-        if (jsonError == nil && [json isKindOfClass:[NSArray class]]) {
-            NSArray *jsonArr = (NSArray *)json;
-            [jsonArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-                HSBannerModel *bannerModel = [[HSBannerModel alloc] initWithDictionary:obj error:nil];
-                
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,[HSPublic controlNullString:bannerModel.content]]];
-                BOOL isCache = [[SDWebImageManager sharedManager] cachedImageExistsForURL:url];
-                if (!isCache) {
-                    [self downloadImageWihtURL:url];
-                }
-                
-            }];
-        }
-        else
-        {
-            
-        }
-    }];
-
-}
-
-#pragma mark-
-#pragma mark 图片下载
-- (void)downloadImageWihtURL:(NSURL *)url
-{
-    [[SDWebImageManager sharedManager] downloadImageWithURL:url options:SDWebImageHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        
-        if (error != nil) { /// 下载失败
-            [self downloadImageWihtURL:url];
-        }
-    }];
-
 }
 
 @end

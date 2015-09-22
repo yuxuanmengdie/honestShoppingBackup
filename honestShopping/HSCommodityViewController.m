@@ -89,7 +89,6 @@ static const int kAdsCellImageViewTag = 600;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
     [_commdityCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommodityCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:kCommodityCellIndentifier];
     [_commdityCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kAdsCellIdentifier];
     if (_isShowBanner)
@@ -114,9 +113,7 @@ static const int kAdsCellImageViewTag = 600;
    
     _commdityCollectionView.collectionViewLayout = layout;
     
-    
     _imageSizeDic = [[NSMutableDictionary alloc] init];
-    
     
     __weak typeof(self) wself = self;
     
@@ -144,7 +141,6 @@ static const int kAdsCellImageViewTag = 600;
     }];
     _isAdsLoding = NO;
     
-
 }
 
 #pragma mark 瀑布流

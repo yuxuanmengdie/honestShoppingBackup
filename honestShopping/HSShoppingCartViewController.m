@@ -133,8 +133,16 @@ UITableViewDelegate>
     [_editBottomView addSubview:deleteBtn];
     deleteBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
+    UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    selectBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [selectBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [selectBtn setTitle:@"全选" forState:UIControlStateNormal];
+    [_editBottomView addSubview:selectBtn];
+    selectBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
     NSString *vfl1 = @"H:|[_editBottomView]|";
-    NSString *vfl2 = @"V:[_editBottomView(49)]|";
+    NSString *vfl2 = @"V:[_editBottomView(44)]|";
     NSString *vfl3 = @"H:|[sepView]|";
     NSString *vfl4 = @"V:|[sepView(0.5)]";
     NSString *vfl5 = @"H:|-16-[deleteBtn]";
@@ -152,6 +160,8 @@ UITableViewDelegate>
     [_editBottomView addConstraints:arr4];
     [_editBottomView addConstraints:arr5];
     [_editBottomView HS_centerYWithSubView:deleteBtn];
+    [_editBottomView HS_centerYWithSubView:selectBtn];
+    [_editBottomView HS_dispacingWithFisrtView:_editBottomView fistatt:NSLayoutAttributeTrailing secondView:selectBtn secondAtt:NSLayoutAttributeTrailing constant:16];
 }
 
 - (void)deleteAction
@@ -159,7 +169,23 @@ UITableViewDelegate>
     [self deleteSelectedItem];
 }
 
+- (void)selectAction:(UIButton *)senderBtn
+{
+    _isAllSelected = !_isAllSelected;
+    if (_isAllSelected) { /// 已经全选了
+        [senderBtn setTitle:@"全不选" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [senderBtn setTitle:@"全选" forState:UIControlStateNormal];
+    }
+    
+    [_cartArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        [_seletedDic setObject:[NSNumber numberWithBool:_isAllSelected] forKey:[self keyFromItemID:obj[kPostJsonid]]];
+    }];
+    [_cartTableView reloadData];
 
+}
 
 - (IBAction)buyAction:(id)sender {
     
@@ -222,13 +248,13 @@ UITableViewDelegate>
     NSString *title = @"";
     if (isEditing) {
         title = @"编辑";
-        self.navigationItem.leftBarButtonItem = nil;
+//        self.navigationItem.leftBarButtonItem = nil;
     }
     else
     {
         title = @"完成";
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(multipleSelected)];
-        self.navigationItem.leftBarButtonItem = item;
+//        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(multipleSelected)];
+//        self.navigationItem.leftBarButtonItem = item;
         _isAllSelected = NO;
     }
     self.navigationItem.rightBarButtonItem.title = title;

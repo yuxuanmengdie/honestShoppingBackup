@@ -44,59 +44,6 @@
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",detailModel.price];
 }
 
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    
-//    if (self) {
-//        
-////        UIView *subView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-////        
-////        [self addSubview:subView];
-////        subView.backgroundColor = [UIColor clearColor];
-////        subView.translatesAutoresizingMaskIntoConstraints = NO;
-////        
-////        NSString *vfl1 = @"H:|[subView]|";
-////        NSString *vfl2 = @"V:|[subView]|";
-////        NSDictionary *dic = NSDictionaryOfVariableBindings(subView);
-////        
-////        NSArray *con1 = [NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:nil views:dic];
-////        NSArray *con2 = [NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:nil views:dic];
-////        [self addConstraints:con1];
-////        [self addConstraints:con2];
-//        
-//    }
-//    
-//    return self;
-//
-//}
-//
-//
-//- (instancetype)initWithCoder:(NSCoder *)aDecoder
-//{
-//    self = [super initWithCoder:aDecoder];
-//    
-//    if (self) {
-//        
-////        UIView *subView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-////        
-////        [self addSubview:subView];
-////        subView.backgroundColor = [UIColor clearColor];
-////        subView.translatesAutoresizingMaskIntoConstraints = NO;
-////        
-////        NSString *vfl1 = @"H:|[subView]|";
-////        NSString *vfl2 = @"V:|[subView]|";
-////        NSDictionary *dic = NSDictionaryOfVariableBindings(subView);
-////        
-////        NSArray *con1 = [NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:nil views:dic];
-////        NSArray *con2 = [NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:nil views:dic];
-////        [self addConstraints:con1];
-////        [self addConstraints:con2];
-//
-//    }
-//    
-//    return self;
-//}
 
 - (IBAction)collectBtnAction:(id)sender {
     if (self.colletActionBlock) {
@@ -104,10 +51,4 @@
     }
 }
 
-
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    
-//}
 @end

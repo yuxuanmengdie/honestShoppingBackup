@@ -19,6 +19,7 @@
 //    [_stepper setValueChangedCallback:^(PKYStepper *stepper, float newValue){
 //        weakStepper.countLabel.text = [NSString stringWithFormat:@"%d",(int)newValue];
 //    }];
+    [_stepper setButtonWidth:24.0f];
     [_stepper setBorderColor:kAPPTintColor];
     [_stepper setLabelTextColor:kAPPTintColor];
     [_stepper setButtonTextColor:kAPPTintColor forState:UIControlStateNormal];

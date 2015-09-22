@@ -701,6 +701,24 @@
             </objects>
             <point key="canvasLocation" x="3038" y="3783"/>
         </scene>
+        <!--Submit Comment View Controller-->
+        <scene sceneID="u5q-Ww-ETc">
+            <objects>
+                <viewController storyboardIdentifier="HSSubmitCommentViewController" id="Sd4-cN-Nug" customClass="HSSubmitCommentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1hx-Oa-UCE"/>
+                        <viewControllerLayoutGuide type="bottom" id="gaG-qY-Qqz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TCf-Yd-Cf2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ffF-po-RiY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4093" y="4455"/>
+        </scene>
         <!--Address Detail View Controller-->
         <scene sceneID="tGA-ti-aAB">
             <objects>
@@ -896,6 +914,24 @@
             </objects>
             <point key="canvasLocation" x="5010" y="3782"/>
         </scene>
+        <!--Submit Comment Item View Controller-->
+        <scene sceneID="YEt-ih-Ti0">
+            <objects>
+                <viewController storyboardIdentifier="HSSubmitCommentItemViewController" id="ywV-Ly-TWH" customClass="HSSubmitCommentItemViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgr-mA-0XB"/>
+                        <viewControllerLayoutGuide type="bottom" id="fak-hV-l5X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nUg-4b-fvC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFi-8L-AyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3397" y="4455"/>
+        </scene>
         <!--Order Form View Controller-->
         <scene sceneID="8fC-L9-YbK">
             <objects>
@@ -913,12 +949,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS4-bT-Uxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2547" y="4413"/>
+            <point key="canvasLocation" x="2735" y="4455"/>
         </scene>
         <!--Shopping Cart View Controller-->
         <scene sceneID="sQr-F6-oRp">
             <objects>
-                <viewController id="PUH-7D-Eac" customClass="HSShoppingCartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HSShoppingCartViewController" id="PUH-7D-Eac" customClass="HSShoppingCartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ya3-cs-CyU"/>
                         <viewControllerLayoutGuide type="bottom" id="fil-y5-48s"/>
@@ -936,17 +972,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jx2-j3-xiA">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBu-Ot-yAh">
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="OBu-Ot-yAh">
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" id="InM-s9-BZK"/>
                                             <constraint firstAttribute="height" constant="0.5" id="ZIB-fC-0sY"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="InM-s9-BZK"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lm-z5-ao9">
                                         <rect key="frame" x="16" y="16" width="36" height="17"/>
@@ -981,16 +1011,10 @@
                                     <constraint firstItem="Teu-G8-ipv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l6J-Sd-32p" secondAttribute="trailing" constant="8" id="TcK-TN-agt"/>
                                     <constraint firstAttribute="centerY" secondItem="2lm-z5-ao9" secondAttribute="centerY" id="gYe-A4-DF6"/>
                                     <constraint firstItem="OBu-Ot-yAh" firstAttribute="top" secondItem="jx2-j3-xiA" secondAttribute="top" id="h7k-s9-8Pb"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l6J-Sd-32p" secondAttribute="trailing" constant="8" id="j6P-lF-HN5"/>
                                     <constraint firstAttribute="trailing" secondItem="Teu-G8-ipv" secondAttribute="trailing" constant="16" id="j8m-Tt-ReC"/>
                                     <constraint firstAttribute="centerY" secondItem="l6J-Sd-32p" secondAttribute="centerY" id="w72-Cp-A64"/>
                                     <constraint firstItem="l6J-Sd-32p" firstAttribute="leading" secondItem="2lm-z5-ao9" secondAttribute="trailing" constant="8" id="zKP-Jv-yfm"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="j6P-lF-HN5"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SMT-Tm-cZS">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
@@ -1438,7 +1462,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3D-FM-YZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4304" y="1804"/>
+            <point key="canvasLocation" x="4244" y="1064"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="WkI-jf-sI7">
@@ -1686,7 +1710,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf3-EN-cPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="1976"/>
+            <point key="canvasLocation" x="758" y="1872"/>
         </scene>
         <!--购物车-->
         <scene sceneID="FMC-wA-1I5">
@@ -1786,7 +1810,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73O-kv-jNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1872" y="4371"/>
+            <point key="canvasLocation" x="1872" y="4455"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="uud-Do-X4e">
