@@ -15,7 +15,7 @@
 - (void)awakeFromNib {
     // Initialization code
     _starsView.tintColor = kAppYellowColor;
-    _userNameLabel.textColor = [UIColor lightGrayColor];
+    _userNameLabel.textColor = [UIColor grayColor];
     _timeLabel.textColor = [UIColor lightGrayColor];
 }
 

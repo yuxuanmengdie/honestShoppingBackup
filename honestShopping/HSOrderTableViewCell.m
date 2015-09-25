@@ -31,6 +31,5 @@
     _timeLabel.text = [HSPublic controlNullString:[HSPublic dateFormWithTimeDou:[orderModel.add_time doubleValue]]];
     _priceLabel.text = [NSString stringWithFormat:@"￥%@元",[HSPublic controlNullString:orderModel.order_sumPrice] ];
     _stateLabel.text = [HSPublic controlNullString:[HSPublic orderStatusStrWithState:orderModel.status]];
-
 }
 @end

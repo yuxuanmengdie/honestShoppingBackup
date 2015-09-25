@@ -240,12 +240,8 @@ static NSString *const kPhotpHolderImg = @"icon_camera";
         if (isFileUpload) {
             
             NSError *error = nil;
-            
-            NSData *img = [NSData dataWithContentsOfURL:filePath];
-            
-            BOOL suc = [formData appendPartWithFileURL:filePath name:@"imgs[]" error:&error];
-            
-            NSLog(@"img = %@;suc=%d, error=%@",img,suc,error.description);
+            [formData appendPartWithFileURL:filePath name:@"imgs[]" error:&error];
+           
         }
        
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {

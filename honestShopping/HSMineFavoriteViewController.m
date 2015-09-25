@@ -91,7 +91,10 @@ UITableViewDelegate>
                 @autoreleasepool {
                     HSCommodtyItemModel *itemModel = [[HSCommodtyItemModel alloc] initWithDictionary:obj error:nil];
                     [tmp addObject:itemModel];
-                    [dbArr addObject:itemModel.id];
+                    if (itemModel.id.length > 0) {
+                         [dbArr addObject:itemModel.id];
+                    }
+                   
                 }
             }];
             [HSDBManager saveFavoriteArrayWithTableName:[HSDBManager tableNameFavoriteWithUid] arr:dbArr];

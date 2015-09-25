@@ -7,11 +7,13 @@
 //
 
 #import "HSCommentListViewController.h"
+#import "ZLPhoto.h"
 #import "MJRefresh.h"
 
 #import "HSCommentInfoView.h"
 #import "HSCommentItemTableViewCell.h"
 #import "HSCommentFilterTableViewCell.h"
+#import "HSCommentImgTableViewCell.h"
 #import "UIView+HSLayout.h"
 
 #import "HSCommentListModel.h"
@@ -24,9 +26,13 @@ typedef NS_ENUM(NSUInteger, HSCommentFilterType) {
 };
 
 @interface HSCommentListViewController ()<UITableViewDataSource,
-UITableViewDelegate>
+UITableViewDelegate,
+ZLPhotoPickerBrowserViewControllerDataSource,
+ZLPhotoPickerBrowserViewControllerDelegate>
 {
     NSArray *_commentArray;
+    
+    NSArray *_commentImgArray;
     
     HSCommentInfoModel *_infoModel;
     
@@ -34,6 +40,15 @@ UITableViewDelegate>
     // 默认 HSCommentTotalType
     HSCommentFilterType _filterType;
     
+    // 浏览每条评论图片的array
+    NSArray *_browsePhotoArray;
+    
+    UIImageView *_photoTmpView;
+    
+    //
+    BOOL _commentlistLoading;
+    
+    BOOL _commentImgLoading;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
@@ -49,15 +64,19 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _commentlistLoading = NO;
+    _commentImgLoading = NO;
+    
     _filterType = HSCommentTotalType;
     [_commentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIndentifierSection0];
     [_commentTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommentItemTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSCommentItemTableViewCell class])];
     [_commentTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommentFilterTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSCommentFilterTableViewCell class])];
+    [_commentTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommentImgTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSCommentImgTableViewCell class])];
     
 
     [self dataReload];
-    [_commentTableView.header beginRefreshing];
-    [_commentTableView.footer beginRefreshing];
+    [_commentTableView.legendHeader beginRefreshing];
+    [_commentTableView.legendFooter beginRefreshing];
     
     if ([_commentTableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [_commentTableView setSeparatorInset:UIEdgeInsetsZero];
@@ -97,20 +116,41 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
             return ;
         }
 
-        NSUInteger page = swself->_commentArray.count/kSizeNum + 1;
-        
         switch (swself->_filterType) {
             case HSCommentTotalType:
             {
-                 [swself commentListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:page];
+                if (swself->_commentArray.count%kSizeNum != 0) {
+                    [swself->_commentTableView.legendFooter endRefreshing];
+                    [swself->_commentTableView.footer noticeNoMoreData];
+                }
+                else
+                {
+                    if (swself->_commentlistLoading) {
+                        return;
+                    }
+                    
+                    NSUInteger page = swself->_commentArray.count/kSizeNum + 1;
+                    [swself commentListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:page loadMore:YES];
+                }
             }
                 break;
             case HSCommentImgType:
             {
-                 [swself commentImgListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:page];
+                if (swself->_commentImgArray.count%kSizeNum != 0) {
+                    [swself->_commentTableView.legendFooter endRefreshing];
+                    [swself->_commentTableView.footer noticeNoMoreData];
+                }
+                else
+                {
+                    if (swself->_commentImgLoading) {
+                        return;
+                    }
+
+                    NSUInteger page = swself->_commentImgArray.count/kSizeNum + 1;
+                    [swself commentImgListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:page loadMore:YES];
+                }
             }
                 break;
-            
         }
 
     }];
@@ -125,9 +165,10 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
 }
 
 #pragma mark - 获取评论的请求
-- (void)commentListRequestWithItemid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page
+- (void)commentListRequestWithItemid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page loadMore:(BOOL)loadMore
 {
     [self showhudLoadingWithText:nil isDimBackground:YES];
+    _commentlistLoading = YES;
     NSDictionary *parametersDic = @{kPostJsonKey:key,
                                     kPostJsonItemid:[NSNumber numberWithLongLong:[cid longLongValue]],
                                     kPostJsonSize:[NSNumber numberWithInteger:size],
@@ -139,9 +180,8 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"JSON:  %@",[HSPublic dictionaryToJson:parametersDic]);
         NSLog(@"%s\nresponse=%@",__func__,operation.responseString);
-        if ([_commentTableView.footer isRefreshing]) {
-            [_commentTableView.footer endRefreshing];
-        }
+         _commentlistLoading = NO;
+        [_commentTableView.legendFooter endRefreshing];
         [self hiddenHudLoading];
         
         if (_filterType != HSCommentTotalType) { // 加载更多的与当前filter不一样  返回
@@ -152,33 +192,39 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
             return ;
         }
         
-        
         NSError *err = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&err];
         
         if (err == nil && [json isKindOfClass:[NSDictionary class]]) {
             HSCommentListModel *listModel = [[HSCommentListModel alloc] initWithDictionary:json error:nil];
         
-            if (_commentArray.count == 0) {
-                _commentArray = listModel.comment_list;
+            if (loadMore) {
+                if (_commentArray.count == 0) {
+                    _commentArray = listModel.comment_list;
+                }
+                else
+                {
+                    NSMutableArray *tmpArr = [[NSMutableArray alloc] initWithArray:_commentArray];
+                    [tmpArr addObjectsFromArray:listModel.comment_list];
+                    _commentArray = tmpArr;
+                }
             }
             else
             {
-                NSMutableArray *tmpArr = [[NSMutableArray alloc] initWithArray:_commentArray];
-                [tmpArr addObjectsFromArray:listModel.comment_list];
-                _commentArray = tmpArr;
+                _commentArray = listModel.comment_list;
             }
             
-            [_commentTableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [_commentTableView reloadSections:[[NSIndexSet alloc ] initWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
 
     }];
     
 }
 
-- (void)commentImgListRequestWithItemid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page
+- (void)commentImgListRequestWithItemid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page loadMore:(BOOL)loadMore
 {
     [self showhudLoadingWithText:nil isDimBackground:YES];
+    _commentImgLoading = YES;
     NSDictionary *parametersDic = @{kPostJsonKey:key,
                                     kPostJsonItemid:[NSNumber numberWithLongLong:[cid longLongValue]],
                                     kPostJsonSize:[NSNumber numberWithInteger:size],
@@ -190,10 +236,10 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"JSON:  %@",[HSPublic dictionaryToJson:parametersDic]);
          NSLog(@"%s\nresponse=%@",__func__,operation.responseString);
-        if ([_commentTableView.footer isRefreshing]) {
-            [_commentTableView.footer endRefreshing];
-            
-        }
+        
+        _commentImgLoading = NO;
+        [_commentTableView.legendFooter endRefreshing];
+        
         [self hiddenHudLoading];
         if (_filterType != HSCommentImgType) {
             return ;
@@ -209,8 +255,24 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
         if (err == nil && [json isKindOfClass:[NSDictionary class]]) {
             HSCommentListModel *listModel = [[HSCommentListModel alloc] initWithDictionary:json error:nil];
             
-            _commentArray = listModel.comment_list;
-            [_commentTableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (loadMore) {
+                if (_commentImgArray.count == 0) {
+                    _commentImgArray = listModel.comment_list;
+                }
+                else
+                {
+                    NSMutableArray *tmpArr = [[NSMutableArray alloc] initWithArray:_commentImgArray];
+                    [tmpArr addObjectsFromArray:listModel.comment_list];
+                    _commentImgArray = tmpArr;
+                }
+            }
+            else
+            {
+                _commentImgArray = listModel.comment_list;
+            }
+
+            [_commentTableView reloadSections:[[NSIndexSet alloc ] initWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+           
         }
 
     }];
@@ -232,21 +294,70 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
         NSLog(@"%s\nresponse=%@",__func__,operation.responseString);
         [_commentTableView.header endRefreshing];
         
-        
         if ((operation.responseData == nil) && ![NSJSONSerialization isValidJSONObject:operation.responseData]) {
             return ;
         }
-        
+
         NSError *err = nil;
         id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&err];
         
         if (err == nil && [json isKindOfClass:[NSDictionary class]]) {
             
             _infoModel  = [[HSCommentInfoModel alloc] initWithDictionary:json error:nil];
-            [_commentTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [_commentTableView reloadSections:[[NSIndexSet alloc ] initWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
     
+}
+
+#pragma mark - 
+- (void)openPhotoBrowser:(NSIndexPath *)indexPath
+{
+    // 图片游览器
+    ZLPhotoPickerBrowserViewController *pickerBrowser = [[ZLPhotoPickerBrowserViewController alloc] init];
+    
+    // 数据源/delegate
+    // 动画方式
+    /*
+     *
+     UIViewAnimationAnimationStatusZoom = 0, // 放大缩小
+     UIViewAnimationAnimationStatusFade , // 淡入淡出
+     UIViewAnimationAnimationStatusRotate // 旋转
+     pickerBrowser.status = UIViewAnimationAnimationStatusFade;
+     */
+    pickerBrowser.delegate = self;
+    pickerBrowser.dataSource = self;
+    //pickerBrowser.photos = _browsePhotoArray;
+    // 是否可以删除照片
+    pickerBrowser.editing = NO;
+    // 当前分页的值
+    // pickerBrowser.currentPage = indexPath.row;
+    // 传入组
+    pickerBrowser.currentIndexPath = indexPath;
+    // 展示控制器
+    [pickerBrowser showPickerVc:self];
+
+}
+
+#pragma mark - <ZLPhotoPickerBrowserViewControllerDataSource>
+- (NSInteger)numberOfSectionInPhotosInPickerBrowser:(ZLPhotoPickerBrowserViewController *)pickerBrowser{
+    return 1;
+}
+
+- (NSInteger)photoBrowser:(ZLPhotoPickerBrowserViewController *)photoBrowser numberOfItemsInSection:(NSUInteger)section{
+    return _browsePhotoArray.count;
+}
+
+- (ZLPhotoPickerBrowserPhoto *)photoBrowser:(ZLPhotoPickerBrowserViewController *)pickerBrowser photoAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *imageObj = _browsePhotoArray[indexPath.row];
+    NSString *fullPath = [NSString stringWithFormat:@"%@%@",kCommentImageHeaderURL,imageObj];
+    ZLPhotoPickerBrowserPhoto *photo = [ZLPhotoPickerBrowserPhoto photoAnyImageObjWith:fullPath];
+    CGRect rect = [_photoTmpView convertRect:_photoTmpView.frame toView:self.view];
+    NSLog(@"%@",NSStringFromCGRect(rect));
+    UIImageView *imgView = [UIImageView new];
+    imgView.frame = rect;
+    photo.toView =  imgView;// _photoTmpView;
+    return photo;
 }
 
 
@@ -258,7 +369,17 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger num = (section == 2) ? _commentArray.count : 1;
+    NSInteger num = 1;
+    
+    if (section == 2) {
+        if (_filterType == HSCommentTotalType) {
+            num = _commentArray.count;
+        }
+        else
+        {
+            num = _commentImgArray.count;
+        }
+    }
     
     return num;
 }
@@ -286,11 +407,40 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
     }
     else if (indexPath.section == 2) // 详细评论
     {
-        HSCommentItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommentItemTableViewCell class]) forIndexPath:indexPath];
-        HSCommentItemModel *itemModel = _commentArray[indexPath.row];
-        [cell setUpWithItemModel:itemModel];
-    
-        return cell;
+        if (_filterType == HSCommentImgType) {
+            
+            HSCommentImgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommentImgTableViewCell class]) forIndexPath:indexPath];
+            HSCommentItemModel *itemModel = _commentImgArray[indexPath.row];
+            [cell setUpWithItemModel:itemModel];
+            [cell addSubImgViewsWithList:itemModel.list];
+            
+            __weak typeof(self) weakSelf = self;
+            cell.imgActionBlock = ^(NSUInteger idx, UIImageView *imgView){
+                
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                
+                if (strongSelf == nil) {
+                    return ;
+                }
+                
+                strongSelf->_browsePhotoArray = itemModel.list;
+                strongSelf->_photoTmpView = imgView;
+                NSIndexPath *index = [NSIndexPath indexPathForRow:idx inSection:0];
+                [strongSelf openPhotoBrowser:index];
+            };
+            
+            return cell;
+
+        }
+        else
+        {
+            HSCommentItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommentItemTableViewCell class]) forIndexPath:indexPath];
+            HSCommentItemModel *itemModel = _commentArray[indexPath.row];
+            [cell setUpWithItemModel:itemModel];
+            
+            return cell;
+
+        }
     }
     else
     {
@@ -320,34 +470,37 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
                 return ;
             }
             
+            [swself->_commentTableView.footer resetNoMoreData];
+            
             switch (idx) {
                 case 0: // 查看评论列表
                 {
                     swself->_filterType = HSCommentTotalType;
-                    [swself commentListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:1];
+                    [swself commentListRequestWithItemid:[HSPublic controlNullString:swself.itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:1 loadMore:NO];
                 }
                     break;
                 case 1: // 查看带有图片的评论列表
                 {
                     swself->_filterType = HSCommentImgType;
-                    [self commentImgListRequestWithItemid:[HSPublic controlNullString:_itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:1];
+                    [self commentImgListRequestWithItemid:[HSPublic controlNullString:_itemID] size:kSizeNum key:[HSPublic getIPAddress:YES] page:1 loadMore:NO];
                 }
                     break;
                     
                 default:
                     break;
             }
+            
+            // 切换就刷新
+            [swself->_commentTableView reloadSections:[[NSIndexSet alloc ] initWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
         };
         
         return cell;
-
     }
     
 }
 
 // 去除左边分隔符15 像素
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-
 {
     
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -374,22 +527,31 @@ static NSString *const kCellIndentifierSection0 = @"kCellIndentifierSection0";
     }
     else if (indexPath.section == 2)
     {
-        if (_holderItemCell == nil) {
-            _holderItemCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommentItemTableViewCell class])];
-        }
         
-        _holderItemCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(_holderItemCell.bounds));
-        HSCommentItemModel *itemModel = _commentArray[indexPath.row];
-        [_holderItemCell setUpWithItemModel:itemModel];
+        if (_filterType == HSCommentTotalType) {
+            if (_holderItemCell == nil) {
+                _holderItemCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommentItemTableViewCell class])];
+            }
+            
+            _holderItemCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(_holderItemCell.bounds));
+            HSCommentItemModel *itemModel = _commentArray[indexPath.row];
+            [_holderItemCell setUpWithItemModel:itemModel];
+            
+            [_holderItemCell setNeedsLayout];
+            [_holderItemCell layoutIfNeeded];
+            
+            // Get the actual height required for the cell
+            CGFloat height = [_holderItemCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+            
+            hei = height + 1;
+            NSLog(@"hei=%f",height);
 
-        [_holderItemCell setNeedsLayout];
-        [_holderItemCell layoutIfNeeded];
-        
-        // Get the actual height required for the cell
-        CGFloat height = [_holderItemCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        
-        hei = height + 1;
-        NSLog(@"hei=%f",height);
+        }
+        else
+        {
+            HSCommentItemModel *itemModel = _commentImgArray[indexPath.row];
+            hei = [HSCommentImgTableViewCell cellHeightWithImgCount:itemModel.list.count cellWidth:CGRectGetWidth(_commentTableView.frame)];
+        }
     }
     
     return hei;

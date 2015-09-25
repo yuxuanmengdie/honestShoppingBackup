@@ -7,6 +7,7 @@
 //
 
 #import "HSShiquViewController.h"
+#import "HSCommodityDetailViewController.h"
 #import "MJRefresh.h"
 #import "HSUserInfoModel.h"
 
@@ -20,7 +21,7 @@
 
 @implementation HSShiquViewController
 
-static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g=home&m=Cxggs&a=pllist&wzid=144&username=";
+//static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g=home&m=Cxggs&a=pllist&wzid=144&username=";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +34,7 @@ static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g
 {
     [super viewDidAppear:animated];
     
-    if (_lastURL != nil && [_lastURL.absoluteString containsString:kShiquURL]) { // 在食趣的主页时，每次出现刷新
+    if (_lastURL != nil && [_lastURL.absoluteString hasPrefix:kShiquURL]) { // 在食趣的主页时，每次出现刷新
         NSLog(@"qq");
         [self.webView.scrollView.header beginRefreshing];
     }
@@ -61,7 +62,7 @@ static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g
 
 - (NSURLRequest *)loadRequest
 {
-    NSURL *url = (_webView.request.URL != nil && ![_webView.request.URL.absoluteString containsString:kShiquURL]) ? _webView.request.URL : [NSURL URLWithString:[self fullURL]];
+    NSURL *url = (_webView.request.URL != nil && ![_webView.request.URL.absoluteString hasPrefix:kShiquURL]) ? _webView.request.URL : [NSURL URLWithString:[self fullURL]];
    // _lastURL = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     return request;
@@ -111,16 +112,25 @@ static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSLog(@"!!!%@",request.URL);
-    _lastURL = request.URL;
-    if ([request.URL.absoluteString hasPrefix:kShiquDiscussURL] && ![request.URL.absoluteString isEqualToString:[self fullURLWithOri:kShiquDiscussURL]]) {
-        
-        NSURL *url = [NSURL URLWithString:[self fullURLWithOri:kShiquDiscussURL]];
-//        request = [NSURLRequest requestWithURL:url];
-        [_webView loadRequest:[NSURLRequest requestWithURL:url]];
-        return  NO;
-    }
     
+    if ([self p_buyJSShcme:request.URL.absoluteString]) {
+        [self openCommodityItemWithURLStr:request.URL.absoluteString];
+        return NO;
+    }
+   
+    _lastURL = request.URL;
     return YES;
+}
+
+- (void)openCommodityItemWithURLStr:(NSString *)str
+{
+    UIStoryboard *storyBorad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    HSCommodityDetailViewController *detailVC = [storyBorad instantiateViewControllerWithIdentifier:NSStringFromClass([HSCommodityDetailViewController class])];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    HSCommodtyItemModel *itemModel = [[HSCommodtyItemModel alloc] init];
+    itemModel.id = [self p_itemIDWithStr:str];
+    detailVC.itemModel = itemModel;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark -
@@ -163,6 +173,37 @@ static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g
     }
     
     return userInfo;
+}
+
+#pragma mark - private method
+
+- (BOOL)p_buyJSShcme:(NSString *)str
+{
+    BOOL result = NO;
+    
+    if (str.length == 0) {
+        
+        return result;
+    }
+    
+    result = [str hasPrefix:kJSBuyIdentifier];
+    
+    return result;
+    
+}
+
+- (NSString *)p_itemIDWithStr:(NSString *)str
+{
+    NSString *itemID = nil;
+    
+    if ([self p_buyJSShcme:str]) {
+        
+        NSRange range = [str rangeOfString:kJSBuyIdentifier];
+        NSString *sub = [str substringFromIndex:range.location+range.length];
+        itemID = [NSString stringWithFormat:@"%d",[sub intValue]];
+    }
+    
+    return [HSPublic controlNullString:itemID];
 }
 
 

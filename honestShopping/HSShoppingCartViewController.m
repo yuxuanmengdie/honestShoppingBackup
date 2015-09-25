@@ -133,10 +133,10 @@ UITableViewDelegate>
     [_editBottomView addSubview:deleteBtn];
     deleteBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
-    UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     selectBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [selectBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
-    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [selectBtn setTitle:@"全选" forState:UIControlStateNormal];
     [_editBottomView addSubview:selectBtn];
     selectBtn.translatesAutoresizingMaskIntoConstraints = NO;

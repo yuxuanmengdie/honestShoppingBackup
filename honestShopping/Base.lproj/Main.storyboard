@@ -1113,9 +1113,6 @@
                                     <action selector="findPWAction:" destination="3B3-nD-sgH" eventType="touchUpInside" id="x7R-kW-AOS"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="hY0-tg-cGp">
-                                <rect key="frame" x="229" y="184" width="142" height="60"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g35-g6-wQC">
                                 <rect key="frame" x="172" y="465" width="256" height="30"/>
                                 <subviews>
@@ -1158,6 +1155,9 @@
                                     <constraint firstItem="t2H-q5-cSX" firstAttribute="leading" secondItem="HqH-Gx-VoR" secondAttribute="trailing" constant="8" id="vXH-Og-7tC"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="hY0-tg-cGp">
+                                <rect key="frame" x="229" y="184" width="142" height="60"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

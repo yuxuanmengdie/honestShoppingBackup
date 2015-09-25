@@ -17,6 +17,7 @@
 #import "HSCommodityItemTopBannerView.h"
 #import "UIView+HSLayout.h"
 #import "HMSegmentedControl.h"
+#import "HSSegmentControlView.h"
 
 #import "HSCommodityItemDetailPicModel.h"
 #import "HSUserInfoModel.h"
@@ -27,26 +28,41 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
 #import "WXApi.h"
+#import "MJRefresh.h"
 
 @interface HSCommodityDetailViewController ()<UITableViewDataSource,
 UITableViewDelegate,UMSocialUIDelegate>
 {
     HSCommodityItemDetailPicModel *_detailPicModel;
     
-     NSMutableDictionary *_imageSizeDic;
+     NSMutableDictionary *_itemImageSizeDic;
     
     AFHTTPRequestOperationManager *_operationManager;
     
     HSCommodityItemTopBannerView *_placeheadView;
     
-    HMSegmentedControl *_segmentControl;
+    HSSegmentControlView *_segmentControl;
     
     UIScrollView *_contentScrollView;
     
+    UIScrollView *_segmentSrcollView;
+    
     HSCommentListViewController *_commentVC;
+    
+    // 约束
+    NSLayoutConstraint *_infoTopConstraint;
+    
+    NSLayoutConstraint *_infoBottomConstraint;
+    
+    NSLayoutConstraint *_contentScrollTopContraint;
+    
+    NSLayoutConstraint *_contentScrollBottomContrait;
+    
 }
 
 @property (strong, nonatomic) UITableView *detailTableView;
+
+@property (strong, nonatomic) UITableView *infoTableView;
 
 @property (weak, nonatomic) IBOutlet HSBuyNumView *buyNumView;
 
@@ -57,16 +73,18 @@ UITableViewDelegate,UMSocialUIDelegate>
 
 @implementation HSCommodityDetailViewController
 
-///顶部的轮播图放到
-static const int kTopExistCellNum = 1;
+static const float kSegmentHei = 40;
 
 static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
 - (void)dealloc
 {
     [_detailTableView endUpdates];
+    [_infoTableView endUpdates];
     _detailTableView.dataSource = nil;
     _detailTableView.delegate = nil;
+    _infoTableView.dataSource = nil;
+    _infoTableView.dataSource = nil;
     _detailTableView = nil;
     _operationManager = nil;
     [[_operationManager operationQueue] cancelAllOperations];
@@ -78,10 +96,11 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _imageSizeDic = [[NSMutableDictionary alloc] init];
+    _itemImageSizeDic = [[NSMutableDictionary alloc] init];
     _buyNumView.hidden = YES;
     self.title = @"商品详情";
    
+    [self infoTableViewInit];
     [self segmentControlInit];
     [self contentInit];
 
@@ -91,10 +110,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [self buyViewBlock];
     
     [_detailTableView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommodityDetailTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([HSCommodityDetailTableViewCell class])];
-    [_detailTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTopCellIndentifier];
+    [_infoTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTopCellIndentifier];
     _detailTableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    _infoTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     [self.view bringSubviewToFront:_buyNumView];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -111,55 +132,87 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     
 }
 
+- (void)infoTableViewInit
+{
+    _infoTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _infoTableView.backgroundColor = ColorRGB(244, 244, 244);
+    [self.view addSubview:_infoTableView];
+    _infoTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [_infoTableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadToDetail)];
+    [_infoTableView.gifFooter setTitle:@"拖动查看商品详情" forState:MJRefreshFooterStateIdle];
+    [_infoTableView.gifFooter setTitle:@"释放查看商品详情" forState:MJRefreshFooterStateRefreshing];
+    
+    id top = self.topLayoutGuide;
+    _buyNumView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_infoTableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_infoTableView)]];
+    _infoTopConstraint = [NSLayoutConstraint constraintWithItem:_infoTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:top attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+     _infoBottomConstraint = [NSLayoutConstraint constraintWithItem:_buyNumView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_infoTableView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    
+    [self.view addConstraints:@[_infoTopConstraint,_infoBottomConstraint]];
+    
+}
+
 - (void)segmentControlInit
 {
-    HMSegmentedControl *segmentedControl3 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"详情", @"评价"]];
+    HSSegmentControlView *segmentedControl3 = [[HSSegmentControlView alloc] initWithSectionTitles:@[@"详情", @"评价"]];
     _segmentControl = segmentedControl3;
-    
+    _segmentControl.backgroundColor = [UIColor redColor];
     __weak typeof(self) wself = self;
-    [segmentedControl3 setIndexChangeBlock:^(NSInteger index) {
+    [segmentedControl3 setActionBlock:^(NSUInteger index) {
         NSLog(@"Selected index %ld (via block)", (long)index);
         __strong typeof(wself) swself = wself;
         
         if (index == 0) {
-            [swself->_contentScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [swself->_segmentSrcollView setContentOffset:CGPointMake(0, 0) animated:YES];
             
         }
         else
         {
-            [swself->_contentScrollView setContentOffset:CGPointMake(CGRectGetWidth(swself->_contentScrollView.frame), 0) animated:YES];
+            [swself->_segmentSrcollView setContentOffset:CGPointMake(CGRectGetWidth(swself->_segmentSrcollView.frame), 0) animated:YES];
         }
     }];
-    segmentedControl3.selectionIndicatorHeight = 1.5f;
-    segmentedControl3.backgroundColor = [UIColor whiteColor];
-    segmentedControl3.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:16]};
-    segmentedControl3.selectionIndicatorColor = kAPPLightGreenColor;
-    segmentedControl3.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    segmentedControl3.selectedSegmentIndex = 0;
-    segmentedControl3.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    segmentedControl3.shouldAnimateUserSelection = NO;
-    [self.view addSubview:segmentedControl3];
-    _segmentControl.translatesAutoresizingMaskIntoConstraints = NO;
+    segmentedControl3.selectedIndicatorColor = kAPPLightGreenColor;
+    segmentedControl3.normalIndicatorColor = [UIColor lightGrayColor];
     
-    id top = self.topLayoutGuide;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_segmentControl]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[top][_segmentControl(40)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl,top)]];
+    [segmentedControl3 setSelctedIndex:0];
     
 }
 
 - (void)contentInit
 {
+    _buyNumView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view layoutIfNeeded];
+    float hei = CGRectGetMinY(_buyNumView.frame);
     _contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    _contentScrollView.backgroundColor = [UIColor redColor];
-    _contentScrollView.alwaysBounceHorizontal = YES;
+    _contentScrollView.alwaysBounceHorizontal = NO;
     _contentScrollView.showsHorizontalScrollIndicator = NO;
-    _contentScrollView.scrollEnabled = NO;
+    _contentScrollView.hidden = YES;
     [self.view addSubview:_contentScrollView];
     _contentScrollView.translatesAutoresizingMaskIntoConstraints = NO;
     
+    _contentScrollView.backgroundColor = ColorRGB(244, 244, 244);
+    [_contentScrollView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadToInfo)];
+    [_contentScrollView.gifHeader setTitle:@"拖动查看商品详情" forState:MJRefreshHeaderStateIdle];
+    [_contentScrollView.gifHeader setTitle:@"松开查看商品详情" forState:MJRefreshHeaderStatePulling];
+    [_contentScrollView.gifHeader setTitle:@"松开查看商品详情" forState:MJRefreshHeaderStateRefreshing];
+    _contentScrollView.gifHeader.updatedTimeHidden = YES;
+    
+    _segmentSrcollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    _segmentSrcollView.alwaysBounceHorizontal = NO;
+    //_segmentSrcollView.bounces = NO;
+    _segmentSrcollView.showsHorizontalScrollIndicator = NO;
+    _segmentSrcollView.showsVerticalScrollIndicator = NO;
+    _segmentSrcollView.scrollEnabled = YES;
+    _segmentSrcollView.pagingEnabled = YES;
+    _segmentSrcollView.delegate = self;
+    [_contentScrollView addSubview:_segmentSrcollView];
+    _segmentSrcollView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     _detailTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _detailTableView.backgroundColor = [UIColor whiteColor];
-    [_contentScrollView addSubview:_detailTableView];
+    [_segmentSrcollView addSubview:_detailTableView];
     _detailTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -167,18 +220,37 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     _commentVC.itemID = _itemModel.id;
     [self addChildViewController:_commentVC];
     [_commentVC didMoveToParentViewController:self];
-    [_contentScrollView addSubview:_commentVC.view];
+    [_segmentSrcollView addSubview:_commentVC.view];
     _commentVC.view.translatesAutoresizingMaskIntoConstraints = NO;
     
-     UIView *tmpView = _commentVC.view;
-    [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_detailTableView(==tmpView)][tmpView]|" options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+    [_contentScrollView addSubview:_segmentControl];
+    _segmentControl.translatesAutoresizingMaskIntoConstraints = NO;
+
+
+    UIView *tmpView = _commentVC.view;
+    // _segmentControl 的约束
+    [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_segmentControl]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl)]];
+    [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_segmentControl(40)][_segmentSrcollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentControl,_segmentSrcollView)]];
+    [_contentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:_segmentControl attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
     
-     [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_detailTableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+    // commentVC.view  和 detailTableViw的约束
+    [_segmentSrcollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_detailTableView(==tmpView)][tmpView]|" options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+     [_segmentSrcollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_detailTableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailTableView,tmpView)]];
+    [_segmentSrcollView addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_segmentSrcollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    [_segmentSrcollView addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_segmentSrcollView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
     
+    //_segmentSrcollView的约束
+    [_contentScrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_segmentSrcollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_segmentSrcollView)]];
+    [_contentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:_segmentSrcollView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:-kSegmentHei]];
+    [_contentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:_segmentSrcollView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    
+    // _contontView 约束
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentScrollView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_contentScrollView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_segmentControl][_contentScrollView][_buyNumView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_contentScrollView,_segmentControl,_buyNumView)]];
-    [_contentScrollView addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_detailTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_contentScrollView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]];
+
+    _contentScrollTopContraint = [NSLayoutConstraint constraintWithItem:_contentScrollView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:hei];
+    _contentScrollBottomContrait = [NSLayoutConstraint constraintWithItem:_contentScrollView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_buyNumView attribute:NSLayoutAttributeTop multiplier:1.0 constant:hei];
+    [self.view addConstraints:@[_contentScrollTopContraint,_contentScrollBottomContrait]];
+
 }
 
 #pragma  mark - 构建navBar 的rightItems
@@ -272,6 +344,51 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     HSUserInfoModel *infoModel = [[HSUserInfoModel alloc] initWithDictionary:[HSPublic userInfoFromPlist] error:nil];
     
     [self collectItemRequestWithID:[HSPublic controlNullString:_detailPicModel.id] uid:[HSPublic controlNullString:infoModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+    
+}
+
+#pragma mark - 下拉到详细的
+- (void)loadToDetail
+{
+    [_infoTableView.gifFooter endRefreshing];
+    
+    [self.view layoutIfNeeded];
+    float hei = CGRectGetMinY(_buyNumView.frame);
+    _infoTopConstraint.constant = -hei;
+    _infoBottomConstraint.constant = -hei;
+    _contentScrollTopContraint.constant = 0;
+    _contentScrollBottomContrait.constant = 0;
+    [self.view updateConstraintsIfNeeded];
+    _infoTableView.hidden = NO;
+    _contentScrollView.hidden = NO;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        _infoTableView.hidden = YES;
+        _contentScrollView.hidden = NO;
+    }];
+    
+}
+
+- (void)loadToInfo
+{
+    [_contentScrollView.gifHeader endRefreshing];
+    
+    [self.view layoutIfNeeded];
+    float hei = CGRectGetMinY(_buyNumView.frame);
+    _infoTopConstraint.constant = 0;
+    _infoBottomConstraint.constant = 0;
+    _contentScrollTopContraint.constant = hei;
+    _contentScrollBottomContrait.constant = hei;
+    [self.view updateConstraintsIfNeeded];
+    _contentScrollView.hidden = NO;
+    _infoTableView.hidden = NO;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        _infoTableView.hidden = NO;
+        _contentScrollView.hidden = YES;
+    }];
     
 }
 
@@ -372,7 +489,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             return ;
         }
         
-        NSLog(@"response=%@",operation.responseString);
+//        NSLog(@"response=%@",operation.responseString);
         NSString *str = (NSString *)operation.responseString;
         NSString *result = str;
         
@@ -398,9 +515,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             }
             
             swself.buyNumView.hidden = NO;
+            
+            swself.infoTableView.dataSource = swself;
+            swself.infoTableView.delegate = swself;
+            [swself.infoTableView reloadData];
             swself->_detailTableView.dataSource = swself;
            swself->_detailTableView.delegate = swself;
-
             [swself->_detailTableView reloadData];
             
             swself->_buyNumView.stepper.maximum = [swself->_detailPicModel.maxbuy intValue];
@@ -482,12 +602,21 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 #pragma mark tableview dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _detailPicModel.tuwen.count + kTopExistCellNum;
+    NSInteger count = 0;
+    if (tableView == _infoTableView) {
+        count = 1;
+    }
+    else
+    {
+        count = _detailPicModel.tuwen.count;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row) {// 顶部轮播图所在的tableviewcell
+    if (tableView == _infoTableView) {// 顶部轮播图所在的tableviewcell
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTopCellIndentifier forIndexPath:indexPath];
         HSCommodityItemTopBannerView *headView = (HSCommodityItemTopBannerView *)[cell.contentView viewWithTag:501];
@@ -510,8 +639,9 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             [headView sanpinImageTag:_sanpinType];
         }
         
-        [headView.infoView collcetStatus:_isCollected];
-        headView.infoView.collectButton.hidden = YES;
+        //[headView.infoView collcetStatus:_isCollected];
+        
+        //headView.infoView.collectButton.hidden = YES;
         __weak typeof(self) wself = self;
         headView.infoView.colletActionBlock = ^(UIButton *btn){
             __strong typeof(wself) swself = wself;
@@ -522,59 +652,84 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
                 return ;
             }
             
-            BOOL isSuc = [HSDBManager saveCartListWithTableName:[HSDBManager tableNameWithUid] keyID:swself->_detailPicModel.id data:[swself->_detailPicModel toDictionary]];
-            if (isSuc) {
-                [swself showHudWithText:@"添加购物车成功"];
-                swself->_isCollected = isSuc;
-                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
+            NSDictionary *dic = @{[HSPublic controlNullString:swself->_detailPicModel.id]:[NSNumber numberWithInt:(int)swself->_buyNumView.stepper.value]};
+            NSArray *arr = @[swself->_detailPicModel];
+            
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HSSubmitOrderViewController *submitVC = [storyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSSubmitOrderViewController class])];
+            submitVC.itemNumDic = dic;
+            submitVC.itemsDataArray = arr;
+            submitVC.title = @"确认订单";
+            submitVC.userInfoModel = [[HSUserInfoModel alloc] initWithDictionary:[HSPublic userInfoFromPlist] error:nil];
+            [wself.navigationController pushViewController:submitVC animated:YES];
+
+            
+//            BOOL isSuc = [HSDBManager saveCartListWithTableName:[HSDBManager tableNameWithUid] keyID:swself->_detailPicModel.id data:[swself->_detailPicModel toDictionary]];
+//            if (isSuc) {
+//                [swself showHudWithText:@"添加购物车成功"];
+//                swself->_isCollected = isSuc;
+//                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
         
         return cell;
     }
+    else
+    {
     
-    HSCommodityDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommodityDetailTableViewCell class]) forIndexPath:indexPath];
-    
-    NSString *imgPath = _detailPicModel.tuwen[indexPath.row - kTopExistCellNum];
-    cell.detailImageView.image = kPlaceholderImage;
-    [cell.detailImageView sd_setImageWithURL:[NSURL URLWithString:[self p_introImgFullUrl:imgPath]]  placeholderImage:kPlaceholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (image) {
-            // do something with image
-            NSValue *imgSize =  [NSValue valueWithCGSize:image.size];
-            NSDictionary *dic = [_imageSizeDic objectForKey:[self p_keyFromIndex:indexPath]];
-            if (dic != nil ) {
-                NSURL *imgURL = dic[kImageURLKey];
-                NSValue *sizeValue = dic[kImageSizeKey];
-                if ([imgURL isEqual:imageURL] && [sizeValue isEqual:imgSize]) {
-                    return ;
+        HSCommodityDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSCommodityDetailTableViewCell class]) forIndexPath:indexPath];
+        
+        NSString *imgPath = _detailPicModel.tuwen[indexPath.row];
+        //cell.detailImageView.image = kPlaceholderImage;
+        
+        __weak typeof(self) wself = self;
+        NSIndexPath *tmp = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+        [cell.detailImageView sd_setImageWithURL:[NSURL URLWithString:[self p_introImgFullUrl:imgPath]]  placeholderImage:kPlaceholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            __strong typeof(wself) swself = wself;
+            if (swself == nil) {
+                return ;
+            }
+            
+            if (image) {
+                // do something with image
+                
+                NSValue *imgSize =  [NSValue valueWithCGSize:image.size];
+                NSDictionary *dic = [swself->_itemImageSizeDic objectForKey:[swself p_keyFromIndex:tmp]];
+                if (dic != nil ) {
+                    NSURL *imgURL = dic[kImageURLKey];
+                    NSValue *sizeValue = dic[kImageSizeKey];
+                    if ([imgURL isEqual:imageURL] && [sizeValue isEqual:imgSize]) {
+                        return ;
+                    }
                 }
+                
+                NSDictionary *tmpDic = @{kImageSizeKey:imgSize,
+                                         kImageURLKey:imageURL};
+                
+                [swself->_itemImageSizeDic setObject:tmpDic forKey:[swself p_keyFromIndex:tmp]];
+                
+                if (swself->_detailTableView.dataSource != nil) {
+                    NSLog(@"????%@",[swself p_keyFromIndex:tmp]);
+                    [tableView reloadData];
+                }
+                
             }
             
-            NSDictionary *tmpDic = @{kImageSizeKey:imgSize,
-                                     kImageURLKey:imageURL};
-            
-            [_imageSizeDic setObject:tmpDic forKey:[self p_keyFromIndex:indexPath]];
-            
-            if (tableView.dataSource != nil) {
-                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic ];
-            }
-            
-        }
-
-    }];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+        }];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%s",__func__);
     CGFloat height = 200.0;
 
     
-    if (0 == indexPath.row) {
+    if (tableView == _infoTableView) {
         
         if (_placeheadView == nil) {
            _placeheadView = [[HSCommodityItemTopBannerView alloc] initWithFrame:CGRectZero];
@@ -590,7 +745,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
             _placeheadView.bannerView.sourceArr = [self controlBannerArr:_detailPicModel.banner];
             [_placeheadView.bannerView iniSubviewsWithFrame:CGRectMake(0, 0,CGRectGetWidth(tableView.frame), _placeheadView.bannerHeight)];
 
-
         }
         
         _placeheadView.infoView.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.frame) - 16*2;
@@ -603,17 +757,12 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         [_placeheadView layoutIfNeeded];
         
         height = [_placeheadView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
-        //height = 317;
         
     }
-    
-    //return height;
-    
     else
     {
-       
-        NSDictionary *dic = [_imageSizeDic objectForKey:[self p_keyFromIndex:indexPath]];
-        //NSLog(@"index.row = %d sizeDic = %@ ",indexPath.row, _imageSizeDic);
+        NSDictionary *dic = [_itemImageSizeDic objectForKey:[self p_keyFromIndex:indexPath]];
+        //NSLog(@"index.row = %d sizeDic = %@ ",indexPath.row, _itemImageSizeDic);
         if (dic != nil) {
             NSValue *sizeValue = dic[kImageSizeKey];
             if (sizeValue.CGSizeValue.width != 0.0) { /// 宽度为0时 防止除0错误
@@ -623,7 +772,6 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         }
 
     }
-//     NSLog(@"index.row = %ld height   %f",(long)indexPath.row,height);
     
     return height;
      
@@ -641,6 +789,19 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [cell.contentView addConstraints:cons1];
     [cell.contentView addConstraints:cons2];
     
+}
+
+
+#pragma mark - scrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _segmentSrcollView) {
+        
+        CGPoint point = scrollView.contentOffset;
+        NSLog(@"%f,%f",point.x,point.y);
+        [_segmentControl indicatorLocation:point.x/(float)scrollView.contentSize.width];
+
+    }
 }
 
 #pragma mark -
@@ -699,9 +860,9 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 {
     if ([keyPath isEqualToString:@"isCollected"]) {
         
-       NSNumber *tmp = change[NSKeyValueChangeNewKey];
+       //NSNumber *tmp = change[NSKeyValueChangeNewKey];
         
-        [_buyNumView collectTitleWithStatus:[tmp boolValue]];
+        [_buyNumView collectTitleWithStatus:_isCollected];
     }
 }
 

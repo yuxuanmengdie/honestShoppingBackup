@@ -227,10 +227,14 @@ static NSString *const kPostJsonComment = @"comment";
 /// banner 图片前缀路径
 #define kBannerImageHeaderURL  [NSString stringWithFormat:@"%@%@",kURLHeader,@"/data/upload/advert/"]
 /// 普通图片路径
-#define kImageHeaderURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/data/upload/item/"]//@"http://203.192.7.23/data/upload/item/"
+#define kImageHeaderURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/data/upload/item/"]
 /// 优惠券 前缀路径
 #define kCoupImageHeaderURL [NSString stringWithFormat:@"%@%@",kURLHeader,@"/data/upload/coup/"]
+/// 评论 comment 图片前缀路径
+#define kCommentImageHeaderURL  [NSString stringWithFormat:@"%@%@",kURLHeader,@"/data/upload/comment/"]
 
+#pragma mark - 网页购买商品的标识
+static NSString *const  kJSBuyIdentifier = @"http://fxciosbuy/?id=";
 
 #pragma mark -
 #pragma mark userdefault中保存用户是否登录 的key

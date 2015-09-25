@@ -233,29 +233,27 @@ UITableViewDelegate>
 
     if (tableView == _unfinishedTableView) {
         model = _unfinishedDataArray[indexPath.row];
-//        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        HSPayOrderViewController *pay = [stroyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSPayOrderViewController class])];
-//        pay.hidesBottomBarWhenPushed = YES;
-//        pay.title = @"支付订单";
-//        pay.userInfoModel = _userInfoModel;
-//        pay.orderID = model.orderId;
-//        [self.navigationController pushViewController:pay animated:YES];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HSPayOrderViewController *pay = [stroyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSPayOrderViewController class])];
+        pay.hidesBottomBarWhenPushed = YES;
+        pay.title = @"支付订单";
+        pay.userInfoModel = _userInfoModel;
+        pay.orderID = model.orderId;
+        [self.navigationController pushViewController:pay animated:YES];
 
     }
     else
     {
         model = _finishedDataArray[indexPath.row];
-        
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        HSSubmitCommentItemViewController *submitVC = [stroyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSSubmitCommentItemViewController class])];
+        submitVC.hidesBottomBarWhenPushed = YES;
+        submitVC.title = @"待评价商品";
+        submitVC.userInfoModel = _userInfoModel;
+        submitVC.orderID = model.orderId;
+        [self.navigationController pushViewController:submitVC animated:YES];
        
     }
-    
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    HSSubmitCommentItemViewController *submitVC = [stroyBoard instantiateViewControllerWithIdentifier:NSStringFromClass([HSSubmitCommentItemViewController class])];
-    submitVC.hidesBottomBarWhenPushed = YES;
-    submitVC.title = @"待评价商品";
-    submitVC.userInfoModel = _userInfoModel;
-    submitVC.orderID = model.orderId;
-    [self.navigationController pushViewController:submitVC animated:YES];
     
 }
 

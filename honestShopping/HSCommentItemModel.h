@@ -34,6 +34,8 @@
 
 @property (nonatomic, copy) NSString *status;
 
+@property (nonatomic, strong) NSArray *list;
+
 @end
 
 /*
@@ -49,4 +51,32 @@
  "url":null,
  "ordid":null,
  "status":null
+*/
+
+// img
+/*
+ {
+ "currentPage":1,
+ "totalPage":1,
+ "total":"5",
+ "comment_list":[
+ {
+ "id":"73",
+ "item_id":"479",
+ "uid":"14167",
+ "uname":"18655061482",
+ "info":"\u597d\u5403\u4e86",
+ "add_time":"1442935765",
+ "star":"5",
+ "com_id":"73",
+ "url":"1509\/22\/560173d592ceb.jpg",
+ "ordid":"255",
+ "status":"1",
+ "list":[
+ "1509\/22\/560173d592ceb_b.jpg"
+ ]
+ }
+ ]
+ }
+ 
 */

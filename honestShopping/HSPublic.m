@@ -130,6 +130,7 @@
     UIImage* resultImage =[UIImage imageWithCGImage:newCGImage];
     
     CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
     CGImageRelease(newCGImage);
     
     return  resultImage;

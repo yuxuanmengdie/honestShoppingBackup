@@ -21,8 +21,7 @@
     self.layer.cornerRadius = 2;
     self.layer.borderColor = kAPPTintColor.CGColor;
     self.layer.borderWidth = 0.5;
-//    NSLog(@"%s %@",__func__,NSStringFromCGSize(_imgView.frame.size));
-//    _imgView.image = [HSPublic drawInRectImage:_imgView.image size:_imgView.frame.size];
+
 }
 
 
@@ -32,7 +31,6 @@
     
     _priceLabel.text = [NSString stringWithFormat:@"%@元",[HSPublic controlNullString:itemModel.price]];
     _priceLabel.textColor = [UIColor redColor];
-//    _oldPricelabel.text = [NSString stringWithFormat:@"原价%@元",[HSPublic controlNullString:itemModel.info]];
     _oldPricelabel.text = [HSPublic controlNullString:nil];
     _oldPricelabel.textColor = [UIColor grayColor];
     _oldPricelabel.strikeThroughEnabled = YES;

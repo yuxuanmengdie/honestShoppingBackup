@@ -26,7 +26,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="6bh-WM-lkp" customClass="HCSStarRatingView">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" horizontalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="6bh-WM-lkp" customClass="HCSStarRatingView">
                         <rect key="frame" x="237" y="9" width="75" height="15"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -66,6 +66,7 @@
                     <constraint firstAttribute="bottom" secondItem="yQE-8o-noO" secondAttribute="bottom" priority="999" constant="8" id="Cqf-E4-Pox"/>
                     <constraint firstItem="6bh-WM-lkp" firstAttribute="centerY" secondItem="eqv-9I-aBe" secondAttribute="centerY" id="NHe-AZ-RF8"/>
                     <constraint firstAttribute="trailing" secondItem="6bh-WM-lkp" secondAttribute="trailing" constant="8" id="RXC-OP-uef"/>
+                    <constraint firstItem="6bh-WM-lkp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eqv-9I-aBe" secondAttribute="trailing" constant="8" id="ZKd-AA-trR"/>
                     <constraint firstItem="6bh-WM-lkp" firstAttribute="trailing" secondItem="Z7u-3J-t6R" secondAttribute="trailing" id="rqA-9m-Lt6"/>
                     <constraint firstItem="Z7u-3J-t6R" firstAttribute="leading" secondItem="eqv-9I-aBe" secondAttribute="leading" id="uQR-hG-jSp"/>
                 </constraints>

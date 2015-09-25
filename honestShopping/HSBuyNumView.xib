@@ -84,12 +84,13 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Va6-0M-eXB">
-                    <rect key="frame" x="4" y="1" width="60" height="60"/>
+                    <rect key="frame" x="4" y="-9" width="70" height="70"/>
                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="KwF-Tp-CwO"/>
-                        <constraint firstAttribute="height" constant="60" id="dOH-ud-9go"/>
+                        <constraint firstAttribute="width" constant="70" id="KwF-Tp-CwO"/>
+                        <constraint firstAttribute="height" constant="70" id="dOH-ud-9go"/>
                     </constraints>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="-2" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="icon_tabbar3_unsel">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
