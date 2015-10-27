@@ -58,6 +58,9 @@ UITableViewDelegate,UMSocialUIDelegate>
     
     NSLayoutConstraint *_contentScrollBottomContrait;
     
+    // 判断是否在添加或者取消关注
+    BOOL _isFavoriteLoading;
+    
 }
 
 @property (strong, nonatomic) UITableView *detailTableView;
@@ -97,6 +100,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _itemImageSizeDic = [[NSMutableDictionary alloc] init];
+    _isFavoriteLoading = NO;
     _buyNumView.hidden = YES;
     self.title = @"商品详情";
    
@@ -264,7 +268,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     }
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:img forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addToFavorite) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(favoriteHandle) forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     
@@ -332,8 +336,8 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 
 }
 
-// 添加到 关注
-- (void)addToFavorite
+// 添加h或者删除到关注
+- (void)favoriteHandle
 {
     if (![HSPublic isLoginInStatus]) {
         [self showHudWithText:@"请先登录"];
@@ -341,9 +345,21 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         return ;
     }
     
+    if (_isFavoriteLoading) { // 还在请求中 直接返回。
+        return;
+    }
+    
     HSUserInfoModel *infoModel = [[HSUserInfoModel alloc] initWithDictionary:[HSPublic userInfoFromPlist] error:nil];
     
-    [self collectItemRequestWithID:[HSPublic controlNullString:_detailPicModel.id] uid:[HSPublic controlNullString:infoModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+     BOOL isCare = [HSDBManager selectFavoritetemWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id] == nil ? NO : YES;
+    
+    if (isCare) { // 已收藏就 发送取消
+        [self delFavoriteReqeust:[HSPublic controlNullString:infoModel.id] itemId:[HSPublic controlNullString:_detailPicModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+    }
+    else
+    {
+        [self collectItemRequestWithID:[HSPublic controlNullString:_detailPicModel.id] uid:[HSPublic controlNullString:infoModel.id] sessionCode:[HSPublic controlNullString:infoModel.sessionCode]];
+    }
     
 }
 
@@ -534,7 +550,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 #pragma mark  添加关注
 - (void)collectItemRequestWithID:(NSString *)itemID uid:(NSString *)uid sessionCode:(NSString *)sessionCode
 {
-   
+    _isFavoriteLoading = YES;
     NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]],
                                     kPostJsonUid:uid,
                                     kPostJsonItemid:itemID,
@@ -549,7 +565,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%s failed\n%@",__func__,operation.responseString);
-        [self hiddenHudLoading];
+        _isFavoriteLoading = NO;
         if (operation.responseData == nil) {
             [self showHudWithText:@"关注失败"];
             return ;
@@ -568,14 +584,14 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
         if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
             NSDictionary *tmpDic = (NSDictionary *)json;
             BOOL isSuccess = [tmpDic[kPostJsonStatus] boolValue];
-            _buyNumView.collectBtn.selected = YES;
+            //_buyNumView.collectBtn.selected = YES;
             if (isSuccess) {
                 [self showHudWithText:@"关注成功"];
                 [HSDBManager saveFavoriteWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id];
             }
             else
             {
-                 [self showHudWithText:@"已关注"];
+                [self showHudWithText:@"已关注"];
                 [HSDBManager saveFavoriteWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:_itemModel.id];
                 
             }
@@ -589,6 +605,60 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
     }];
 
 }
+
+#pragma mark -
+#pragma mark 取消关注
+- (void)delFavoriteReqeust:(NSString *)uid itemId:(NSString *)itemId sessionCode:(NSString *)sessionCode
+{
+    _isFavoriteLoading = YES;
+    
+    NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]],
+                                    kPostJsonUid:uid,
+                                    kPostJsonSessionCode:sessionCode,
+                                    kPostJsonItemid:itemId
+                                    };
+    [self.httpRequestOperationManager POST:kDelFavoriteURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) { /// 失败
+        [self hiddenHudLoading];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%s failed\n%@",__func__,operation.responseString);
+        _isFavoriteLoading = NO;
+        if (operation.responseData == nil) {
+            [self showHudWithText:@"取消失败"];
+            return ;
+        }
+        NSError *jsonError = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:&jsonError];
+        
+        if ([HSPublic isErrorCode:json error:jsonError]) { /// 有错误码
+            NSString *errorMsg = [HSPublic errorMsgWithJson:json error:jsonError];
+            if (errorMsg.length > 0) {
+                [self showHudWithText:errorMsg];
+            }
+            return;
+        }
+        
+        if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *jsonDic = (NSDictionary *)json;
+            
+            NSNumber *status = jsonDic[kPostJsonStatus];
+            
+            if (status != nil && [status boolValue]) {
+                [self showHudWithText:@"取消成功"];
+                [HSDBManager deleteFavoriteItemWithTableName:[HSDBManager tableNameFavoriteWithUid] keyID:[HSPublic controlNullString:itemId]];
+               
+            }
+            else
+            {
+                [self showHudWithText:@"已取消"];
+            }
+            [self rightNavItems];
+            
+        }
+    }];
+    
+}
+
+
 
 #pragma mark -
 #pragma mark  重新加载

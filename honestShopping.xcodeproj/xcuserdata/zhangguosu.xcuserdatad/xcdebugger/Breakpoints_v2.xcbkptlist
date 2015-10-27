@@ -10,44 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSMainPageViewController.m"
-            timestampString = "456981911.296188"
+            timestampString = "467556625.378661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-sanpinLayout"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "honestShopping/HSMainPageViewController.m"
-            timestampString = "460444694.151178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "573"
-            endingLineNumber = "573"
-            landmarkName = "-GetItemsWithCid:size:key:page:index:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "honestShopping/HSMainPageViewController.m"
-            timestampString = "460444694.151178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
-            landmarkName = "-GetItemsWithCid:size:key:page:index:"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "464510365.594695"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678"
+            startingLineNumber = "680"
+            endingLineNumber = "680"
             landmarkName = "-collectionView:layout:referenceSizeForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "-requestDetailByItemID:"
             landmarkType = "5">
             <Locations>
@@ -120,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "-requestDetailByItemID:"
             landmarkType = "5">
             <Locations>
@@ -166,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
             landmarkName = "@implementation HSCommodityDetailViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -182,11 +150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464846682.562474"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -198,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "489"
-            endingLineNumber = "489"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
             landmarkName = "-requestDetailByItemID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -214,13 +182,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464862001.134087"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "780"
-            endingLineNumber = "780"
-            landmarkName = "@implementation HSCommodityDetailViewController"
-            landmarkType = "3">
+            startingLineNumber = "798"
+            endingLineNumber = "798"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -272,11 +240,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "-buyViewBlock"
             landmarkType = "5">
          </BreakpointContent>
@@ -288,11 +256,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "464510365.594695"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-scrollViewDidClickedAtPage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -320,11 +288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSShoppingCartViewController.m"
-            timestampString = "464493355.905259"
+            timestampString = "467556625.378661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
             landmarkName = "@implementation HSShoppingCartViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -336,11 +304,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSShoppingCartViewController.m"
-            timestampString = "464493355.905259"
+            timestampString = "467556625.378661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-multipleSelected"
             landmarkType = "5">
          </BreakpointContent>
@@ -352,11 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSShoppingCartViewController.m"
-            timestampString = "464493355.905259"
+            timestampString = "467556625.378661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-deleteSelectedItem"
             landmarkType = "5">
          </BreakpointContent>
@@ -383,28 +351,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "honestShopping/HSMainPageViewController.m"
-            timestampString = "460444694.151178"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
-            landmarkName = "-getBannerImages"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "464510365.594695"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -431,12 +383,12 @@
                   symbolName = "__65-[HSMineAddressViewController addressRequestWithUid:sessionCode:]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSMineAddressViewController.m"
-                  timestampString = "464859617.852667"
+                  timestampString = "467547829.899331"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
                   endingLineNumber = "82"
-                  offsetFromSymbolStart = "130">
+                  offsetFromSymbolStart = "108">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -445,12 +397,12 @@
                   symbolName = "__65-[HSMineAddressViewController addressRequestWithUid:sessionCode:]_block_invoke197"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSMineAddressViewController.m"
-                  timestampString = "464859617.852875"
+                  timestampString = "467547829.899507"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
                   endingLineNumber = "82"
-                  offsetFromSymbolStart = "86">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -509,12 +461,12 @@
                   symbolName = "-[HSEditAddressContainerTableViewController selectAddress]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSEditAddressContainerTableViewController.m"
-                  timestampString = "464859617.857302"
+                  timestampString = "467547829.901739"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "296">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -523,12 +475,12 @@
                   symbolName = "-[HSEditAddressContainerTableViewController selectAddress]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSEditAddressContainerTableViewController.m"
-                  timestampString = "464859617.857551"
+                  timestampString = "467547829.901923"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "310">
+                  offsetFromSymbolStart = "336">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -795,12 +747,12 @@
                   symbolName = "__41-[HSHomeViewController couponListRequest]_block_invoke_2"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSHomeViewController.m"
-                  timestampString = "464859617.873549"
+                  timestampString = "467547829.911176"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "240"
                   endingLineNumber = "240"
-                  offsetFromSymbolStart = "1078">
+                  offsetFromSymbolStart = "1088">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -809,12 +761,12 @@
                   symbolName = "__41-[HSHomeViewController couponListRequest]_block_invoke_2"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSHomeViewController.m"
-                  timestampString = "464859617.873742"
+                  timestampString = "467547829.911363"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "240"
                   endingLineNumber = "240"
-                  offsetFromSymbolStart = "1130">
+                  offsetFromSymbolStart = "1108">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1033,12 +985,12 @@
                   symbolName = "-[HSPayOrderViewController getOrderDetailRequest:orderID:sessionCode:]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSPayOrderViewController.m"
-                  timestampString = "464859617.906919"
+                  timestampString = "467547829.917725"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
                   endingLineNumber = "150"
-                  offsetFromSymbolStart = "481">
+                  offsetFromSymbolStart = "460">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1047,12 +999,12 @@
                   symbolName = "__70-[HSPayOrderViewController getOrderDetailRequest:orderID:sessionCode:]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSPayOrderViewController.m"
-                  timestampString = "464859617.907232"
+                  timestampString = "467547829.91788"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
                   endingLineNumber = "150"
-                  offsetFromSymbolStart = "83">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1096,11 +1048,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityViewController.m"
-            timestampString = "464510365.594695"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "-dataRequestWithWithCid:size:key:page:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1176,11 +1128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464849728.575518"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "-favoraiteNavItem"
             landmarkType = "5">
          </BreakpointContent>
@@ -1192,12 +1144,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464862001.134087"
+            timestampString = "467548211.711067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "863"
-            endingLineNumber = "863"
-            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
+            startingLineNumber = "881"
+            endingLineNumber = "881"
+            landmarkName = "-controlBannerArr:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1208,11 +1160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "honestShopping/HSCommodityDetailViewController.m"
-            timestampString = "464846682.562474"
+            timestampString = "467547144.622586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1303,12 +1255,12 @@
                   symbolName = "-[HSCommentImgTableViewCell addSubImgViewsWithList:]"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSCommentImgTableViewCell.m"
-                  timestampString = "464859617.923261"
+                  timestampString = "467547829.921618"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "1155">
+                  offsetFromSymbolStart = "820">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1317,12 +1269,12 @@
                   symbolName = "__52-[HSCommentImgTableViewCell addSubImgViewsWithList:]_block_invoke"
                   moduleName = "honestShopping"
                   urlString = "file:///Users/zhangguosu/Desktop/honestShopping/honestShopping/HSCommentImgTableViewCell.m"
-                  timestampString = "464859617.923447"
+                  timestampString = "467547829.921763"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "105">
+                  offsetFromSymbolStart = "100">
                </Location>
             </Locations>
          </BreakpointContent>

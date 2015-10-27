@@ -32,12 +32,6 @@ UISearchBarDelegate>
     /// 类别数组
     NSArray *_categariesArray;
     
-    ///轮播图 model
-    NSArray *_bannerArray;
-    
-    /// 轮播图地址
-    NSArray *_bannerImages;
-    
     /// 保存不同类别的item
     NSMutableDictionary *_cateItemsDataDic;
     
@@ -53,8 +47,6 @@ UISearchBarDelegate>
     /// 顶部滚动高度约束
     NSLayoutConstraint *_ffScrollViewHeightConstraint;
     
-//    /// 滑动内容
-//    UICollectionView *_contentCollectionView;
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *topCategariesCollectionView;
@@ -69,9 +61,6 @@ static NSString *const kCategariesCollectionViewCellIdentifier = @"CommodityCell
 
 static NSString *const kContentCollectionViewIdentifier = @"contentCollectionViewIdentifier";
 
-//static const float kFFScrollViewHeight = 200;
-//static const float kItemSize = 10;
-
 static const int kContentViewTag = 1000;
 
 
@@ -85,8 +74,6 @@ static const int kContentViewTag = 1000;
     }
     
     [self setUpNavBar];
-    //[self.navigationController.navigationBar setBarTintColor:kAPPTintColor];
-    
     
     [_topCategariesCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSCommodityCategaryCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:kCategariesCollectionViewCellIdentifier];
     _topCategariesCollectionView.delegate = self;
@@ -108,7 +95,6 @@ static const int kContentViewTag = 1000;
     _homeViewController = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([HSHomeViewController class])];
     
     [self getCommofityCategaries:nil];
-//    [self getBannerImages];
     
 }
 
@@ -152,13 +138,7 @@ static const int kContentViewTag = 1000;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-imgView.image.size.width-60, 30)]; //
     searchBar.showsCancelButton = NO;
     searchBar.delegate = self;
-//    searchBar.barTintColor = kAPPTintColor;
-//    searchBar.backgroundColor = kAPPTintColor;
-//     UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-//    searchField.layer.masksToBounds = YES;
-//    searchField.layer.borderColor = kAPPTintColor.CGColor;
-//    searchField.layer.borderWidth = 1.0;
-    searchBar.placeholder = @"输入心仪的商品";
+    searchBar.placeholder = @"诚信品牌，放心选购";
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     self.navigationItem.rightBarButtonItem = barItem;
     
@@ -439,16 +419,6 @@ static const int kContentViewTag = 1000;
 - (void)getCommofityCategaries:(NSString *)key
 {
     [self showNetLoadingView];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    //申明请求的数据是json类型
-    //    manager.requestSerializer=[AFJSONRequestSerializer serializer];
-    //    //如果报接受类型不一致请替换一致text/html或别的
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //传入的参数
-//    NSDictionary *dic = @{@"1":@"2"};
-//    NSLog(@";;;;;%@",[self dictionaryToJson:dic]);
-    //@"{\"key\":\"f528764d624db129b32c21fbca0cb8d6\"}"
     NSDictionary *parametersDic = @{@"key":[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
     [self.httpRequestOperationManager POST:kGetCateURL parameters:@{@"JsonArray":[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
@@ -493,135 +463,6 @@ static const int kContentViewTag = 1000;
         }
     }];
 
-}
-
-#pragma mark -
-#pragma mark 获取banner 图片
-- (void)getBannerImages
-{
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    //申明请求的数据是json类型
-    //    manager.requestSerializer=[AFJSONRequestSerializer serializer];
-    //    //如果报接受类型不一致请替换一致text/html或别的
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //传入的参数
-    //    NSDictionary *dic = @{@"1":@"2"};
-    //    NSLog(@";;;;;%@",[self dictionaryToJson:dic]);
-    //@"{\"key\":\"f528764d624db129b32c21fbca0cb8d6\"}"
-    NSDictionary *parametersDic = @{kPostJsonKey:[HSPublic md5Str:[HSPublic getIPAddress:YES]]};
-    [self.httpRequestOperationManager GET:kGetBannerURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        [self getBannerImages];
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"response=%@",operation.responseString);
-        
-        
-        NSString *str = (NSString *)operation.responseString;
-        if (str.length <= 1) {
-            return ;
-        }
-        NSString *result = [str substringFromIndex:1];
-        
-        NSData *data =  [result dataUsingEncoding:NSUTF8StringEncoding];
-        if (data == nil) {
-            [self getBannerImages];
-            return ;
-        }
-        NSError *jsonError = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
-        NSLog(@"!!!!%@",json);
-        if ([json isKindOfClass:[NSArray class]] && jsonError == nil) {
-            
-            NSArray *jsonArray = (NSArray *)json;
-            
-            NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
-            NSMutableArray *tmpBannner = [[NSMutableArray alloc] init];
-            [jsonArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-                
-                HSBannerModel *model = [[HSBannerModel alloc] initWithDictionary:obj error:nil];
-                NSString *fullURL = [NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,model.content];
-                [tmpBannner addObject:fullURL];
-                model.content = fullURL;
-                [tmpArray addObject:model];
-                
-            }];
-            _bannerArray = tmpArray;
-            _bannerImages = tmpBannner;
-            
-            if (_categariesArray.count > 0 && _contentCollectionView.dataSource != nil) {
-                NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
-                [_contentCollectionView reloadItemsAtIndexPaths:@[index]];
-            }
-            }
-        
-        
-    }];
-
-    
-}
-
-
-- (void)GetItemsWithCid:(NSString *)cid size:(NSUInteger)size key:(NSString *)key page:(NSUInteger)page index:(NSIndexPath *)index
-{
-
-     //{"id":155,"key":"f528764d624db129b32c21fbca0cb8d6"}
-    NSDictionary *parametersDic = @{kPostJsonKey:key,
-                                    kPostJsonCid:[NSNumber numberWithLongLong:[cid longLongValue]],
-                                    kPostJsonSize:[NSNumber numberWithInteger:size],
-                                    kPostJsonPage:[NSNumber numberWithInteger:page]};
-    
-    [self.httpRequestOperationManager POST:kGetItemsByCateURL parameters:@{kJsonArray:[HSPublic dictionaryToJson:parametersDic]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@/n %@", responseObject,[HSPublic dictionaryToJson:parametersDic]);
-        
-//        NSString *str = (NSString *)responseObject;
-//        NSData *data =  [str dataUsingEncoding:NSUTF8StringEncoding];
-//        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//        NSLog(@"!!!!%@",json);
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"response=%@",operation.responseString);
-         NSLog(@"JSON:  %@",[HSPublic dictionaryToJson:parametersDic]);
-        NSString *str = (NSString *)operation.responseString;
-        
-        NSData *data =  [str dataUsingEncoding:NSUTF8StringEncoding];
-        if (data == nil) {
-            return ;
-        }
-        NSError *jsonError = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
-        NSLog(@"!!!!%@",json);
-        
-        if ([json isKindOfClass:[NSDictionary class]] && jsonError == nil) {
-            
-            NSDictionary *jsonDic = (NSDictionary *)json;
-            HSItemPageModel *pageModel = [[HSItemPageModel alloc] initWithDictionary:jsonDic error:nil];
-            NSArray *itemList = pageModel.item_list;
-            
-            NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
-           
-            [itemList enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-                
-                HSCommodtyItemModel *itemModel = [[HSCommodtyItemModel alloc] initWithDictionary:obj error:nil];
-                [tmpArray addObject:itemModel];
-                
-                
-            }];
-            [_cateItemsDataDic setObject:tmpArray forKey:cid];
-            //[_contentCollectionView reloadItemsAtIndexPaths:@[index]];
-            [_contentCollectionView reloadData];
-           
-            
-            
-        }
-        
-        
-    }];
-
-    
 }
 
 #pragma mark - 

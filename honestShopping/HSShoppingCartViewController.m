@@ -67,8 +67,6 @@ UITableViewDelegate>
     _editBottomView.hidden = YES;
     _isEditing = NO;
     
-    
-   
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -136,7 +134,6 @@ UITableViewDelegate>
     UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     selectBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [selectBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [selectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [selectBtn setTitle:@"全选" forState:UIControlStateNormal];
     [_editBottomView addSubview:selectBtn];
     selectBtn.translatesAutoresizingMaskIntoConstraints = NO;
@@ -287,15 +284,6 @@ UITableViewDelegate>
     }
     
     [_cartArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-//        
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-//        if (_isAllSelected) {
-//            [_cartTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-//        }
-//        else
-//        {
-//             [_cartTableView deselectRowAtIndexPath:indexPath animated:NO];
-//        }
         [_seletedDic setObject:[NSNumber numberWithBool:_isAllSelected] forKey:[self keyFromItemID:obj[kPostJsonid]]];
     }];
     [_cartTableView reloadData];
@@ -504,13 +492,10 @@ UITableViewDelegate>
         HSCommodityItemDetailPicModel *picModel = [[HSCommodityItemDetailPicModel alloc] initWithDictionary:dic error:nil];
         [HSDBManager deleteItemWithTableName:[HSDBManager tableNameWithUid] keyID:picModel.id];
         
-}
+    }
     
     // 添加的操作
     if (editingStyle == UITableViewCellEditingStyleInsert) {
-        
-
-        //[_tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:(UITableViewRowAnimationRight)];
         
     }
 }

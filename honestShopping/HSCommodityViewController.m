@@ -133,11 +133,13 @@ static const int kAdsCellImageViewTag = 600;
     [_commdityCollectionView addLegendHeaderWithRefreshingBlock:^{
         __strong typeof(wself) swself = wself;
         if ([swself->_commdityCollectionView.footer isRefreshing]) {
-            [self showHudWithText:@"下拉加载中..."];
+            [self showHudWithText:@"上拉加载中..."];
             [swself->_commdityCollectionView.header endRefreshing];
             return ;
         }
         [wself reloadDataWithWithCid:[HSPublic controlNullString:swself->_cateID] size:swself->_itemsData.count key:[HSPublic md5Str:[HSPublic getIPAddress:YES]] page:1];
+        [wself adsRequestWithCid:[HSPublic controlNullString:swself->_cateID] key:[HSPublic md5Str:[HSPublic getIPAddress:YES]]];
+        
     }];
     _isAdsLoding = NO;
     
