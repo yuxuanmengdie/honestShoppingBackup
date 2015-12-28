@@ -84,6 +84,7 @@
 		F64D2DC11B1F4B5600F2BA52 /* HSMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D2DC01B1F4B5600F2BA52 /* HSMoreViewController.m */; };
 		F6558D801B033D1C00F37687 /* HSTabBarMidButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6558D7D1B033D1C00F37687 /* HSTabBarMidButton.m */; };
 		F6558D811B033D1C00F37687 /* HSTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6558D7F1B033D1C00F37687 /* HSTabBarView.m */; };
+		F656308E1C1587D600B9C892 /* HSPayMannager.m in Sources */ = {isa = PBXBuildFile; fileRef = F656308D1C1587D600B9C892 /* HSPayMannager.m */; };
 		F657F1A31AEA1FD4008B0E92 /* HSCommodityItemDetailPicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F657F1A21AEA1FD4008B0E92 /* HSCommodityItemDetailPicModel.m */; };
 		F657F1A71AEA3DEE008B0E92 /* HSItemBuyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F657F1A61AEA3DEE008B0E92 /* HSItemBuyInfoView.m */; };
 		F6583F511AEE2C91005003C8 /* HSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6583F501AEE2C91005003C8 /* HSBaseViewController.m */; };
@@ -170,6 +171,7 @@
 		F68B6ECF1ABFE10700F328EA /* HSSanpinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68B6ECE1ABFE10700F328EA /* HSSanpinViewController.m */; };
 		F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F68B6ED21ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m */; };
 		F68BD79C1AC924980075DD82 /* PKYStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = F68BD79B1AC924980075DD82 /* PKYStepper.m */; };
+		F69E5B771C00563400E58631 /* HSExpressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E5B761C00563400E58631 /* HSExpressViewController.m */; };
 		F69F9DA81BAB1761000EF600 /* HSCommentItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F9DA61BAB1761000EF600 /* HSCommentItemTableViewCell.m */; };
 		F69F9DA91BAB1761000EF600 /* HSCommentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69F9DA71BAB1761000EF600 /* HSCommentItemTableViewCell.xib */; };
 		F69F9DAD1BABB349000EF600 /* HSCommentFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F9DAB1BABB349000EF600 /* HSCommentFilterTableViewCell.m */; };
@@ -470,6 +472,8 @@
 		F6558D7D1B033D1C00F37687 /* HSTabBarMidButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTabBarMidButton.m; sourceTree = "<group>"; };
 		F6558D7E1B033D1C00F37687 /* HSTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTabBarView.h; sourceTree = "<group>"; };
 		F6558D7F1B033D1C00F37687 /* HSTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTabBarView.m; sourceTree = "<group>"; };
+		F656308C1C1587D600B9C892 /* HSPayMannager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPayMannager.h; sourceTree = "<group>"; };
+		F656308D1C1587D600B9C892 /* HSPayMannager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPayMannager.m; sourceTree = "<group>"; };
 		F657F1A11AEA1FD4008B0E92 /* HSCommodityItemDetailPicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommodityItemDetailPicModel.h; sourceTree = "<group>"; };
 		F657F1A21AEA1FD4008B0E92 /* HSCommodityItemDetailPicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommodityItemDetailPicModel.m; sourceTree = "<group>"; };
 		F657F1A51AEA3DEE008B0E92 /* HSItemBuyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItemBuyInfoView.h; sourceTree = "<group>"; };
@@ -730,6 +734,8 @@
 		F68B6ED21ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		F68BD79A1AC924980075DD82 /* PKYStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKYStepper.h; sourceTree = "<group>"; };
 		F68BD79B1AC924980075DD82 /* PKYStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKYStepper.m; sourceTree = "<group>"; };
+		F69E5B751C00563400E58631 /* HSExpressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSExpressViewController.h; sourceTree = "<group>"; };
+		F69E5B761C00563400E58631 /* HSExpressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSExpressViewController.m; sourceTree = "<group>"; };
 		F69F9DA51BAB1761000EF600 /* HSCommentItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCommentItemTableViewCell.h; sourceTree = "<group>"; };
 		F69F9DA61BAB1761000EF600 /* HSCommentItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCommentItemTableViewCell.m; sourceTree = "<group>"; };
 		F69F9DA71BAB1761000EF600 /* HSCommentItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCommentItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -1340,6 +1346,7 @@
 		F6476ADB1B130CEA00E081F1 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				F69E5B741C0055C100E58631 /* ExpressInquiry */,
 				F6476ADC1B130D4200E081F1 /* HSMineOrderViewController.h */,
 				F6476ADD1B130D4200E081F1 /* HSMineOrderViewController.m */,
 				F6476ADF1B131B5800E081F1 /* HSOrderTableViewCell.h */,
@@ -1742,6 +1749,8 @@
 				F623D9EA1AB821DB009D5ACD /* define.h */,
 				F672368F1AB7416900828EEE /* HSPublic.h */,
 				F67236901AB7416900828EEE /* HSPublic.m */,
+				F656308C1C1587D600B9C892 /* HSPayMannager.h */,
+				F656308D1C1587D600B9C892 /* HSPayMannager.m */,
 			);
 			name = define;
 			sourceTree = "<group>";
@@ -1898,6 +1907,15 @@
 				F68BD79B1AC924980075DD82 /* PKYStepper.m */,
 			);
 			path = PKYStepper;
+			sourceTree = "<group>";
+		};
+		F69E5B741C0055C100E58631 /* ExpressInquiry */ = {
+			isa = PBXGroup;
+			children = (
+				F69E5B751C00563400E58631 /* HSExpressViewController.h */,
+				F69E5B761C00563400E58631 /* HSExpressViewController.m */,
+			);
+			name = ExpressInquiry;
 			sourceTree = "<group>";
 		};
 		F6A7532F1B16075B002D065B /* Pickers */ = {
@@ -2625,6 +2643,7 @@
 				F6ADE7861BA9931B00DB0797 /* HSCommentListModel.m in Sources */,
 				F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				F672366A1AB7380F00828EEE /* SDWebImageDecoder.m in Sources */,
+				F656308E1C1587D600B9C892 /* HSPayMannager.m in Sources */,
 				F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */,
 				F672359D1AB725BB00828EEE /* HSShoppingCartViewController.m in Sources */,
 				F67236691AB7380F00828EEE /* SDWebImageCompat.m in Sources */,
@@ -2674,6 +2693,7 @@
 				F67236501AB7380F00828EEE /* IQNSArray+Sort.m in Sources */,
 				F69F9DAD1BABB349000EF600 /* HSCommentFilterTableViewCell.m in Sources */,
 				F6B1EE9D1ACA34ED0081694C /* MJRefreshLegendHeader.m in Sources */,
+				F69E5B771C00563400E58631 /* HSExpressViewController.m in Sources */,
 				F63A9A721AF2117A004E14D0 /* HSUserInfoModel.m in Sources */,
 				F67236911AB7416900828EEE /* HSPublic.m in Sources */,
 				F6B17FF81AC3DE230086AFA0 /* HSIntroViewController.m in Sources */,
@@ -2885,7 +2905,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wenjun gong (XAUV97BKJU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2913,7 +2933,7 @@
 					"$(PROJECT_DIR)/honestShopping/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f092eb0d-1850-44af-af7a-5be3e7151543";
 			};
 			name = Debug;
 		};
@@ -2922,7 +2942,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Netting Technology Co., Ltd. (QT93PG3RZA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wenjun gong (XAUV97BKJU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2950,7 +2970,7 @@
 					"$(PROJECT_DIR)/honestShopping/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f092eb0d-1850-44af-af7a-5be3e7151543";
 			};
 			name = Release;
 		};

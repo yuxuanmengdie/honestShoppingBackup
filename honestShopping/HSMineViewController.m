@@ -127,8 +127,6 @@ static const int kTakePhoneAlertTag = 701;
         [self userInfoRequest:[HSPublic controlNullString:_userInfoModel.username] phone:[HSPublic controlNullString:_userInfoModel.phone]];
     }
     
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,6 +212,7 @@ static const int kTakePhoneAlertTag = 701;
             _userInfoModel = [[HSUserInfoModel alloc] initWithDictionary:json error:nil];
             if (_userInfoModel.id.length > 0) { /// 登录后返回有数据
                 [HSPublic saveUserInfoToPlist:[_userInfoModel toDictionary]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotiKey object:nil];
             }
         }
         else
@@ -422,13 +421,6 @@ static const int kTakePhoneAlertTag = 701;
     return height;
 }
 
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return  CGSizeZero;
-//}
-
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -480,7 +472,7 @@ static const int kTakePhoneAlertTag = 701;
         [alertView show];
     }
     else if (indexPath.row == (_mineDataArray.count - 1) - 1) {  /// 打电话 应该提示
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否拨打客服电话" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否拨打客服电话4008280028" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
         alertView.tag = kTakePhoneAlertTag;
         [alertView show];
         
@@ -506,7 +498,7 @@ static const int kTakePhoneAlertTag = 701;
     if (alertView.tag == kTakePhoneAlertTag) { /// 提示打电话
         
         if (buttonIndex == 1) { // 拨打电话
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://02525326589"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://4008280028"]];
         }
 
     }
@@ -524,114 +516,4 @@ static const int kTakePhoneAlertTag = 701;
     }
 }
 
-
-
-/*
-#pragma mark - 
-#pragma mark tableView dataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger num = 0;
-    if (section != 1) {
-        num = 1;
-    }
-    else
-    {
-        num = _mineDataArray.count;
-    }
-    return num;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        HSMineTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSMineTopTableViewCell class]) forIndexPath:indexPath];
-        if ([HSPublic isLoginInStatus]) {
-            [cell welcomeText:_userInfoModel.username isLogin:YES];
-            [cell signStatus:_userInfoModel.sign];
-        }
-        else
-        {
-            [cell signStatus:NO];
-            [cell welcomeText:nil isLogin:NO];
-        }
-        
-        __weak typeof(self) wself = self;
-        cell.signBlock = ^{ /// 如果没登录  进入登录界面
-            __strong typeof(wself) swself = wself;
-            if (swself == nil) {
-                return ;
-            }
-            if (![HSPublic isLoginInStatus]){ /// 没有登录 提示登录
-                [swself pushViewControllerWithIdentifer:NSStringFromClass([HSLoginInViewController class])];
-                return;
-            }
-
-            [swself signRequestWithUid:swself->_userInfoModel.id sessionCode:swself->_userInfoModel.sessionCode];
-        };
-        
-        return cell;
-    }
-    else
-    {
-        HSMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSMineTableViewCell class]) forIndexPath:indexPath];
-        if (indexPath.section == 1) {
-            cell.mainTitleLaabel.text = _mineDataArray[indexPath.row];
-        }
-        else
-        {
-            cell.mainTitleLaabel.text = @"186-5506-1482";
-        }
-        
-        cell.iconImageView.image = [UIImage imageNamed:@"icon_star_full"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-    }
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat height = 44;
-    
-    if (indexPath.section == 0) {
-        if (_topCell == nil) {
-            _topCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HSMineTopTableViewCell class])];
-            _topCell.bounds = tableView.bounds;
-        }
-        [_topCell.contentView updateConstraintsIfNeeded];
-        [_topCell.contentView layoutIfNeeded];
-        
-        height = [_topCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    }
-    return height;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (![HSPublic isLoginInStatus]){ /// 没有登录 提示登录
-        [self pushViewControllerWithIdentifer:NSStringFromClass([HSLoginInViewController class])];
-        return;
-    }
-    
-    if (0 == indexPath.section) { // 个人信息
-        
-    }
-    else if (1 == indexPath.section) /// 订单相关
-    {
-        
-    }
-    else /// 打电话
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://18655061482"]];
-    }
-}
- */
 @end

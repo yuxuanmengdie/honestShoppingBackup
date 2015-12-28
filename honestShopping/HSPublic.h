@@ -108,10 +108,10 @@ typedef NS_ENUM(NSUInteger, HSLoginType) {
 + (NSString *)controlNullString:(NSString *)ori;
 
 /// 登录 防止sessioncode 过期
-+ (void)loginIn;
+//+ (void)loginIn;
 
 /// 定时登录 默认间隔1小时
-+ (void)timedLoginIn;
+//+ (void)timedLoginIn;
 
 /// showHud
 + (void)showHudInWindowWithText:(NSString *)text;

@@ -15,6 +15,7 @@
 #import "WXApi.h"
 #import "payRequsestHandler.h"
 #import "UMessage.h"
+#import "HSPayMannager.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -28,9 +29,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [HSPublic addSkipBackupAttributeDoc];
-    //[HSPublic timedLoginIn];
-    [UMSocialData setAppKey:kUMengAppKey];
     
+    if (![HSPublic isLoginInStatus]) { // 不在登录状态 启动未成功提交订单状态的更新
+        [[HSPayMannager sharePayMannager] startMonitoring];
+    }
+    
+    [UMSocialData setAppKey:kUMengAppKey];
     
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
     

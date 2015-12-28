@@ -256,6 +256,7 @@ static NSString *const kRemeberPWNormalImageName = @"icon_remeberPW_unsel";
                 if (_remeberPWButton.selected) {
                     
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotiKey object:nil];
                 [self backAction:nil];
             }
         }
@@ -389,6 +390,7 @@ static NSString *const kRemeberPWNormalImageName = @"icon_remeberPW_unsel";
                 if (_remeberPWButton.selected) {
                     
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotiKey object:nil];
                 [self backAction:nil];
             }
         }

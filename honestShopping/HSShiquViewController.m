@@ -21,7 +21,6 @@
 
 @implementation HSShiquViewController
 
-//static NSString *const kShiquDiscussURL = @"http://ecommerce.news.cn/index.php?g=home&m=Cxggs&a=pllist&wzid=144&username=";
 
 - (void)viewDidLoad {
     [super viewDidLoad];

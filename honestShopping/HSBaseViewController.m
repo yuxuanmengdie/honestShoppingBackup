@@ -117,7 +117,6 @@ static const int kPlaceViewTag = 5003;
     [_showMsgView addSubview:rotateView];
     [_showMsgView HS_centerXYWithSubView:rotateView];
     
-    
     [self.view bringSubviewToFront:_showMsgView];
 
 }
@@ -297,8 +296,6 @@ static const int kPlaceViewTag = 5003;
 /// pop到顶层的navigation
 - (void)popToRootNav
 {
-    
-    
     NSLog(@"nav=%@,par = %@",self.navigationController,self.parentViewController);
     
     UIViewController *main = self.navigationController.parentViewController;
@@ -310,7 +307,6 @@ static const int kPlaceViewTag = 5003;
         tabVC.tabBar.hidden = YES;
         tabView.hidden = NO;        
     }
-
     
 }
 

@@ -64,11 +64,10 @@ static const float kFFScrollViewHeight = 200;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4"];
-    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section5",@"icon_home_section6",@"icon_home_section7"];
+    _sectionImageArray = @[@"icon_home_section1",@"icon_home_section2",@"icon_home_section3",@"icon_home_section4",@"icon_home_section5",@"icon_home_section6",@"icon_home_section7",@"icon_home_section8",@"icon_home_section9"];
     
     [_homeCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSHomeCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([HSHomeCollectionViewCell class])];
-            //注册headerView Nib的view需要继承UICollectionReusableView
+    //注册headerView Nib的view需要继承UICollectionReusableView
     [_homeCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([HSBannerHeaderCollectionReusableView class]) bundle:nil] forSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader withReuseIdentifier:kHeaderIdentifier];
     [_homeCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:CHTCollectionElementKindSectionHeader withReuseIdentifier:kFFHeaderIdentifier];
 
@@ -89,7 +88,6 @@ static const float kFFScrollViewHeight = 200;
          [wself getIndexItemRequest];
     }];
     [_homeCollectionView.header beginRefreshing];
-    //[self getIndexItemRequest];
 
 }
 
@@ -97,16 +95,6 @@ static const float kFFScrollViewHeight = 200;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark -
 #pragma mark 获取banner 图片
@@ -152,7 +140,6 @@ static const float kFFScrollViewHeight = 200;
             _bannerModelsArray = tmpArray;
             _bannerImagesArray = tmpBannner;
             [_homeCollectionView reloadSections:[[NSIndexSet alloc]initWithIndex:0]];
-            //[_homeCollectionView reloadData];
         }
     }];
 }
@@ -339,8 +326,6 @@ static const float kFFScrollViewHeight = 200;
     
 }
 
-
-
 #pragma mark -
 #pragma  mark collectionView dataSource and delegate
 
@@ -400,12 +385,7 @@ static const float kFFScrollViewHeight = 200;
     else
     {
         NSInteger sum = [self p_totalNumBeforeSection:indexPath.section];
-//        for (int j=1; j<indexPath.section; j++) {
-//            sum += [collectionView numberOfItemsInSection:j];
-//        }
-        
-        //HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
-         HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
+        HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
         imgUrl = [NSString stringWithFormat:@"%@%@",kBannerImageHeaderURL,bannerModel.content];
     }
     
@@ -438,7 +418,6 @@ static const float kFFScrollViewHeight = 200;
     [cell setNeedsLayout];
     return cell;
     
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -467,7 +446,6 @@ static const float kFFScrollViewHeight = 200;
     }
     
     return size;
-    
     
 }
 
@@ -521,18 +499,6 @@ static const float kFFScrollViewHeight = 200;
     return hei;
 }
 
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    if ( section == 0) {
-//        CGSize size = CGSizeMake(CGRectGetWidth(_homeCollectionView.frame), kFFScrollViewHeight);
-//        return size;
-//    }
-//    
-//    return  CGSizeZero;
-//}
-
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -555,9 +521,7 @@ static const float kFFScrollViewHeight = 200;
            sum += [collectionView numberOfItemsInSection:j];
        }
 
-       
-       //HSBannerModel *bannerModel = _itemsDataArray[(indexPath.section-1)*[collectionView numberOfItemsInSection:indexPath.section]+indexPath.row];
-        HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
+       HSBannerModel *bannerModel = _itemsDataArray[sum+indexPath.row];
        /// 点击后委托父控制器push
        HSCommodtyItemModel *itemModel = [[HSCommodtyItemModel alloc] init];
        itemModel.id = bannerModel.desc;
@@ -571,9 +535,6 @@ static const float kFFScrollViewHeight = 200;
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-//    if ([_homeCollectionView numberOfItemsInSection:section] == 1) {
-//        return UIEdgeInsetsMake(0, 5, 0, 5);
-//    }
     return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 

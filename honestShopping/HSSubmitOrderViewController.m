@@ -119,6 +119,11 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
 
 - (IBAction)submitAction:(id)sender {
     
+    if (_addressModel == nil) { // 未选择地址
+        [self showHudWithText:@"请选择地址"];
+        return;
+    }
+    
     NSString *free = [HSPublic isAreaInJiangZheHu:_addressModel.sheng] ? @"0" : @"1";
     [self addOrderWithUid:[HSPublic controlNullString:_userInfoModel.id] couponId:[HSPublic controlNullString:_couponModel.id] username:[HSPublic controlNullString:_addressModel.consignee] addressName:@"" mobile:[HSPublic controlNullString:_addressModel.mobile] address:[NSString stringWithFormat:@"%@%@%@%@",[HSPublic controlNullString:_addressModel.sheng],[HSPublic controlNullString:_addressModel.shi],[HSPublic controlNullString:_addressModel.qu],[HSPublic controlNullString:_addressModel.address]]supportmethod:@"1" freetype:free sessionCode:[HSPublic controlNullString:_userInfoModel.sessionCode] list:[self listOrder]];
     
@@ -539,7 +544,7 @@ static NSString *const kCouponTableViewIdentifier = @"hsCouponTableViewIdentifie
             NSDictionary *tmpDic = (NSDictionary *)json;
             NSString *orderNo = tmpDic[kPostJsonOrderNo];
             if (orderNo.length > 0) {
-                 [self showHudWithText:@"订单提交成功"];
+                [self showHudWithText:@"订单提交成功"];
                 [self pushToOrderPayVC:orderNo];
                 
             }

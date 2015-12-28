@@ -522,7 +522,7 @@ static const int kUpdateOrderMaxCount = 5;
                 [self showHudInWindowWithText:@"支付成功，订单已完成!"];
                 [self popToRootNav];
             }
-            }
+        }
         else
         {
             
@@ -807,7 +807,7 @@ static const int kUpdateOrderMaxCount = 5;
 - (void)p_payFailed:(NSNotification *)noti
 {
     NSDictionary *userInfo = noti.userInfo;
-    [self alert:@"支付失败!" msg:[HSPublic controlNullString:userInfo[kHSPayResultMsg]]];
+    [self alert:@"支付失败" msg:[HSPublic controlNullString:userInfo[kHSPayResultMsg]]];
 }
 
 #pragma mark -
