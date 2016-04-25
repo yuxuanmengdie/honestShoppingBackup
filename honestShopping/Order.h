@@ -24,11 +24,9 @@
 @property(nonatomic, copy) NSString * itBPay;
 @property(nonatomic, copy) NSString * showUrl;
 
-
 @property(nonatomic, copy) NSString * rsaDate;//可选
 @property(nonatomic, copy) NSString * appID;//可选
 
 @property(nonatomic, readonly) NSMutableDictionary * extraParams;
-
 
 @end

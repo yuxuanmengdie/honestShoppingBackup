@@ -61,6 +61,7 @@
 		F62A63DC1BB120C0001EA70E /* ZLPhotoPickerGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F62A63C11BB120C0001EA70E /* ZLPhotoPickerGroupTableViewCell.m */; };
 		F62A63DD1BB120C0001EA70E /* ZLPhotoPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62A63C31BB120C0001EA70E /* ZLPhotoPickerImageView.m */; };
 		F62A63E01BB13E62001EA70E /* HSSubmitCommentItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62A63DF1BB13E62001EA70E /* HSSubmitCommentItemViewController.m */; };
+		F62FD7A01C3281E600D65008 /* HSExpressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F62FD79F1C3281E600D65008 /* HSExpressModel.m */; };
 		F63042B01B15566A007DEB94 /* HSEditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042AF1B15566A007DEB94 /* HSEditAddressViewController.m */; };
 		F63042B41B1557BF007DEB94 /* HSAddressDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B21B1557BF007DEB94 /* HSAddressDetailTableViewCell.m */; };
 		F63042B81B15677E007DEB94 /* HSEditAddressContainerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63042B71B15677E007DEB94 /* HSEditAddressContainerTableViewController.m */; };
@@ -71,6 +72,9 @@
 		F63914B31B31629200328BCE /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F63914B11B31629200328BCE /* libUMessage_Sdk_1.1.0.a */; };
 		F63915EF1AFC56F300E10C9B /* HSSanPinFitterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F63915EE1AFC56F300E10C9B /* HSSanPinFitterButton.m */; };
 		F63915F21AFC611A00E10C9B /* HSSanPinfitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63915F11AFC611A00E10C9B /* HSSanPinfitterView.m */; };
+		F639B9C51C312CE000431D04 /* HSExpressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F639B9C31C312CE000431D04 /* HSExpressTableViewCell.m */; };
+		F639B9C61C312CE000431D04 /* HSExpressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F639B9C41C312CE000431D04 /* HSExpressTableViewCell.xib */; };
+		F639B9C91C31309600431D04 /* HSExpressProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F639B9C81C31309600431D04 /* HSExpressProgressView.m */; };
 		F63A9A721AF2117A004E14D0 /* HSUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F63A9A711AF2117A004E14D0 /* HSUserInfoModel.m */; };
 		F63A9A751AF22862004E14D0 /* HSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63A9A741AF22862004E14D0 /* HSRegisterViewController.m */; };
 		F644BE0F1BB1880F0022FD01 /* ZLPhotoLib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F644BE0E1BB1880F0022FD01 /* ZLPhotoLib.bundle */; };
@@ -424,6 +428,8 @@
 		F62A63C41BB120C0001EA70E /* ZLPhotoPickerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoPickerCommon.h; sourceTree = "<group>"; };
 		F62A63DE1BB13E62001EA70E /* HSSubmitCommentItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSubmitCommentItemViewController.h; sourceTree = "<group>"; };
 		F62A63DF1BB13E62001EA70E /* HSSubmitCommentItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSubmitCommentItemViewController.m; sourceTree = "<group>"; };
+		F62FD79E1C3281E600D65008 /* HSExpressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSExpressModel.h; sourceTree = "<group>"; };
+		F62FD79F1C3281E600D65008 /* HSExpressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSExpressModel.m; sourceTree = "<group>"; };
 		F63042AE1B15566A007DEB94 /* HSEditAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEditAddressViewController.h; sourceTree = "<group>"; };
 		F63042AF1B15566A007DEB94 /* HSEditAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEditAddressViewController.m; sourceTree = "<group>"; };
 		F63042B11B1557BF007DEB94 /* HSAddressDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -444,6 +450,11 @@
 		F63915EE1AFC56F300E10C9B /* HSSanPinFitterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSanPinFitterButton.m; sourceTree = "<group>"; };
 		F63915F01AFC611A00E10C9B /* HSSanPinfitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSanPinfitterView.h; sourceTree = "<group>"; };
 		F63915F11AFC611A00E10C9B /* HSSanPinfitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSanPinfitterView.m; sourceTree = "<group>"; };
+		F639B9C21C312CE000431D04 /* HSExpressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSExpressTableViewCell.h; sourceTree = "<group>"; };
+		F639B9C31C312CE000431D04 /* HSExpressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSExpressTableViewCell.m; sourceTree = "<group>"; };
+		F639B9C41C312CE000431D04 /* HSExpressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSExpressTableViewCell.xib; sourceTree = "<group>"; };
+		F639B9C71C31309600431D04 /* HSExpressProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSExpressProgressView.h; sourceTree = "<group>"; };
+		F639B9C81C31309600431D04 /* HSExpressProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSExpressProgressView.m; sourceTree = "<group>"; };
 		F63A9A701AF2117A004E14D0 /* HSUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserInfoModel.h; sourceTree = "<group>"; };
 		F63A9A711AF2117A004E14D0 /* HSUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserInfoModel.m; sourceTree = "<group>"; };
 		F63A9A731AF22862004E14D0 /* HSRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRegisterViewController.h; sourceTree = "<group>"; };
@@ -1008,9 +1019,9 @@
 				F629FDF31AF9E59500328596 /* dbmanager */,
 				F672359A1AB723D700828EEE /* mainTabbarViewControllers */,
 				F68406411B202E15004FC6D9 /* pay */,
+				F65D476C1B185F5900A7DA5A /* base */,
 				F61F52C21AB71FF300603FBF /* AppDelegate.h */,
 				F61F52C31AB71FF300603FBF /* AppDelegate.m */,
-				F65D476C1B185F5900A7DA5A /* base */,
 				F67235A71AB7271A00828EEE /* HSMainViewController.h */,
 				F67235A81AB7271A00828EEE /* HSMainViewController.m */,
 				F6B17FF61AC3DE230086AFA0 /* HSIntroViewController.h */,
@@ -1021,8 +1032,8 @@
 				F61F52C91AB71FF300603FBF /* SecondViewController.m */,
 				F61F52CB1AB71FF400603FBF /* Main.storyboard */,
 				F64D2DC21B1F4E3E00F2BA52 /* Images.xcassets */,
-				F61B5E2C1B1C09CF005CC691 /* image */,
 				F61F52D01AB71FF400603FBF /* LaunchScreen.xib */,
+				F61B5E2C1B1C09CF005CC691 /* image */,
 				F61F52BE1AB71FF300603FBF /* Supporting Files */,
 			);
 			path = honestShopping;
@@ -1081,6 +1092,8 @@
 				F60169701B1B4D3600FC4156 /* HSCouponModel.m */,
 				F67191EC1B1CB1E000A2F413 /* HSOrderModel.h */,
 				F67191ED1B1CB1E000A2F413 /* HSOrderModel.m */,
+				F62FD79E1C3281E600D65008 /* HSExpressModel.h */,
+				F62FD79F1C3281E600D65008 /* HSExpressModel.m */,
 				F6ADE7871BA9AB8900DB0797 /* comment */,
 			);
 			name = model;
@@ -1914,6 +1927,9 @@
 			children = (
 				F69E5B751C00563400E58631 /* HSExpressViewController.h */,
 				F69E5B761C00563400E58631 /* HSExpressViewController.m */,
+				F639B9C21C312CE000431D04 /* HSExpressTableViewCell.h */,
+				F639B9C31C312CE000431D04 /* HSExpressTableViewCell.m */,
+				F639B9C41C312CE000431D04 /* HSExpressTableViewCell.xib */,
 			);
 			name = ExpressInquiry;
 			sourceTree = "<group>";
@@ -2092,6 +2108,8 @@
 				F636DBCA1B3D2D77001A47B2 /* HSSegmentView.h */,
 				F636DBCB1B3D2D77001A47B2 /* HSSegmentView.m */,
 				F636DBCD1B3D2FAC001A47B2 /* HSSegmentView.xib */,
+				F639B9C71C31309600431D04 /* HSExpressProgressView.h */,
+				F639B9C81C31309600431D04 /* HSExpressProgressView.m */,
 			);
 			name = customView;
 			sourceTree = "<group>";
@@ -2526,6 +2544,7 @@
 				F6FF47CA1B329A9E00272889 /* HSMineTopCollectionReusableView.xib in Resources */,
 				F6FF47CB1B329A9E00272889 /* HSOrderTableViewCell.xib in Resources */,
 				F6FF47CC1B329A9E00272889 /* HSCouponTableViewCell.xib in Resources */,
+				F639B9C61C312CE000431D04 /* HSExpressTableViewCell.xib in Resources */,
 				F6FF47CD1B329A9E00272889 /* HSFavoriteTableViewCell.xib in Resources */,
 				F6FF47CE1B329A9E00272889 /* HSAddressTableViewCell.xib in Resources */,
 				F6FF47CF1B329A9E00272889 /* HSAddressDetailTableViewCell.xib in Resources */,
@@ -2639,7 +2658,9 @@
 				F6C593C31AB82472006D612E /* HSCommodityCategaryCollectionViewCell.m in Sources */,
 				F67236571AB7380F00828EEE /* IQBarButtonItem.m in Sources */,
 				F636DBCC1B3D2D77001A47B2 /* HSSegmentView.m in Sources */,
+				F639B9C51C312CE000431D04 /* HSExpressTableViewCell.m in Sources */,
 				F62A63D01BB120C0001EA70E /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
+				F62FD7A01C3281E600D65008 /* HSExpressModel.m in Sources */,
 				F6ADE7861BA9931B00DB0797 /* HSCommentListModel.m in Sources */,
 				F68B6ED31ABFF88600F328EA /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				F672366A1AB7380F00828EEE /* SDWebImageDecoder.m in Sources */,
@@ -2685,6 +2706,7 @@
 				F62A637A1BB0EA9A001EA70E /* SZTextView.m in Sources */,
 				F67236621AB7380F00828EEE /* JSONHTTPClient.m in Sources */,
 				F68406D21B203C70004FC6D9 /* DataVerifier.m in Sources */,
+				F639B9C91C31309600431D04 /* HSExpressProgressView.m in Sources */,
 				F6476ADE1B130D4200E081F1 /* HSMineOrderViewController.m in Sources */,
 				F6B1EEA41ACA844E0081694C /* HSBuyNumView.m in Sources */,
 				F672366F1AB7380F00828EEE /* UIButton+WebCache.m in Sources */,

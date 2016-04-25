@@ -24,12 +24,14 @@
 #import "HSBaseViewController.h"
 
 /// 服务器地址
-#define kURLHeader @"http://ecommerce.news.cn"// 正式服务器
+#define kURLHeader @"http://cxg.139club.com"// 正式服务器
+
+//#define kURLHeader @"http://ecommerce.news.cn"// 正式服务器
 
 //#define kURLHeader @"http://221.226.28.42/wsc" // 前期测试服务器
 
 /// 商品详细介绍的图片
-#define kCommodityImgURLHeader @"http://ecommerce.news.cn" // @"http://203.192.7.23"
+#define kCommodityImgURLHeader kURLHeader // @"http://203.192.7.23" http://ecommerce.news.cn
 
 
 /// 保存的版本

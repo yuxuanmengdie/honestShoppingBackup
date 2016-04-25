@@ -320,7 +320,7 @@ static NSString  *const kTopCellIndentifier = @"topCellIndentifer";
 //                                       delegate:self];
     
     
-    NSString *shareURLStr = @"http://ecommerce.news.cn/index.php?g=api&m=Test&a=download";
+    NSString *shareURLStr = [NSString stringWithFormat:@"%@%@",kURLHeader,@"/index.php?g=api&m=Test&a=download"];//@"http://ecommerce.news.cn/index.php?g=api&m=Test&a=download";
     [UMSocialWechatHandler setWXAppId:@"wxf674afd7fa6b3db1" appSecret:@"768ef498760a90567afeac93211abfa9" url:shareURLStr];
     [UMSocialQQHandler setQQWithAppId:@"1104470651" appKey:@"1VATaXjYJuiJ0itg" url:shareURLStr];
     NSString *shareText = @"“放心吃”是由新华社江苏分社、新华网移动互联网产品研发基地打造的优质农副产品掌上电商平台。【安心选，放心吃】";//[NSString stringWithFormat:@"%@\n%@", _detailPicModel.title,_detailPicModel.intro];//@"友盟社会化组件可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。 http://www.umeng.com/social";             //分享内嵌文字

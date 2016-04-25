@@ -35,7 +35,7 @@
 /// 两个子视图等宽
 - (void)HS_equelWidthWithFirstView:(UIView *)firstView secondView:(UIView *)secondView;
 
-/// 两个子视图等宽
+/// 两个子视图等高
 - (void)HS_equelHeightWithFirstView:(UIView *)firstView secondView:(UIView *)secondView;
 
 /// 子视图 对齐方式

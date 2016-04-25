@@ -18,6 +18,7 @@
 #import "HSPayTypeTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "HSOrderStatusTableViewCell.h"
+#import "HSPayMannager.h"
 
 #import "HSCommodityItemDetailPicModel.h"
 #import "HSOrderModel.h"
@@ -498,8 +499,10 @@ static const int kUpdateOrderMaxCount = 5;
         NSLog(@"%s failed\n%@",__func__,operation.responseString);
         [self hiddenHudLoading];
         if (operation.responseData == nil) {
-            if (_orderUpdateCount <= kUpdateOrderMaxCount) {
+            if (_orderUpdateCount <= kUpdateOrderMaxCount) { //不满最大轮询次数就继续请求
                 [self updateOrderStatus:orderID uid:uid sessionCode:sessionCode];
+            } else { //添加到未完成列表中
+                [[HSPayMannager sharePayMannager] addRecordWithUid:uid payType:@"" orderID:orderID sessionCode:sessionCode];
             }
             return ;
         }

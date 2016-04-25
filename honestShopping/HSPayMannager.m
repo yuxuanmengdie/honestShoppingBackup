@@ -200,24 +200,15 @@ static NSString *const kPayRecord = @"payRecord";
             NSDictionary *jsonDic = (NSDictionary *)json;
             NSString *code = jsonDic[kPostJsonCode];
             
-            if ([code isEqualToString:@"10020"]) { // 订单关闭时
-                [self removeRecord:orderID]; //移除记录
+            if (![code isEqualToString:@"10001"]) { // 不是sessioncode 过期
+                 [self removeRecord:orderID]; //移除记录
             }
-
             return;
-        }
-        
-        
-        if (jsonError == nil && [json isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *tmpDic = (NSDictionary *)json;
-            NSNumber *status = tmpDic[kPostJsonStatus];
-            if (status != nil && [status boolValue]) { /// 订单更新成功
-                [self removeRecord:orderID];
-            }
-        }
-        else
-        {
             
+        }
+        
+        if (jsonError == nil) {
+            [self removeRecord:orderID];
         }
     }];
 }
